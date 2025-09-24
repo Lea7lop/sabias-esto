@@ -6,15 +6,12 @@
   <style>
     body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
     .curiosidad { background: white; border-radius: 8px; padding: 15px; margin: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .curiosidad img { max-width: 100%; border-radius: 5px; margin-top: 10px; }
     button { padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; }
   </style>
 </head>
 <body>
-
 <h1>Curiosidades</h1>
 <button id="cargarBtn">Mostrar curiosidades</button>
-
 <div id="contenedor"></div>
 
 <script>
@@ -23,7 +20,7 @@ async function cargarCuriosidades() {
   contenedor.innerHTML = '';
 
   try {
-    const response = await fetch('curiosidades.json'); // Nota: GitHub Pages sirve public/ como raíz
+    const response = await fetch('curiosidades.json');
     const datos = await response.json();
 
     datos.forEach(c => {
@@ -32,7 +29,6 @@ async function cargarCuriosidades() {
       div.innerHTML = `
         <h2>¿Sabías que ${c.dato}?</h2>
         <p>${c.explicacion}</p>
-        <img src="${c.imagen}" alt="Imagen de ${c.dato}">
       `;
       contenedor.appendChild(div);
     });
@@ -44,6 +40,5 @@ async function cargarCuriosidades() {
 
 document.getElementById('cargarBtn').addEventListener('click', cargarCuriosidades);
 </script>
-
 </body>
 </html>
