@@ -7,7 +7,8 @@ import datetime
 import unicodedata
 
 # ---------- Config ----------
-HF_API_URL = "https://api-inference.huggingface.co/models/gpt2"
+# Modelo accesible en Hugging Face Inference API (gratis con token)
+HF_API_URL = "https://api-inference.huggingface.co/models/bigscience/bloom-560m"
 HF_ENV_NAME = "HF_API_KEY"  # nombre del secret en GitHub
 MAX_NEW = 5
 MAX_INTENTOS = 60
@@ -58,33 +59,28 @@ def generar_con_hf(prompt, headers, max_retries=3, wait=1):
         if resp.status_code == 200:
             try:
                 data = resp.json()
-                # respuesta común: [{'generated_text': '...'}]
                 if isinstance(data, list) and len(data) and "generated_text" in data[0]:
                     return data[0]["generated_text"].strip()
-                # algunos modelos/dev returns text in other format:
                 if isinstance(data, dict) and "generated_text" in data:
                     return data["generated_text"].strip()
-                # fallback: if API returns plain text (rare)
                 try:
                     return resp.text.strip()
                 except:
                     return None
             except ValueError:
-                # si no es JSON, puede ser texto
                 return resp.text.strip()
         else:
             last_err = f"{resp.status_code} {resp.text}"
             time.sleep(wait)
-    # si falla
     print("ERROR HF:", last_err)
     return None
 
-# ---------- Prompt (formato claro para parseo) ----------
+# ---------- Prompt ----------
 PROMPT_TEMPLATE = (
     "Genera UN ÚNICO dato curioso en español en una sola frase (máx ~20 palabras), "
     "seguido exactamente por '||' y a continuación una explicación clara y didáctica de 2-3 oraciones. "
     "Devuelve únicamente: DATO||EXPLICACIÓN (sin texto extra). Ejemplo: "
-    "Los plátanos son bayas||Explicación corta..."
+    "Los plátanos son bayas||Aunque no lo parezca, los plátanos cumplen la definición botánica de una baya..."
 )
 
 # ---------- MAIN ----------
@@ -95,7 +91,7 @@ def main():
         return
 
     headers = {"Authorization": f"Bearer {hf_key}"}
-    historico = cargar_historico(OUTPUT_JSON_PUBLIC)  # usamos public como histórico principal
+    historico = cargar_historico(OUTPUT_JSON_PUBLIC)
     existentes = set([h.get("dato") for h in historico if h.get("dato")])
 
     nuevos = []
@@ -107,26 +103,21 @@ def main():
         if not salida:
             continue
 
-        # parseo por '||'
         if "||" in salida:
             dato, explicacion = salida.split("||", 1)
             dato = dato.strip().rstrip(".")
             explicacion = explicacion.strip()
         else:
-            # fallback: separar por primer punto y espacio
             if ". " in salida:
                 dato, explicacion = salida.split(". ", 1)
                 dato = dato.strip().rstrip(".")
                 explicacion = explicacion.strip()
             else:
-                # si no se puede parsear, ignorar
                 continue
 
         if not dato or dato in existentes:
-            # repetido o inválido
             continue
 
-        # ok: nuevo
         now_date = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
         slug = slugify(dato)
         filename = f"{POSTS_DIR}/{now_date}-{slug}.md"
@@ -140,17 +131,15 @@ date: {md_date}
 {explicacion}
 
 """
-        # escribir .md
         with open(filename, "w", encoding="utf-8") as f:
             f.write(contenido)
 
         entry = {"dato": dato, "explicacion": explicacion, "date": md_date}
-        historico.insert(0, entry)  # insertar al inicio
+        historico.insert(0, entry)
         existentes.add(dato)
         nuevos.append(entry)
         print("Creado:", filename)
 
-    # guardar histórico en public y también copia raíz para compatibilidad con index.html
     guardar_historico(historico, OUTPUT_JSON_PUBLIC)
     guardar_historico(historico, OUTPUT_JSON_ROOT)
 
@@ -161,4 +150,3 @@ date: {md_date}
 
 if __name__ == "__main__":
     main()
-    
