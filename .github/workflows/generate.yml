@@ -1,34 +1,31 @@
-name: Generar Curiosidades
+name: Auto Generate Curiosity
 
 on:
-  workflow_dispatch:  # Para correr manualmente
+  workflow_dispatch:
 
 jobs:
   generate:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Configurar Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
-
-    - name: Instalar dependencias
-      run: pip install requests
-
-    - name: Ejecutar script
-      env:
-        HF_TOKEN: ${{ secrets.HF_TOKEN }}
-      run: python scripts/generate_post.py
-
-    - name: Commit y push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add _posts/ public/images/ public/curiosidades.json
-        git commit -m "Auto-generar 5 posts de curiosidades" || echo "No hay cambios"
-        git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install requests
+      - name: Run generate_post script
+        env:
+          HF_API_KEY: ${{ secrets.HF_API_KEY }}
+        run: python scripts/generate_post.py
+      - name: Commit new posts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add _posts/ public/images/ public/curiosidades.json
+          git commit -m "Auto-generate 5 curiosity posts" || echo "No changes to commit"
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
