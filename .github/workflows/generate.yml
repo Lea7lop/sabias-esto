@@ -1,0 +1,39 @@
+name: Auto Generate Curiosity
+
+on:
+  workflow_dispatch: # Permite correr manualmente
+  schedule:
+    - cron: "0 12 * * *" # Opcional: corre diario a las 12:00 UTC
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run generate_post script
+        env:
+          DEEP_AI_KEY: ${{ secrets.DEEP_AI_KEY }}
+        run: python scripts/generate_post.py
+
+      - name: Commit and push new content
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add _posts images || true
+          git commit -m "Auto-generated curiosity post" || echo "No changes to commit"
+          git push origin HEAD:main
