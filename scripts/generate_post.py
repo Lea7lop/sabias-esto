@@ -1,6 +1,8 @@
 import random, datetime, requests, os, json
 
-# Lista de datos curiosos con explicación más larga
+# --------------------------
+# Lista de curiosidades con explicación más larga
+# --------------------------
 curiosidades = [
     {
         "dato": "El pulpo tiene tres corazones.",
@@ -28,16 +30,23 @@ curiosidades = [
     }
 ]
 
-# Carpeta pública para imágenes
+# --------------------------
+# Crear carpeta pública para imágenes
+# --------------------------
 os.makedirs("public/images", exist_ok=True)
+
+# --------------------------
+# Configuración Hugging Face
+# --------------------------
+api_url = "https://api-inference.huggingface.co/models/hogiahien/counterfeit-v30-edited"
+api_key = os.getenv("HF_API_KEY")  # Token guardado en GitHub Secrets
+headers = {"Authorization": f"Bearer {api_key}"}
 
 curiosidades_json = []
 
-# Hugging Face API
-api_url = "https://api-inference.huggingface.co/models/hogiahien/counterfeit-v30-edited"
-api_key = os.getenv("HF_API_KEY")  # Tu token de Hugging Face en GitHub Secrets
-headers = {"Authorization": f"Bearer {api_key}"}
-
+# --------------------------
+# Generar 5 posts
+# --------------------------
 for _ in range(5):
     c = random.choice(curiosidades)
     fecha = datetime.datetime.utcnow().strftime("%Y-%m-%d")
@@ -46,7 +55,7 @@ for _ in range(5):
     nombre_archivo = f"_posts/{fecha}-{slug}.md"
     nombre_imagen = f"public/images/{fecha}-{slug}.png"
 
-    # Generar imagen
+    # Generar imagen usando Hugging Face
     try:
         response = requests.post(api_url, headers=headers, json={"inputs": c["dato"]})
         if response.status_code == 200:
@@ -58,14 +67,14 @@ for _ in range(5):
     except Exception as e:
         print(f"Error al generar imagen: {e}")
 
-    # Crear Markdown
+    # Crear post Markdown
     contenido = f"""---
 layout: post
 title: "¿Sabías que {c['dato']}?"
 date: {fecha}
 ---
 
-{c['explicacion']*2}
+{c['explicacion']} {c['explicacion']}  # Explicación más larga
 
 ![Imagen relacionada](/images/{fecha}-{slug}.png)
 """
@@ -83,4 +92,4 @@ date: {fecha}
 with open("public/curiosidades.json", "w", encoding="utf-8") as f:
     json.dump(curiosidades_json, f, ensure_ascii=False, indent=2)
 
-print("Se generaron 5 posts con imágenes y JSON actualizado.")
+print("✅ Se generaron 5 posts con imágenes y JSON actualizado.")
