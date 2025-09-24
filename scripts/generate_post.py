@@ -4,15 +4,27 @@ import random, datetime, requests, os, json
 curiosidades = [
     {
         "dato": "El pulpo tiene tres corazones.",
-        "explicacion": "Dos bombean sangre a las branquias y uno al resto del cuerpo. Lo curioso es que el principal se detiene cuando nada, lo que hace que nadar sea más costoso energéticamente para ellos."
+        "explicacion": (
+            "Dos bombean sangre a las branquias y uno al resto del cuerpo. "
+            "El corazón principal se detiene cuando nada, lo que ayuda a conservar energía. "
+            "Su sangre es azul por la hemocianina, lo que permite transportar oxígeno en aguas frías."
+        )
     },
     {
         "dato": "Los plátanos son bayas, pero las frutillas no.",
-        "explicacion": "Botánicamente, el plátano califica como baya simple, mientras que la frutilla es un fruto agregado formado por múltiples ovarios de la misma flor."
+        "explicacion": (
+            "Botánicamente, el plátano es una baya simple porque se desarrolla a partir de un solo ovario. "
+            "La frutilla es un fruto agregado formado por varios ovarios de la misma flor, lo que la hace diferente. "
+            "Esta diferencia científica suele sorprender a muchas personas."
+        )
     },
     {
         "dato": "En Júpiter y Saturno puede llover diamantes.",
-        "explicacion": "La presión atmosférica es tan alta que transforma el carbono en diamantes sólidos que caen como lluvia, un fenómeno que no ocurre en la Tierra."
+        "explicacion": (
+            "La presión atmosférica en estos planetas es tan alta que el carbono se cristaliza en diamantes sólidos "
+            "que caen como lluvia. Este fenómeno demuestra cómo las condiciones extremas pueden crear minerales "
+            "de formas inesperadas en otros mundos."
+        )
     }
 ]
 
