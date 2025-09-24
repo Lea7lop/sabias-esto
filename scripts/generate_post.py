@@ -16,7 +16,7 @@ curiosidades = [
     }
 ]
 
-# Carpeta pública
+# Carpeta pública para imágenes
 os.makedirs("public/images", exist_ok=True)
 
 curiosidades_json = []
@@ -24,7 +24,6 @@ curiosidades_json = []
 # Hugging Face API
 api_url = "https://api-inference.huggingface.co/models/hogiahien/counterfeit-v30-edited"
 api_key = os.getenv("HF_API_KEY")  # Tu token de Hugging Face en GitHub Secrets
-
 headers = {"Authorization": f"Bearer {api_key}"}
 
 for _ in range(5):
@@ -61,7 +60,7 @@ date: {fecha}
     with open(nombre_archivo, "w", encoding="utf-8") as f:
         f.write(contenido)
 
-    # JSON
+    # Agregar al JSON
     curiosidades_json.append({
         "dato": c["dato"],
         "explicacion": c["explicacion"]*2,
