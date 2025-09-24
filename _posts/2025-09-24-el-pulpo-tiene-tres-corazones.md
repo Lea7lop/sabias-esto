@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "¿Sabías que El pulpo tiene tres corazones?"
+title: "¿Sabías que el pulpo tiene tres corazones.?"
 date: 2025-09-24
 ---
 
-Esta curiosidad es interesante porque ofrece un dato poco conocido que despierta la curiosidad del lector y fomenta el aprendizaje sobre la naturaleza y la ciencia. Además, esta información permite entender mejor fenómenos curiosos que sorprenden a cualquier persona y son excelentes para aprender mientras te entretienes.
+Dos bombean sangre a las branquias y uno al resto del cuerpo. El corazón principal se detiene cuando nada, lo que ayuda a conservar energía. Su sangre es azul por la hemocianina, lo que permite transportar oxígeno en aguas frías.
 
-![Imagen relacionada](/placeholder.png)
+![Imagen relacionada](/images/2025-09-24-el-pulpo-tiene-tres-corazones.png)
