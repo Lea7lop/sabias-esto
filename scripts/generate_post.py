@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-# scripts/generate_post.py
-import random, datetime, requests, os, re
+import random, datetime, requests, os, re, json
 from pathlib import Path
 
 # ---- Config ----
 CUR_DIR = Path(__file__).parent.parent
 POSTS_DIR = CUR_DIR / "_posts"
 IMAGES_DIR = CUR_DIR / "images"
+JSON_FILE = CUR_DIR / "curiosidades.json"
 API_URL = "https://api.deepai.org/api/text2img"
 API_KEY = os.getenv("DEEP_AI_KEY")  # añadir en GitHub Secrets
 
@@ -24,6 +24,8 @@ curiosidades = [
         "explicacion": "La presión atmosférica es tan alta que transforma el carbono en diamantes sólidos que caen como lluvia."
     }
 ]
+
+# ----------------- Funciones -----------------
 
 def slugify(text):
     text = text.lower()
@@ -67,9 +69,9 @@ def generar_imagen(prompt, destino_path):
 
 def crear_post(dato_dict, imagen_nombre):
     fecha = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S +0000")
-    fecha_filename = datetime.datetime.utcnow().strftime("%Y-%m-%d")
+    fecha_short = datetime.datetime.utcnow().strftime("%Y-%m-%d")
     slug = slugify(dato_dict['dato'])
-    filename = f"{fecha_filename}-{slug}.md"
+    filename = f"{fecha_short}-{slug}.md"
     filepath = POSTS_DIR / filename
     imagen_md = f"/images/{imagen_nombre}" if imagen_nombre else ""
     contenido = f"""---
@@ -89,6 +91,30 @@ date: {fecha}
 
     return filepath
 
+def actualizar_json(nuevo_post):
+    posts = []
+    # Si ya existe el JSON, cargarlo
+    if JSON_FILE.exists():
+        with open(JSON_FILE, "r", encoding="utf-8") as f:
+            try:
+                posts = json.load(f)
+            except json.JSONDecodeError:
+                posts = []
+
+    # Agregar nuevo post al principio
+    post_entry = {
+        "titulo": nuevo_post['dato'],
+        "explicacion": nuevo_post['explicacion'],
+        "imagen": f"images/{nuevo_post['imagen']}" if nuevo_post.get('imagen') else ""
+    }
+    posts.insert(0, post_entry)
+
+    # Guardar JSON actualizado
+    with open(JSON_FILE, "w", encoding="utf-8") as f:
+        json.dump(posts, f, ensure_ascii=False, indent=2)
+
+# ----------------- Main -----------------
+
 def main():
     ensure_dirs()
     elegido = random.choice(curiosidades)
@@ -99,14 +125,18 @@ def main():
 
     print("Generando imagen para:", elegido['dato'])
     imagen_generada = generar_imagen(elegido['dato'], destino_img)
-
     if imagen_generada:
         print("Imagen guardada en:", destino_img)
+        elegido['imagen'] = nombre_img
     else:
-        print("No se generó imagen; el post se creará sin imagen.")
+        print("No se generó imagen; el post se creará sin imagen")
+        elegido['imagen'] = ""
 
-    post_file = crear_post(elegido, imagen_generada)
+    post_file = crear_post(elegido, elegido['imagen'])
     print("Post creado:", post_file)
+
+    actualizar_json(elegido)
+    print("curiosidades.json actualizado con el nuevo post.")
 
 if __name__ == "__main__":
     main()
