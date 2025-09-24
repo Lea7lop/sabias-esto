@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false  # Muy importante para usar GITHUB_TOKEN manualmente
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -19,9 +21,11 @@ jobs:
       - name: Run generate_post script
         run: python scripts/generate_post.py
       - name: Commit new posts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add _posts/ images/ curiosidades.json
           git commit -m "Auto-generated 5 curiosity posts" || echo "No changes to commit"
-          git push
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
