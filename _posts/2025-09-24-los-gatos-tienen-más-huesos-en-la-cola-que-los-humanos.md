@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "¿Sabías que El pulpo tiene tres corazones?"
+title: "¿Sabías que Los gatos tienen más huesos en la cola que los humanos?"
 date: 2025-09-24
 ---
 

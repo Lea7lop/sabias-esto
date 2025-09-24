@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "dato": "Los gatos tienen más huesos en la cola que los humanos",
+    "explicacion": "Esta curiosidad es interesante porque ofrece un dato poco conocido que despierta la curiosidad del lector y fomenta el aprendizaje sobre la naturaleza y la ciencia.",
+    "imagen": "placeholder.png"
+  },
+  {
+    "dato": "El pulpo tiene tres corazones",
+    "explicacion": "Esta curiosidad es interesante porque ofrece un dato poco conocido que despierta la curiosidad del lector y fomenta el aprendizaje sobre la naturaleza y la ciencia.",
+    "imagen": "placeholder.png"
+  },
+  {
+    "dato": "El agua puede hervir y congelarse al mismo tiempo",
+    "explicacion": "Esta curiosidad es interesante porque ofrece un dato poco conocido que despierta la curiosidad del lector y fomenta el aprendizaje sobre la naturaleza y la ciencia.",
+    "imagen": "placeholder.png"
+  },
+  {
+    "dato": "El agua puede hervir y congelarse al mismo tiempo",
+    "explicacion": "Esta curiosidad es interesante porque ofrece un dato poco conocido que despierta la curiosidad del lector y fomenta el aprendizaje sobre la naturaleza y la ciencia.",
+    "imagen": "placeholder.png"
+  },
+  {
+    "dato": "La miel nunca se echa a perder",
+    "explicacion": "Esta curiosidad es interesante porque ofrece un dato poco conocido que despierta la curiosidad del lector y fomenta el aprendizaje sobre la naturaleza y la ciencia.",
+    "imagen": "placeholder.png"
+  }
+]

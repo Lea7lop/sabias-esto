@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "¿Sabías que El pulpo tiene tres corazones?"
+title: "¿Sabías que La miel nunca se echa a perder?"
 date: 2025-09-24
 ---
 

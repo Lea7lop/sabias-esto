@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "¿Sabías que El pulpo tiene tres corazones?"
+title: "¿Sabías que El agua puede hervir y congelarse al mismo tiempo?"
 date: 2025-09-24
 ---
 
