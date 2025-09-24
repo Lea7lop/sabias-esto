@@ -2,10 +2,52 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>¿Sabías esto?</title>
+  <title>Sabías Esto</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ccc; padding: 15px; margin: 10px 0; border-radius: 8px; max-width: 600px; }
+    .card img { max-width: 100%; height: auto; border-radius: 5px; }
+    #curiosidades { margin-top: 20px; }
+    button { padding: 10px 20px; cursor: pointer; font-size: 16px; }
+  </style>
 </head>
 <body>
   <h1>Bienvenido a Sabías Esto</h1>
-  <p>Aquí publicaremos datos curiosos generados automáticamente con IA 🚀</p>
+  <p>Haz clic en el botón para descubrir un dato curioso generado por nuestra IA 🚀</p>
+
+  <button id="mostrar-curiosidades">Mostrar curiosidades</button>
+
+  <div id="curiosidades"></div>
+
+  <script>
+    document.getElementById('mostrar-curiosidades').addEventListener('click', async () => {
+      const boton = document.getElementById('mostrar-curiosidades');
+      boton.disabled = true;
+      boton.textContent = "Cargando...";
+
+      try {
+        const res = await fetch('curiosidades.json');
+        const posts = await res.json();
+        const cont = document.getElementById('curiosidades');
+        cont.innerHTML = '';
+
+        posts.forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <h2>${p.titulo}</h2>
+            <p>${p.explicacion}</p>
+            ${p.imagen ? `<img src="${p.imagen}" alt="${p.titulo}">` : ''}
+          `;
+          cont.appendChild(card);
+        });
+      } catch (err) {
+        alert('Error cargando las curiosidades: ' + err);
+      }
+
+      boton.disabled = false;
+      boton.textContent = "Mostrar curiosidades";
+    });
+  </script>
 </body>
 </html>
