@@ -32,7 +32,8 @@ async function cargarCuriosidades() {
       div.innerHTML = `
         <h2>¿Sabías que ${c.dato}?</h2>
         <p>${c.explicacion}</p>
-        <img src="${c.imagen}" alt="Imagen de ${c.dato}">
+        <img src="./${c.imagen}" alt="Imagen de ${c.dato}">
+
       `;
       contenedor.appendChild(div);
     });
