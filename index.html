@@ -23,7 +23,7 @@ async function cargarCuriosidades() {
   contenedor.innerHTML = '';
 
   try {
-    const response = await fetch('curiosidades.json'); // GitHub Pages sirve public/ como raíz
+    const response = await fetch('curiosidades.json'); 
     const datos = await response.json();
 
     datos.forEach(c => {
