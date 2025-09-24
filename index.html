@@ -2,52 +2,48 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Sabías Esto</title>
+  <title>Curiosidades</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    .card { border: 1px solid #ccc; padding: 15px; margin: 10px 0; border-radius: 8px; max-width: 600px; }
-    .card img { max-width: 100%; height: auto; border-radius: 5px; }
-    #curiosidades { margin-top: 20px; }
-    button { padding: 10px 20px; cursor: pointer; font-size: 16px; }
+    body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+    .curiosidad { background: white; border-radius: 8px; padding: 15px; margin: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .curiosidad img { max-width: 100%; border-radius: 5px; margin-top: 10px; }
+    button { padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; }
   </style>
 </head>
 <body>
-  <h1>Bienvenido a Sabías Esto</h1>
-  <p>Haz clic en el botón para descubrir un dato curioso generado por nuestra IA 🚀</p>
 
-  <button id="mostrar-curiosidades">Mostrar curiosidades</button>
+<h1>Curiosidades</h1>
+<button id="cargarBtn">Mostrar curiosidades</button>
 
-  <div id="curiosidades"></div>
+<div id="contenedor"></div>
 
-  <script>
-    document.getElementById('mostrar-curiosidades').addEventListener('click', async () => {
-      const boton = document.getElementById('mostrar-curiosidades');
-      boton.disabled = true;
-      boton.textContent = "Cargando...";
+<script>
+async function cargarCuriosidades() {
+  const contenedor = document.getElementById('contenedor');
+  contenedor.innerHTML = '';
 
-      try {
-        const res = await fetch('curiosidades.json');
-        const posts = await res.json();
-        const cont = document.getElementById('curiosidades');
-        cont.innerHTML = '';
+  try {
+    const response = await fetch('curiosidades.json');
+    const datos = await response.json();
 
-        posts.forEach(p => {
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.innerHTML = `
-            <h2>${p.titulo}</h2>
-            <p>${p.explicacion}</p>
-            ${p.imagen ? `<img src="${p.imagen}" alt="${p.titulo}">` : ''}
-          `;
-          cont.appendChild(card);
-        });
-      } catch (err) {
-        alert('Error cargando las curiosidades: ' + err);
-      }
-
-      boton.disabled = false;
-      boton.textContent = "Mostrar curiosidades";
+    datos.forEach(c => {
+      const div = document.createElement('div');
+      div.className = 'curiosidad';
+      div.innerHTML = `
+        <h2>¿Sabías que ${c.dato}?</h2>
+        <p>${c.explicacion}</p>
+        <img src="${c.imagen}" alt="Imagen de ${c.dato}">
+      `;
+      contenedor.appendChild(div);
     });
-  </script>
+  } catch (error) {
+    contenedor.innerHTML = '<p>No se pudieron cargar las curiosidades.</p>';
+    console.error(error);
+  }
+}
+
+document.getElementById('cargarBtn').addEventListener('click', cargarCuriosidades);
+</script>
+
 </body>
 </html>
