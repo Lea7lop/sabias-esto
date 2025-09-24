@@ -1,33 +1,44 @@
-name: Auto Generate Curiosity
+name: Auto Generate Curiosity Posts
 
 on:
-  workflow_dispatch:  # Permite ejecutar manualmente
+  workflow_dispatch:   # permite ejecutarlo manualmente desde la pestaña Actions
+  schedule:
+    - cron: "0 0 * * *"   # todos los días a medianoche UTC
 
 jobs:
-  generate:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
 
+    steps:
+      # 1. Clonar el repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Configurar Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
+      # 3. Instalar dependencias
       - name: Install dependencies
         run: pip install requests
 
+      # 4. Ejecutar el script para generar posts
       - name: Run generate_post script
+        env:
+          HF_API_KEY: ${{ secrets.HF_API_KEY }}
         run: python scripts/generate_post.py
 
-      - name: Commit new posts
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # 5. Hacer commit y push de los cambios (si los hay)
+      - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add _posts/ public/curiosidades.json
-          git commit -m "Auto-generate 5 curiosity posts" || echo "No changes to commit"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Auto-generate 5 curiosity posts"
+            git push
+          else
+            echo "No changes to commit"
+          fi
