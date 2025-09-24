@@ -1,30 +1,31 @@
 import requests, json, datetime, os, random
 
-# Ruta de almacenamiento
+# Carpetas
 json_file = "curiosidades.json"
 posts_folder = "_posts/"
 images_folder = "images/"
 
-# Asegúrate que existan las carpetas
 os.makedirs(posts_folder, exist_ok=True)
 os.makedirs(images_folder, exist_ok=True)
 
-# --- Función para generar texto de curiosidad automáticamente ---
+# --- Función para generar texto automáticamente ---
 def generar_curiosidad():
-    # Aquí usamos una "simulación" de IA para generar texto
-    # Puedes reemplazar con una API de generación de texto real si quieres
+    # Lista de ideas iniciales; luego se puede reemplazar por IA de texto real
     datos_ejemplo = [
         "El pulpo tiene tres corazones",
         "Los plátanos son bayas, pero las frutillas no",
         "En Júpiter y Saturno puede llover diamantes",
         "Las abejas tienen cinco ojos",
-        "El agua puede hervir y congelarse al mismo tiempo"
+        "El agua puede hervir y congelarse al mismo tiempo",
+        "Los gatos tienen más huesos en la cola que los humanos",
+        "Los delfines tienen nombres para identificarse entre sí",
+        "La miel nunca se echa a perder"
     ]
     explicacion = "Esta curiosidad es interesante porque ofrece un dato poco conocido que despierta la curiosidad del lector y fomenta el aprendizaje sobre la naturaleza y la ciencia."
     dato = random.choice(datos_ejemplo)
     return {"dato": dato, "explicacion": explicacion}
 
-# --- Función para generar imagen usando Raphael AI ---
+# --- Función para generar imagen con Raphael AI ---
 def generar_imagen(prompt):
     url = "https://raphaelai.org/generate"
     headers = {"Content-Type": "application/json"}
@@ -58,7 +59,7 @@ for _ in range(5):
         nombre_imagen = "placeholder.png"
 
     # Explicación larga
-    explicacion_larga = c["explicacion"]
+    explicacion_larga = c["explicacion"] + " Además, esta información permite entender mejor fenómenos curiosos que sorprenden a cualquier persona y son excelentes para aprender mientras te entretienes."
 
     # Crear post Markdown
     contenido = f"""---
