@@ -1,59 +1,60 @@
 import os
 import requests
 import json
-from time import sleep
+import time
 
-# Modelos públicos y accesibles
-MODEL_TITULOS = "microsoft/Phi-3-mini-128k-instruct"
-MODEL_EXPLICACIONES = "TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF"
-
+# --- CONFIGURACIÓN ---
 HF_TOKEN = os.getenv("HF_TOKEN")
 HEADERS = {"Authorization": f"Bearer {HF_TOKEN}"}
-
 MAX_RETRIES = 3
 
+# Modelos que funcionan con API
+MODEL_TITULOS = "microsoft/Phi-3-mini-4k-instruct"
+MODEL_EXPLICACION = "TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF"
+
+# Número de curiosidades a generar
+NUM_CURIOSIDADES = 5
+
+# --- FUNCIONES ---
 def query_model(model_name, prompt):
     url = f"https://api-inference.huggingface.co/models/{model_name}"
-    for attempt in range(1, MAX_RETRIES + 1):
-        try:
-            response = requests.post(url, headers=HEADERS, json={"inputs": prompt})
-            response.raise_for_status()
-            return response.json()[0]["generated_text"]
-        except requests.exceptions.HTTPError as e:
-            print(f"Intento {attempt} fallido para {model_name}: {e}")
-            sleep(2)
+    for intento in range(1, MAX_RETRIES + 1):
+        response = requests.post(url, headers=HEADERS, json={"inputs": prompt})
+        if response.status_code == 200:
+            data = response.json()
+            # Algunos modelos devuelven texto directamente en 'generated_text'
+            if isinstance(data, list) and "generated_text" in data[0]:
+                return data[0]["generated_text"]
+            return data
+        else:
+            print(f"Intento {intento} fallido para {model_name}: {response.status_code} {response.reason}")
+            time.sleep(2)
     raise RuntimeError(f"No se pudo obtener respuesta del modelo {model_name} después de {MAX_RETRIES} intentos.")
 
 def generar_curiosidades():
     curiosidades = []
-
-    for i in range(5):
-        # 1️⃣ Generar título
-        prompt_titulos = "Genera un título de dato curioso interesante y llamativo."
+    for i in range(NUM_CURIOSIDADES):
+        prompt_titulos = "Genera un dato curioso interesante y breve sobre cualquier tema."
         raw_title = query_model(MODEL_TITULOS, prompt_titulos)
-        title = raw_title.strip()
 
-        # 2️⃣ Generar explicación
-        prompt_explicacion = f"Explica detalladamente el siguiente dato curioso: {title}"
-        raw_explanation = query_model(MODEL_EXPLICACIONES, prompt_explicacion)
-        explanation = raw_explanation.strip()
+        # Ahora enriquecemos con explicación larga usando segundo modelo
+        prompt_explicacion = f"Explica con detalle y de forma entretenida este dato curioso: {raw_title}"
+        raw_explicacion = query_model(MODEL_EXPLICACION, prompt_explicacion)
 
         curiosidades.append({
-            "title": title,
-            "explanation": explanation
+            "titulo": raw_title.strip(),
+            "explicacion": raw_explicacion.strip()
         })
-
+        print(f"Curiosidad {i+1} generada.")
     return curiosidades
 
-def guardar_json(curiosidades):
+def guardar_curiosidades(curiosidades):
     with open("curiosidades.json", "w", encoding="utf-8") as f:
-        json.dump(curiosidades, f, indent=4, ensure_ascii=False)
+        json.dump(curiosidades, f, indent=2, ensure_ascii=False)
+    print("Curiosidades guardadas en curiosidades.json")
 
-def main():
+# --- EJECUCIÓN ---
+if __name__ == "__main__":
     print("Generando curiosidades...")
     curiosidades = generar_curiosidades()
-    guardar_json(curiosidades)
-    print("¡Curiosidades generadas y guardadas en curiosidades.json!")
-
-if __name__ == "__main__":
-    main()
+    guardar_curiosidades(curiosidades)
