@@ -1,9 +1,9 @@
 name: Generar Curiosidades
 
 on:
-  schedule:
-    - cron: '0 10 * * *'  # Corre todos los días a las 10:00 AM
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'  # Opcional: ejecuta diariamente a medianoche
 
 jobs:
   build:
@@ -11,15 +11,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install requests
+      - run: pip install requests
 
-      - name: Run script
+      - name: Generar datos curiosos
+        run: python scripts/generate_post_dual_optimized.py
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: python scripts/generate_post_dual_optimized.py
+
+      - name: Configurar Git
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit y push automáticos
+        run: |
+          git add curiosidades.json
+          git commit -m "Auto: generar nuevas curiosidades" || echo "Sin cambios que commitear"
+          git push
