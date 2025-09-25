@@ -1,29 +1,44 @@
-name: Generar curiosidades
+name: Generar curiosidades automáticamente
+
+# Se puede ejecutar manualmente o automáticamente cada día
 on:
-  workflow_dispatch:
+  workflow_dispatch:   # permite ejecución manual
   schedule:
-    - cron: '0 7 * * *'  # diario a las 07:00 UTC
+    - cron: '0 7 * * *'  # diario a las 07:00 UTC, ajusta según tu zona
 
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      # 1️⃣ Obtener el repositorio
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # 2️⃣ Configurar Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+
+      # 3️⃣ Instalar librerías necesarias
       - name: Install requirements
-        run: pip install --upgrade pip && pip install requests
-      - name: Run generator
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      # 4️⃣ Ejecutar el script de generación
+      - name: Generar datos curiosos
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          HF_MODEL: mistralai/Mistral-7B-Instruct-v0.3
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}          # tu token de Hugging Face
+          HF_MODEL: mistralai/Mistral-7B-Instruct-v0.3  # modelo usado
         run: python scripts/generate_post.py
-      - name: Commit & push
+
+      # 5️⃣ Guardar cambios automáticamente
+      - name: Commit y push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions[bot]"
           git add _posts curiosidades.json
-          git commit -m "Auto: generar curiosidades" || echo "No hay cambios"
+          git commit -m "Auto: generar 5 nuevos datos curiosos" || echo "No hay cambios para commitear"
           git push
