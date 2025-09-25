@@ -22,7 +22,6 @@ def query_model(model_name, prompt):
         response = requests.post(url, headers=HEADERS, json={"inputs": prompt})
         if response.status_code == 200:
             data = response.json()
-            # Algunos modelos devuelven texto directamente en 'generated_text'
             if isinstance(data, list) and "generated_text" in data[0]:
                 return data[0]["generated_text"]
             return data
@@ -37,7 +36,7 @@ def generar_curiosidades():
         prompt_titulos = "Genera un dato curioso interesante y breve sobre cualquier tema."
         raw_title = query_model(MODEL_TITULOS, prompt_titulos)
 
-        # Ahora enriquecemos con explicación larga usando segundo modelo
+        # Enriquecemos con explicación larga usando segundo modelo
         prompt_explicacion = f"Explica con detalle y de forma entretenida este dato curioso: {raw_title}"
         raw_explicacion = query_model(MODEL_EXPLICACION, prompt_explicacion)
 
