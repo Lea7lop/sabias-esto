@@ -18,7 +18,8 @@ jobs:
           import requests
           import os
           HF_TOKEN = os.getenv("HF_TOKEN")
-          MODEL = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"  # Cambia a Phi-3 si quieres
+          MODEL = "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T"
+
           response = requests.post(
               f"https://api-inference.huggingface.co/models/{MODEL}",
               headers={"Authorization": f"Bearer {HF_TOKEN}"},
