@@ -1,138 +1,73 @@
-#!/usr/bin/env python3
-"""
-Genera 5 datos curiosos usando Hugging Face Inference API y los guarda:
-- _posts/YYYY-MM-DD-slug.md
-- curiosidades.json
+import os
+import requests
+import json
+from datetime import datetime
 
-Versión mejorada: explicaciones largas y estilo educativo.
-"""
-
-import os, requests, json, time, random, re, datetime
-
+# 🔑 Cargar variables de entorno
 HF_TOKEN = os.getenv("HF_TOKEN")
-if not HF_TOKEN:
-    raise SystemExit("ERROR: HF_TOKEN no encontrado en variables de entorno.")
+HF_MODEL = os.getenv("HF_MODEL", "HuggingFaceH4/zephyr-7b-beta")
 
-MODEL = os.getenv("HF_MODEL", "mistralai/Mistral-7B-Instruct-v0.3")
-API = f"https://api-inference.huggingface.co/models/{MODEL}"
+API_URL = f"https://api-inference.huggingface.co/models/{HF_MODEL}"
 HEADERS = {"Authorization": f"Bearer {HF_TOKEN}", "Content-Type": "application/json"}
 
-random.seed()
-
-def slugify(s):
-    s = s.lower()
-    s = re.sub(r'[^a-z0-9áéíóúñ]+', '-', s)
-    s = re.sub(r'-+', '-', s).strip('-')
-    return s[:60]
-
-def call_hf(prompt, max_new_tokens=900, temperature=0.7):
-    payload = {
-        "inputs": prompt,
-        "parameters": {
-            "max_new_tokens": max_new_tokens,
-            "temperature": temperature,
-            "top_p": 0.95
-        },
-        "options": {"wait_for_model": True}
-    }
-    r = requests.post(API, headers=HEADERS, json=payload, timeout=180)
-    if r.status_code != 200:
-        raise Exception(f"Hugging Face API error {r.status_code}: {r.text}")
-    data = r.json()
-    if isinstance(data, list):
-        text = "".join([d.get("generated_text","") for d in data])
-    elif isinstance(data, dict) and "generated_text" in data:
-        text = data["generated_text"]
-    else:
-        text = json.dumps(data)
-    return text.strip()
-
-def extract_json(text):
-    m = re.search(r'(\{.*\})', text, flags=re.DOTALL)
-    if not m:
-        return None
-    try:
-        return json.loads(m.group(1))
-    except Exception:
-        return None
-
-CATEGORIES = [
-    "Historia", "Ciencia", "Tecnología", "Arte", "Geografía",
-    "Biología", "Astronomía", "Inventos", "Cultura", "Deportes"
-]
-
-def make_prompt(category):
-    return (
-        f"Eres un redactor experto en educación y curiosidades. "
-        f"Tu tarea es generar UN dato curioso original y fascinante sobre el tema: {category}.\n\n"
-        f"Requisitos:\n"
-        "- Explicación extensa y detallada, estilo blog educativo, mínimo 300 palabras.\n"
-        "- Usar lenguaje claro, ejemplos o anécdotas si es posible.\n"
-        "- Mantener tono entretenido y didáctico.\n"
-        "- Generar SOLO JSON válido con claves:\n"
-        "  - title (string, <100 caracteres)\n"
-        "  - body (string, explicación larga)\n"
-        "  - tags (lista de 3-6 strings)\n"
-        "  - image_prompt (string breve para generar imagen)\n"
-        "  - source (string, fuente si se conoce o '' si no)\n"
-        "IMPORTANTE: Devuelve SOLO JSON sin texto extra."
+def generar_curiosidades():
+    prompt = (
+        "Genera 5 datos curiosos diferentes, interesantes y poco conocidos. "
+        "Para cada dato, escribe un título breve y una explicación larga, clara y entretenida, "
+        "como si fuera para un blog de curiosidades. "
+        "El resultado debe estar en formato JSON con esta estructura:\n\n"
+        "[\n"
+        "  {\"titulo\": \"...\", \"explicacion\": \"...\"},\n"
+        "  {\"titulo\": \"...\", \"explicacion\": \"...\"},\n"
+        "  {\"titulo\": \"...\", \"explicacion\": \"...\"},\n"
+        "  {\"titulo\": \"...\", \"explicacion\": \"...\"},\n"
+        "  {\"titulo\": \"...\", \"explicacion\": \"...\"}\n"
+        "]"
     )
 
-def ensure_unique_title(title, seen):
-    base = title
-    i = 1
-    while title in seen:
-        i += 1
-        title = f"{base} ({i})"
-    seen.add(title)
-    return title
+    response = requests.post(API_URL, headers=HEADERS, json={"inputs": prompt})
+    response.raise_for_status()
+    data = response.json()
+
+    # Hugging Face puede devolver lista o dict
+    if isinstance(data, list) and "generated_text" in data[0]:
+        raw_text = data[0]["generated_text"]
+    elif isinstance(data, dict) and "generated_text" in data:
+        raw_text = data["generated_text"]
+    else:
+        raise ValueError(f"Respuesta inesperada del modelo: {data}")
+
+    # Intentar parsear como JSON
+    try:
+        curiosidades = json.loads(raw_text)
+    except:
+        # fallback: limpiar texto y reintentar
+        raw_text = raw_text.strip().split("\n")
+        curiosidades = []
+        for line in raw_text:
+            if "titulo" in line.lower() or "explicacion" in line.lower():
+                curiosidades.append(line)
+
+    return curiosidades
+
+def guardar_curiosidades(curiosidades):
+    # 📂 Guardar en curiosidades.json
+    with open("curiosidades.json", "w", encoding="utf-8") as f:
+        json.dump(curiosidades, f, ensure_ascii=False, indent=2)
+
+    # 📂 Guardar en _posts/ con fecha
+    fecha = datetime.now().strftime("%Y-%m-%d")
+    filename = f"_posts/{fecha}-curiosidades.md"
+
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(f"---\nlayout: post\ntitle: \"Curiosidades del {fecha}\"\n---\n\n")
+        for c in curiosidades:
+            f.write(f"## {c['titulo']}\n\n{c['explicacion']}\n\n")
 
 def main():
-    os.makedirs("_posts", exist_ok=True)
-    results = []
-    seen_titles = set()
-    tries = 0
-    while len(results) < 5 and tries < 15:
-        tries += 1
-        category = random.choice(CATEGORIES)
-        prompt = make_prompt(category)
-        try:
-            raw = call_hf(prompt, max_new_tokens=900, temperature=0.7)
-        except Exception as e:
-            print("HF ERROR:", e)
-            time.sleep(5)
-            continue
-        data = extract_json(raw)
-        if not data:
-            print("No se pudo extraer JSON, HF devolvió (primeros 300 chars):")
-            print(raw[:300])
-            time.sleep(1)
-            continue
-        title = data.get("title","Dato curioso")
-        title = ensure_unique_title(title, seen_titles)
-        body = data.get("body","")
-        tags = data.get("tags",[])
-        image_prompt = data.get("image_prompt","")
-        slug = slugify(title)
-        date = datetime.date.today().isoformat()
-        filename = f"_posts/{date}-{slug}.md"
-        md = f"---\ntitle: \"{title}\"\ndate: {date}\ntags: {json.dumps(tags)}\nimage_prompt: \"{image_prompt}\"\n---\n\n{body}\n"
-        with open(filename, "w", encoding="utf-8") as f:
-            f.write(md)
-        results.append({
-            "title": title,
-            "slug": slug,
-            "date": date,
-            "tags": tags,
-            "image_prompt": image_prompt,
-            "body": body,
-            "source": data.get("source","")
-        })
-        print("Generado:", title)
-        time.sleep(2)
-    with open("curiosidades.json", "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
-    print(f"Generados {len(results)} datos curiosos. Archivos en _posts/ y curiosidades.json")
+    curiosidades = generar_curiosidades()
+    guardar_curiosidades(curiosidades)
+    print("✅ Se generaron y guardaron 5 curiosidades nuevas.")
 
 if __name__ == "__main__":
     main()
