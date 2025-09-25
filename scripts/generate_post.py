@@ -3,7 +3,7 @@ import requests
 import json
 from datetime import datetime
 
-# 🔑 Cargar variables de entorno
+# 🔑 Variables de entorno
 HF_TOKEN = os.getenv("HF_TOKEN")
 HF_MODEL = os.getenv("HF_MODEL", "HuggingFaceH4/zephyr-7b-beta")
 
@@ -13,23 +13,22 @@ HEADERS = {"Authorization": f"Bearer {HF_TOKEN}", "Content-Type": "application/j
 def generar_curiosidades():
     prompt = (
         "Genera 5 datos curiosos diferentes, interesantes y poco conocidos. "
-        "Para cada dato, escribe un título breve y una explicación larga, clara y entretenida, "
-        "como si fuera para un blog de curiosidades. "
-        "El resultado debe estar en formato JSON con esta estructura:\n\n"
+        "Cada dato debe estar en formato JSON con esta estructura:\n\n"
         "[\n"
         "  {\"titulo\": \"...\", \"explicacion\": \"...\"},\n"
         "  {\"titulo\": \"...\", \"explicacion\": \"...\"},\n"
         "  {\"titulo\": \"...\", \"explicacion\": \"...\"},\n"
         "  {\"titulo\": \"...\", \"explicacion\": \"...\"},\n"
         "  {\"titulo\": \"...\", \"explicacion\": \"...\"}\n"
-        "]"
+        "]\n\n"
+        "Asegúrate de devolver SOLO JSON válido, sin texto adicional."
     )
 
     response = requests.post(API_URL, headers=HEADERS, json={"inputs": prompt})
     response.raise_for_status()
     data = response.json()
 
-    # Hugging Face puede devolver lista o dict
+    # Hugging Face puede responder con lista o dict
     if isinstance(data, list) and "generated_text" in data[0]:
         raw_text = data[0]["generated_text"]
     elif isinstance(data, dict) and "generated_text" in data:
@@ -40,13 +39,8 @@ def generar_curiosidades():
     # Intentar parsear como JSON
     try:
         curiosidades = json.loads(raw_text)
-    except:
-        # fallback: limpiar texto y reintentar
-        raw_text = raw_text.strip().split("\n")
-        curiosidades = []
-        for line in raw_text:
-            if "titulo" in line.lower() or "explicacion" in line.lower():
-                curiosidades.append(line)
+    except json.JSONDecodeError:
+        raise ValueError(f"No se pudo parsear la salida del modelo como JSON:\n{raw_text}")
 
     return curiosidades
 
