@@ -1,16 +1,17 @@
 name: Generar curiosidades automáticamente
 
+# Puede ejecutarse manualmente o automáticamente cada día
 on:
-  workflow_dispatch:   # permite ejecución manual desde GitHub
+  workflow_dispatch:   # ejecución manual
   schedule:
-    - cron: '0 7 * * *'  # todos los días a las 07:00 UTC
+    - cron: '0 7 * * *'  # diario a las 07:00 UTC
 
 jobs:
   generate:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Descargar el repo
+      # 1️⃣ Obtener repositorio
       - name: Checkout repo
         uses: actions/checkout@v4
 
@@ -26,14 +27,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      # 4️⃣ Ejecutar script de generación
+      # 4️⃣ Ejecutar el script de generación
       - name: Generar datos curiosos
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}         # tu token guardado en GitHub Secrets
-          HF_MODEL: HuggingFaceH4/zephyr-7b-beta    # ✅ modelo compatible
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_MODEL: TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T
         run: python scripts/generate_post.py
 
-      # 5️⃣ Guardar cambios en el repo
+      # 5️⃣ Guardar cambios automáticamente
       - name: Commit y push
         run: |
           git config --local user.email "action@github.com"
