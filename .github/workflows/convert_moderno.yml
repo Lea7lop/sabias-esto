@@ -29,5 +29,5 @@ jobs:
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
         git add curiosidades_moderno.json
-        git commit -m "Auto: convertir curiosidades a formato moderno"
+        git commit -m "Auto: convertir curiosidades a formato moderno" || echo "Sin cambios que confirmar"
         git push
