@@ -1,6 +1,6 @@
 // Cargar JSON
 async function cargarDatos() {
-  const response = await fetch("curiosidades.json");
+  const response = await fetch("curiosidades_moderno.json");
   const datos = await response.json();
   return datos;
 }
