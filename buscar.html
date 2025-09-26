@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados de búsqueda - Sabías Esto</title>
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="categorias.html?categoria=Ciencia">Ciencia</a></li>
+        <li><a href="categorias.html?categoria=Historia">Historia</a></li>
+        <li><a href="categorias.html?categoria=Animales">Animales</a></li>
+      </ul>
+      <form id="search-form">
+        <input type="text" id="search-input" placeholder="Buscar dato curioso...">
+        <button type="submit">🔍</button>
+      </form>
+    </nav>
+  </header>
+
+  <!-- Resultados -->
+  <main>
+    <h1>Resultados de búsqueda</h1>
+    <div id="resultados-list"></div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
