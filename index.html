@@ -2,69 +2,97 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>¿Sabías esto?</title>
+  <title>Sabías Esto</title>
   <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fff; color:#111; }
-    header { padding:20px; text-align:center; background:#f5f5f5; }
-    nav { text-align:center; margin:10px 0; }
-    nav button { margin:0 5px; padding:10px 15px; border:none; background:#eee; cursor:pointer; border-radius:5px; transition:0.2s; }
-    nav button:hover { background:#ddd; }
-    .container { display:flex; flex-wrap:wrap; justify-content:center; padding:20px; gap:20px; }
-    .card { border:1px solid #eee; padding:15px; border-radius:8px; width:300px; background:#fafafa; box-shadow:0 2px 5px rgba(0,0,0,0.05); }
-    .card h3 { margin-top:0; font-size:18px; }
-    .card p { font-size:14px; line-height:1.4; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    header a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    header a.active {
+      color: #007bff;
+    }
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .curiosidad {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .curiosidad h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+    .curiosidad p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>¿Sabías esto?</h1>
+  <a href="#" class="category-link active" data-category="Inicio">Inicio</a>
+  <a href="#" class="category-link" data-category="Ciencia">Ciencia</a>
+  <a href="#" class="category-link" data-category="Historia">Historia</a>
 </header>
 
-<nav>
-  <button onclick="filterCategory('all')">Inicio</button>
-  <button onclick="filterCategory('Ciencia')">Ciencia</button>
-  <button onclick="filterCategory('Historia')">Historia</button>
-</nav>
-
-<div class="container" id="cards-container">
-  <!-- Aquí se cargan los datos desde JSON -->
-</div>
+<main id="curiosidades-container">
+  <!-- Aquí se cargarán los datos automáticamente -->
+</main>
 
 <script>
-async function cargarDatos() {
-  const res = await fetch('curiosidades.json');
-  const datos = await res.json();
-  
-  // Ordenar por fecha descendente
-  datos.sort((a,b) => new Date(b.date) - new Date(a.date));
+  // Cargar los datos desde curiosidades.json
+  fetch('curiosidades.json')
+    .then(response => response.json())
+    .then(data => {
+      window.curiosidades = data.sort((a,b) => new Date(b.date) - new Date(a.date)); // últimos primero
+      mostrarCuriosidades('Inicio');
+    });
 
-  const container = document.getElementById('cards-container');
-  container.innerHTML = '';
+  // Función para mostrar datos según categoría
+  function mostrarCuriosidades(categoria) {
+    const container = document.getElementById('curiosidades-container');
+    container.innerHTML = '';
+    let filtrados = categoria === 'Inicio' ? window.curiosidades : window.curiosidades.filter(d => d.category === categoria);
+    filtrados.forEach(d => {
+      const div = document.createElement('div');
+      div.classList.add('curiosidad');
+      div.innerHTML = `<h2>${d.fact}</h2><p>${d.explanation}</p>`;
+      container.appendChild(div);
+    });
+  }
 
-  datos.forEach(d => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.dataset.category = d.category;
-    card.innerHTML = `<h3>${d.fact}</h3><p>${d.explanation}</p>`;
-    container.appendChild(card);
+  // Cambiar categoría al hacer clic
+  document.querySelectorAll('.category-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      mostrarCuriosidades(link.dataset.category);
+    });
   });
-}
-
-// Filtrar por categoría
-function filterCategory(cat) {
-  const cards = document.querySelectorAll('.card');
-  cards.forEach(c => {
-    if(cat === 'all' || c.dataset.category === cat) {
-      c.style.display = 'block';
-    } else {
-      c.style.display = 'none';
-    }
-  });
-}
-
-// Cargar al inicio
-cargarDatos();
 </script>
 
 </body>
