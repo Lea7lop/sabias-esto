@@ -30,7 +30,19 @@ imagenes = {
     ]
 }
 
-categorias = list(imagenes.keys())
+# Palabras clave para clasificación automática
+keywords = {
+    "ciencia": ["átomo", "espacio", "planeta", "física", "química", "ciencia", "experimento", "universo", "laboratorio", "microscopio"],
+    "historia": ["egipto", "roma", "griegos", "historia", "guerra", "revolución", "rey", "castillo", "pirámide", "antiguo"],
+    "animales": ["animal", "perro", "gato", "abeja", "pez", "ave", "pájaro", "insecto", "mamífero", "león", "delfín"]
+}
+
+def detectar_categoria(texto):
+    t = texto.lower()
+    for categoria, palabras in keywords.items():
+        if any(palabra in t for palabra in palabras):
+            return categoria
+    return random.choice(list(imagenes.keys()))  # fallback si no encuentra coincidencia
 
 def convertir():
     with open(INPUT_FILE, "r", encoding="utf-8") as f:
@@ -46,8 +58,8 @@ def convertir():
         # El resto como descripción
         descripcion = texto
 
-        # Categoría aleatoria
-        categoria = random.choice(categorias)
+        # Categoría automática
+        categoria = detectar_categoria(texto)
 
         # Imagen aleatoria de esa categoría
         imagen = random.choice(imagenes[categoria])
