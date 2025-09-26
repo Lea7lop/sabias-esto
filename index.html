@@ -3,37 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sabías Esto - Datos Curiosos</title>
+  <title>🤯 Sabías Esto</title>
   <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-  <!-- Barra de navegación -->
-  <header class="navbar">
+  <!-- Header -->
+  <header>
     <div class="logo">🤯 Sabías Esto</div>
     <nav>
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="categorias.html?categoria=ciencia">Ciencia</a></li>
-        <li><a href="categorias.html?categoria=historia">Historia</a></li>
-        <li><a href="categorias.html?categoria=animales">Animales</a></li>
-      </ul>
+      <a href="index.html">Inicio</a>
+      <a href="categorias.html?cat=ciencia">Ciencia</a>
+      <a href="categorias.html?cat=historia">Historia</a>
+      <a href="categorias.html?cat=animales">Animales</a>
     </nav>
-    <div class="search-box">
+    <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Buscar dato curioso...">
-      <button onclick="buscarDato()">🔍</button>
+      <button onclick="buscarCuriosidad()">🔍</button>
     </div>
   </header>
 
-  <!-- Contenido principal -->
-  <main class="container">
-    <section class="featured">
-      <h2>Últimos Datos Curiosos</h2>
-      <div id="ultimos-datos" class="grid"></div>
-    </section>
+  <!-- Contenido -->
+  <main>
+    <h2>Últimos Datos Curiosos</h2>
+    <div class="grid" id="curiosidades-container">
+      <!-- Aquí se insertan las tarjetas -->
+    </div>
   </main>
 
+  <!-- Footer -->
   <footer>
-    <p>© 2025 Sabías Esto - Todos los derechos reservados</p>
+    © 2025 Sabías Esto - Todos los derechos reservados
   </footer>
 
   <script src="js/main.js"></script>
