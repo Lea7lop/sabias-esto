@@ -1,7 +1,5 @@
-// Cambia la ruta según dónde esté tu JSON
-const RUTA_JSON = 'curiosidades.json'; // si está en _publicaciones, pon '_publicaciones/curiosidades.json'
+const RUTA_JSON = 'curiosidades.json';
 
-// Función para cargar los datos
 async function cargarDatos() {
   try {
     const res = await fetch(RUTA_JSON);
@@ -13,15 +11,12 @@ async function cargarDatos() {
   }
 }
 
-// Mostrar datos por categoría
 async function mostrarPorCategoria() {
   const params = new URLSearchParams(window.location.search);
   const categoria = params.get('categoria') || 'Todas';
   document.getElementById('categoria-title')?.textContent = `Datos curiosos de ${categoria}`;
 
   const datos = await cargarDatos();
-
-  // Lista principal
   const lista = document.getElementById('curiosidades-list');
   if (lista) lista.innerHTML = '';
 
@@ -46,7 +41,6 @@ async function mostrarPorCategoria() {
     }
   });
 
-  // Últimos 5 datos
   const recientesDiv = document.getElementById('recientes');
   if (recientesDiv) {
     recientesDiv.innerHTML = '<h3>Últimos datos curiosos</h3>';
@@ -62,7 +56,6 @@ async function mostrarPorCategoria() {
   }
 }
 
-// Buscador
 document.getElementById('search-form')?.addEventListener('submit', async function(e) {
   e.preventDefault();
   const query = document.getElementById('search-input').value.toLowerCase();
@@ -75,7 +68,6 @@ document.getElementById('search-form')?.addEventListener('submit', async functio
   window.location.href = 'buscar.html';
 });
 
-// Mostrar resultados de búsqueda
 async function mostrarResultadosBusqueda() {
   const resultados = JSON.parse(localStorage.getItem('resultados') || '[]');
   const lista = document.getElementById('resultados-list');
@@ -99,12 +91,7 @@ async function mostrarResultadosBusqueda() {
   });
 }
 
-// Ejecutar automáticamente
 document.addEventListener('DOMContentLoaded', function() {
-  if (document.getElementById('categoria-title')) {
-    mostrarPorCategoria();
-  }
-  if (document.getElementById('resultados-list')) {
-    mostrarResultadosBusqueda();
-  }
+  if (document.getElementById('categoria-title')) mostrarPorCategoria();
+  if (document.getElementById('resultados-list')) mostrarResultadosBusqueda();
 });
