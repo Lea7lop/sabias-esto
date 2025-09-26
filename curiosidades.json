@@ -1,20 +1,22 @@
 [
   {
-    "titulo": "Las abejas pueden reconocer rostros humanos",
-    "descripcion": "Un estudio descubrió que las abejas pueden identificar rostros de personas.",
-    "imagen": "https://images.unsplash.com/photo-1573451447135-0f18e9307f5c",
-    "categoria": "Ciencia"
+    "dato": "Las tortugas pueden respirar por el trasero",
+    "explicacion": "Durante la hibernación en aguas frías, algunas especies de tortugas, como la tortuga de caparazón blando, pueden absorber oxígeno a través de un área altamente vascularizada de su cloaca, una cavidad en la parte trasera de su cuerpo. Este mecanismo les permite sobrevivir meses bajo el agua sin necesidad de salir a respirar aire. Es una adaptación extrema para resistir en ambientes con poco oxígeno disponible."
   },
   {
-    "titulo": "Los elefantes tienen memoria increíble",
-    "descripcion": "Pueden recordar rutas de agua y comida durante años.",
-    "imagen": "https://images.unsplash.com/photo-1517957754640-1e216d33d4f3",
-    "categoria": "Animales"
+    "dato": "Los flamencos no nacen de color rosa",
+    "explicacion": "Cuando nacen, los flamencos tienen plumas grises o blancas. El característico color rosa se debe a los carotenoides presentes en los alimentos que consumen, como algas y crustáceos. Estos pigmentos se acumulan en sus plumas y piel a lo largo del tiempo, transformando su aspecto. Si un flamenco no consume suficiente de estos pigmentos, su color puede permanecer pálido. Así, su tonalidad es un reflejo directo de su dieta."
   },
   {
-    "titulo": "La Gran Muralla China es visible desde el espacio",
-    "descripcion": "Aunque es un mito común, partes de la muralla son visibles con telescopios desde la órbita baja.",
-    "imagen": "https://images.unsplash.com/photo-1549887534-cfc6cf7e7de1",
-    "categoria": "Historia"
+    "dato": "Los pulpos tienen tres corazones",
+    "explicacion": "Dos de los corazones bombean sangre hacia las branquias para oxigenarla, y el tercero la distribuye por el resto del cuerpo. Lo más curioso es que este tercer corazón deja de latir cuando el pulpo nada, lo que explica por qué prefieren arrastrarse por el fondo marino: les resulta menos cansador. Además, su sangre es de color azul debido a que contiene hemocianina en lugar de hemoglobina, lo que les ayuda a sobrevivir en aguas frías y con poco oxígeno."
+  },
+  {
+    "dato": "Las jirafas tienen el mismo número de vértebras en el cuello que los humanos",
+    "explicacion": "A pesar de tener cuellos de hasta dos metros de largo, las jirafas tienen solo siete vértebras cervicales, la misma cantidad que los humanos. La diferencia está en el tamaño de cada vértebra, que en jirafas puede superar los 25 centímetros. Esta adaptación les permite alcanzar hojas altas en los árboles y, al mismo tiempo, mantener la flexibilidad necesaria para defenderse con golpes de cuello."
+  },
+  {
+    "dato": "El sol representa el 99,8% de la masa del sistema solar",
+    "explicacion": "Nuestro Sol es una gigantesca esfera de plasma que concentra casi toda la masa del sistema solar. Los planetas, asteroides y cometas, aunque impresionantes para nosotros, son diminutos en comparación. Este dato explica por qué la gravedad del Sol domina el movimiento de todos los cuerpos celestes que orbitan a su alrededor."
   }
 ]
