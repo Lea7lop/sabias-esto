@@ -1,0 +1,33 @@
+name: Convertir curiosidades a formato moderno
+
+on:
+  push:
+    paths:
+      - curiosidades.json
+      - scripts/convert_to_moderno.py
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+
+    - name: Ejecutar script de conversión
+      run: |
+        python scripts/convert_to_moderno.py
+
+    - name: Subir cambios
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add curiosidades_moderno.json
+        git commit -m "Auto: convertir curiosidades a formato moderno"
+        git push
