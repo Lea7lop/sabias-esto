@@ -1,25 +1,136 @@
 /* Reset básico */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-body { background: #f4f4f4; color: #333; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
 
-/* Estilos del header */
-header { background: #003580; color: white; padding: 20px; }
-header nav { display: flex; justify-content: space-between; align-items: center; }
-.menu { list-style: none; display: flex; gap: 20px; }
-.menu li a { text-decoration: none; color: white; font-weight: bold; }
-.menu li a:hover { text-decoration: underline; }
-form { display: flex; gap: 10px; }
-input { padding: 8px; border-radius: 5px; border: 1px solid #ccc; }
-button { padding: 8px 12px; background: #ff6200; color: white; border: none; border-radius: 5px; cursor: pointer; }
-button:hover { background: #e55b00; }
+body {
+  background: #f4f6f9;
+  color: #333;
+  line-height: 1.6;
+}
 
-/* Estilos del main */
-main { max-width: 1200px; margin: 30px auto; display: flex; flex-wrap: wrap; gap: 20px; }
-#curiosidades-list { flex: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1e293b;
+  color: #fff;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-/* Estilos de cada curiosidad */
-.curiosidad-item { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); }
-.curiosidad-item img { width: 100%; height: 200px; object-fit: cover; }
-.curiosidad-item div { padding: 15px; }
-.curiosidad-item h2 { font-size: 1.2rem; margin-bottom: 10px; }
-.curiosidad-item p { font-size: 1rem; line-height: 1.5; }
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.navbar ul li a:hover {
+  color: #38bdf8;
+}
+
+/* Buscador */
+.search-box {
+  display: flex;
+  align-items: center;
+}
+
+.search-box input {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+}
+
+.search-box button {
+  background: #38bdf8;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-box button:hover {
+  background: #0ea5e9;
+}
+
+/* CONTENEDOR */
+.container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #1e293b;
+  border-left: 5px solid #38bdf8;
+  padding-left: 0.5rem;
+}
+
+/* GRID DE DATOS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.card-content h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #0f172a;
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+/* FOOTER */
+footer {
+  background: #1e293b;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
