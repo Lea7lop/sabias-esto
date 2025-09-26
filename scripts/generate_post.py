@@ -1,161 +1,145 @@
 #!/usr/bin/env python3
-import os, json, random, datetime, unicodedata, textwrap
+import os
+import json
+import random
+import datetime
+import unicodedata
 
-# Config
-FACTS_FILE = "data/facts.json"
-HIST_PUBLIC = "public/curiosidades.json"
-HIST_ROOT = "curiosidades.json"
+# ---------- Config ----------
+MAX_NEW = 5
 POSTS_DIR = "_posts"
-NUM_NEW = 5
-
 os.makedirs(POSTS_DIR, exist_ok=True)
 os.makedirs("public", exist_ok=True)
 
-# Utilidades
+OUTPUT_JSON_PUBLIC = "public/curiosidades.json"
+OUTPUT_JSON_ROOT = "curiosidades.json"
+
+# ---------- Utilidades ----------
 def slugify(text):
+    if not text:
+        return "sin-dato"
     text = unicodedata.normalize("NFKD", text)
     text = text.encode("ascii", "ignore").decode("ascii")
-    text = text.lower()
+    text = text.lower().strip()
     for ch in [' ', '/', '\\', '"', "'", ":", ";", ",", "(", ")", "?" , "¿", "¡", "!", "."]:
         text = text.replace(ch, "-")
     while "--" in text:
         text = text.replace("--", "-")
     return text.strip("-")[:80]
 
-def now_iso():
+def now_utc_iso():
     return datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S +0000")
 
-def load_json(path):
+# ---------- Datos curiosos base ----------
+DATOS_BASE = [
+    {
+        "dato": "El pulpo tiene tres corazones",
+        "explicacion": (
+            "Dos bombean sangre a las branquias y uno al resto del cuerpo. "
+            "El corazón principal se detiene cuando nada, lo que ayuda a conservar energía. "
+            "Su sangre es azul por la hemocianina, que permite transportar oxígeno en aguas frías."
+        )
+    },
+    {
+        "dato": "Los plátanos son bayas pero las frutillas no",
+        "explicacion": (
+            "Botánicamente, el plátano es una baya simple porque se desarrolla a partir de un solo ovario. "
+            "La frutilla es un fruto agregado formado por varios ovarios de la misma flor. "
+            "Esta diferencia científica suele sorprender a muchas personas."
+        )
+    },
+    {
+        "dato": "En Júpiter y Saturno puede llover diamantes",
+        "explicacion": (
+            "La presión atmosférica en estos planetas es tan alta que el carbono se cristaliza en diamantes sólidos "
+            "que caen como lluvia. Este fenómeno demuestra cómo las condiciones extremas pueden crear minerales "
+            "de formas inesperadas en otros mundos."
+        )
+    },
+    {
+        "dato": "La miel nunca se echa a perder",
+        "explicacion": (
+            "Gracias a su bajo contenido de agua y alta acidez, la miel puede durar siglos sin estropearse. "
+            "Se han encontrado tarros de miel comestible en tumbas egipcias de más de 3000 años."
+        )
+    },
+    {
+        "dato": "Las abejas tienen cinco ojos",
+        "explicacion": (
+            "Tienen dos ojos compuestos grandes y tres ojos simples pequeños en la parte superior de la cabeza. "
+            "Estos ojos les ayudan a detectar luz, movimiento y orientación mientras vuelan."
+        )
+    },
+    {
+        "dato": "Los gatos tienen más huesos en la cola que los humanos",
+        "explicacion": (
+            "Los gatos poseen entre 19 y 23 huesos en la cola, mientras que los humanos solo tienen un grupo de huesos fusionados (cóccix). "
+            "Esto les da gran flexibilidad para el equilibrio y la comunicación mediante movimientos de cola."
+        )
+    }
+]
+
+# ---------- Funciones ----------
+def cargar_historico(path):
     if os.path.exists(path):
-        with open(path, "r", encoding="utf-8") as f:
-            try:
+        try:
+            with open(path, "r", encoding="utf-8") as f:
                 return json.load(f)
-            except:
-                return []
+        except:
+            return []
     return []
 
-def save_json(obj, path):
+def guardar_historico(hist, path):
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(obj, f, ensure_ascii=False, indent=2)
+        json.dump(hist, f, ensure_ascii=False, indent=2)
 
-# Generador de explicación larga (plantillas + variación)
-def expand_explanation(base_short):
-    parts = []
-    # Primera frase: la base como introducción
-    intro = base_short.strip().rstrip(".") + "."
-    parts.append(intro)
-
-    connectors = [
-        "Esto ocurre principalmente porque",
-        "En términos sencillos, significa que",
-        "Además, conviene destacar que",
-        "Un ejemplo práctico es que",
-        "Como consecuencia,",
-        "Históricamente se ha observado que",
-        "Es interesante saber que"
-    ]
-
-    facts_detail = [
-        "involucra procesos biológicos y estructurales que explican su funcionamiento",
-        "se relaciona con adaptaciones que mejoran la supervivencia",
-        "está influenciado por factores ambientales y evolutivos",
-        "tiene implicaciones en cómo estos organismos interactúan con su entorno",
-        "se explica por la anatomía y fisiología específicas de la especie"
-    ]
-
-    examples = [
-        "la alimentación y comportamiento",
-        "la regulación térmica",
-        "la movilidad y el desplazamiento",
-        "la polinización y dispersión de semillas",
-        "la protección frente a depredadores"
-    ]
-
-    templates = [
-        "{conn} {detail}.",
-        "{conn} {detail}, y por eso {example}.",
-        "{conn} {detail}. Además, {extra}.",
-        "{conn} {detail}, lo cual resulta en {example}."
-    ]
-
-    extras = [
-        "esto ha sido estudiado por biólogos marinos y fisiólogos",
-        "los científicos usan modelos y observaciones para entender mejor este fenómeno",
-        "estudiarlo ayuda a comprender procesos más grandes en la naturaleza"
-    ]
-
-    # Generar 3 frases adicionales
-    for _ in range(3):
-        conn = random.choice(connectors)
-        temp = random.choice(templates)
-        detail = random.choice(facts_detail)
-        example = random.choice(examples)
-        extra = random.choice(extras)
-        phrase = temp.format(conn=conn, detail=detail, example=example, extra=extra)
-        parts.append(phrase)
-
-    # Cierre
-    parts.append("Si te interesa saber más, investigar este tema revela conexiones fascinantes entre la naturaleza y la ciencia.")
-
-    texto = " ".join(parts)
-    return textwrap.fill(texto, width=100)
-
-# MAIN
+# ---------- MAIN ----------
 def main():
-    facts = load_json(FACTS_FILE)
-    if not facts:
-        print("ERROR: data/facts.json no encontrado o vacío.")
-        return
-
-    historico = load_json(HIST_PUBLIC)  # historial
-    usados = set([h.get("dato") for h in historico if h.get("dato")])
-
-    candidatos = [f for f in facts if f.get("dato") not in usados]
-    random.shuffle(candidatos)
+    historico = cargar_historico(OUTPUT_JSON_PUBLIC)
+    existentes = set([h.get("dato") for h in historico if h.get("dato")])
 
     nuevos = []
-    idx = 0
-    # Si no hay suficientes nuevos candidatos, te avisamos y usamos reposición controlada
-    while len(nuevos) < NUM_NEW:
-        if idx < len(candidatos):
-            f = candidatos[idx]
-            idx += 1
-        else:
-            # si ya no quedan nuevos, tomar aleatorio de todos (pero evitar duplicados dentro de esta ejecución)
-            f = random.choice(facts)
-            if f.get("dato") in [n["dato"] for n in nuevos]:
-                continue
+    intentos = 0
+    MAX_INTENTOS = 20
 
-        dato = f.get("dato")
-        base = f.get("explicacion", "")
-        explicacion_larga = expand_explanation(base)
-        fecha = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
+    while len(nuevos) < MAX_NEW and intentos < MAX_INTENTOS:
+        intentos += 1
+        c = random.choice(DATOS_BASE)
+        dato = c["dato"]
+        explicacion = c["explicacion"]
+
+        if not dato or dato in existentes:
+            continue
+
+        now_date = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d")
         slug = slugify(dato)
-        filename = f"{POSTS_DIR}/{fecha}-{slug}.md"
-        md_date = now_iso()
+        filename = f"{POSTS_DIR}/{now_date}-{slug}.md"
+        md_date = now_utc_iso()
         contenido = f"""---
 layout: post
 title: "¿Sabías que {dato}?"
 date: {md_date}
 ---
 
-{explicacion_larga}
+{explicacion}
 
 """
-        with open(filename, "w", encoding="utf-8") as ff:
-            ff.write(contenido)
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write(contenido)
 
-        entry = {"dato": dato, "explicacion": explicacion_larga, "date": md_date}
+        entry = {"dato": dato, "explicacion": explicacion, "date": md_date}
         historico.insert(0, entry)
+        existentes.add(dato)
         nuevos.append(entry)
         print("Creado:", filename)
 
-    # Guardar histórico (tanto en public como copia raíz para index.html)
-    save_json(historico, HIST_PUBLIC)
-    save_json(historico, HIST_ROOT)
+    guardar_historico(historico, OUTPUT_JSON_PUBLIC)
+    guardar_historico(historico, OUTPUT_JSON_ROOT)
 
-    print(f"✅ Se generaron {len(nuevos)} datos curiosos nuevos y se actualizó {HIST_PUBLIC}.")
+    if nuevos:
+        print(f"✅ Se generaron {len(nuevos)} datos curiosos nuevos.")
+    else:
+        print("⚠️ No se generaron datos nuevos (intenta limpiar el histórico si todos ya existen).")
 
 if __name__ == "__main__":
     main()
-    
