@@ -1,1 +1,83 @@
+[
+  {
+    "fact": "Las abejas pueden reconocer rostros humanos",
+    "explanation": "Aunque su cerebro es diminuto, las abejas tienen la capacidad de distinguir y recordar patrones faciales humanos de manera similar a como lo hacen las personas. Esto se descubrió en experimentos donde se entrenó a las abejas con recompensas de azúcar. Sorprendentemente, lograron reconocer rostros específicos incluso días después. Este hallazgo sugiere que la habilidad de reconocer caras no requiere un cerebro grande, sino un sistema visual eficiente."
+  },
+  {
+    "fact": "El corazón de una ballena azul es tan grande como un coche pequeño",
+    "explanation": "La ballena azul, el animal más grande del planeta, tiene un corazón que puede llegar a pesar más de 180 kilogramos. Sus latidos son tan potentes que pueden detectarse a varios kilómetros de distancia en el agua. Para ponerlo en perspectiva, una persona podría nadar dentro de sus arterias principales, que tienen un diámetro de unos 60 centímetros. Este dato refleja la magnitud impresionante de la biología marina."
+  },
+  {
+    "fact": "Los pulpos tienen tres corazones",
+    "explanation": "Dos de los corazones bombean sangre hacia las branquias para oxigenarla, y el tercero la distribuye por el resto del cuerpo. Lo más curioso es que este tercer corazón deja de latir cuando el pulpo nada, lo que explica por qué prefieren arrastrarse por el fondo marino: les resulta menos cansador. Además, su sangre es de color azul debido a que contiene hemocianina en lugar de hemoglobina, lo que les ayuda a sobrevivir en aguas frías y con poco oxígeno."
+  },
+  {
+    "fact": "Los flamencos no nacen de color rosa",
+    "explanation": "Cuando nacen, los flamencos tienen plumas grises o blancas. El característico color rosa se debe a los carotenoides presentes en los alimentos que consumen, como algas y crustáceos. Estos pigmentos se acumulan en sus plumas y piel a lo largo del tiempo, transformando su aspecto. Si un flamenco no consume suficiente de estos pigmentos, su color puede permanecer pálido. Así, su tonalidad es un reflejo directo de su dieta."
+  },
+  {
+    "fact": "El ajedrez tiene más combinaciones posibles que átomos en el universo conocido",
+    "explanation": "El número de posiciones posibles en una partida de ajedrez es asombroso: se estima en 10^120, un número inconcebiblemente grande comparado con los aproximadamente 10^80 átomos que se calcula existen en el universo observable. Esto significa que cada partida de ajedrez puede considerarse prácticamente única, y que nunca en la historia se repetirán todas las posibles combinaciones de movimientos."
+  },
+  {
+    "fact": "Las tortugas pueden respirar por el trasero",
+    "explanation": "Durante la hibernación en aguas frías, algunas especies de tortugas, como la tortuga de caparazón blando, pueden absorber oxígeno a través de un área altamente vascularizada de su cloaca, una cavidad en la parte trasera de su cuerpo. Este mecanismo les permite sobrevivir meses bajo el agua sin necesidad de salir a respirar aire. Es una adaptación extrema para resistir en ambientes con poco oxígeno disponible."
+  },
+  {
+    "fact": "El Monte Everest crece cada año",
+    "explanation": "El Everest, la montaña más alta del planeta, aumenta su altura lentamente debido al movimiento de las placas tectónicas. Se estima que crece entre 4 y 5 milímetros al año. Esto ocurre porque la placa tectónica india se desliza debajo de la placa euroasiática, empujando hacia arriba a la cordillera del Himalaya. Es un recordatorio de que la geología de la Tierra está en constante transformación."
+  },
+  {
+    "fact": "Los koalas tienen huellas digitales casi idénticas a las humanas",
+    "explanation": "Las huellas de los koalas son tan similares a las de los humanos que incluso bajo un microscopio resultan difíciles de distinguir. Esto se debe a la evolución convergente: tanto los koalas como los humanos desarrollaron huellas para mejorar el agarre. En escenas de crimen en Australia, las huellas de koalas podrían confundir a los investigadores si no se analizan cuidadosamente."
+  },
+  {
+    "fact": "El tiburón de Groenlandia puede vivir más de 400 años",
+    "explanation": "Este tiburón del Ártico es uno de los vertebrados más longevos conocidos. Se estima que algunos ejemplares superan los 400 años de edad. Crecen apenas 1 centímetro por año y alcanzan la madurez sexual alrededor de los 150 años. Su lento metabolismo, consecuencia de vivir en aguas frías, es uno de los factores que explican su extraordinaria longevidad."
+  },
+  {
+    "fact": "El cuerpo humano brilla en la oscuridad",
+    "explanation": "Los seres humanos emiten una luz extremadamente débil, llamada bioluminiscencia, que es invisible al ojo humano. Estudios con cámaras ultrasensibles han demostrado que el brillo varía a lo largo del día, siendo más intenso por la tarde. Este fenómeno ocurre debido a reacciones químicas en las células durante el metabolismo. Aunque no lo percibamos, todos llevamos un resplandor natural."
+  },
+  {
+    "fact": "Las jirafas tienen el mismo número de vértebras en el cuello que los humanos",
+    "explanation": "A pesar de tener cuellos de hasta dos metros de largo, las jirafas tienen solo siete vértebras cervicales, la misma cantidad que los humanos. La diferencia está en el tamaño de cada vértebra, que en jirafas puede superar los 25 centímetros. Esta adaptación les permite alcanzar hojas altas en los árboles y, al mismo tiempo, mantener la flexibilidad necesaria para defenderse con golpes de cuello."
+  },
+  {
+    "fact": "El sonido viaja más rápido en el agua que en el aire",
+    "explanation": "El sonido se desplaza aproximadamente 4,3 veces más rápido en el agua que en el aire. Esto ocurre porque las moléculas del agua están más juntas, transmitiendo las vibraciones de manera más eficiente. Para los animales marinos, como ballenas y delfines, esto significa que pueden comunicarse a distancias enormes bajo el mar mediante sonidos de baja frecuencia."
+  },
+  {
+    "fact": "Las estrellas fugaces no son estrellas",
+    "explanation": "Lo que llamamos estrella fugaz en realidad es un meteoro: pequeñas partículas de polvo espacial que entran en la atmósfera terrestre a gran velocidad y se queman por la fricción con el aire. Aunque parecen grandes, la mayoría mide apenas unos milímetros. Sin embargo, su entrada a altísimas velocidades provoca un destello brillante visible desde la superficie de la Tierra."
+  },
+  {
+    "fact": "El sol representa el 99,8% de la masa del sistema solar",
+    "explanation": "Nuestro Sol es una gigantesca esfera de plasma que concentra casi toda la masa del sistema solar. Los planetas, asteroides y cometas, aunque impresionantes para nosotros, son diminutos en comparación. Este dato explica por qué la gravedad del Sol domina el movimiento de todos los cuerpos celestes que orbitan a su alrededor."
+  },
+  {
+    "fact": "Los plátanos son bayas, pero las fresas no",
+    "explanation": "Botánicamente hablando, los plátanos cumplen con la definición de baya: se desarrollan a partir de un solo ovario y contienen semillas en su interior. En cambio, las fresas son un 'fruto agregado', formado por múltiples ovarios de una sola flor. Es un recordatorio de que las categorías científicas no siempre coinciden con la percepción popular de los alimentos."
+  },
+  {
+    "fact": "Los rayos son más calientes que la superficie del sol",
+    "explanation": "Un rayo puede alcanzar temperaturas de hasta 30.000 grados Celsius, unas cinco veces más caliente que la superficie del sol. Esta descarga eléctrica ocurre en una fracción de segundo, liberando una energía enorme que ioniza el aire a su paso. El destello luminoso y el trueno posterior son la manifestación de este fenómeno tan común como asombroso."
+  },
+  {
+    "fact": "El ADN humano y el del plátano comparten un 60% de similitud",
+    "explanation": "Aunque parezca sorprendente, los seres humanos comparten gran parte de su información genética con muchas otras formas de vida. Con el plátano, la similitud ronda el 60%. Esto se debe a que los genes básicos que regulan funciones celulares esenciales son comunes en gran parte de los organismos vivos. La biología molecular revela así nuestra profunda conexión con la naturaleza."
+  },
+  {
+    "fact": "Los ojos de los avestruces son más grandes que su cerebro",
+    "explanation": "El avestruz, el ave más grande del mundo, tiene ojos de unos 5 centímetros de diámetro, lo que le proporciona una excelente visión para detectar depredadores a grandes distancias. Sin embargo, su cerebro es más pequeño que cada uno de sus ojos, lo que ha dado pie al mito de que son aves 'poco inteligentes'. Aunque no es del todo justo, este contraste sigue siendo un dato curioso notable."
+  },
+  {
+    "fact": "Las estrellas de mar no tienen cerebro",
+    "explanation": "En lugar de un cerebro central, las estrellas de mar tienen un sistema nervioso distribuido en forma de anillo alrededor de su cuerpo y prolongaciones en cada brazo. Esto les permite coordinar movimientos y responder a estímulos, aunque de manera más lenta que otros animales. A pesar de ello, pueden regenerar brazos perdidos e incluso un cuerpo completo a partir de uno solo, lo que las hace criaturas fascinantes."
+  },
+  {
+    "fact": "El Coliseo de Roma podía llenarse y vaciarse en 15 minutos",
+    "explanation": "Este anfiteatro, construido hace casi 2000 años, tenía un sistema de pasillos y escaleras tan eficiente que permitía la entrada o salida de hasta 50.000 espectadores en muy poco tiempo. Su diseño inspiró la arquitectura de los estadios modernos, demostrando el ingenio de los ingenieros romanos en materia de organización y construcción."
+  }
+]
 
