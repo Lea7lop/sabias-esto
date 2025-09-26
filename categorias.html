@@ -3,36 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Categoría - Sabías Esto</title>
+  <title>Categorías - Sabías Esto</title>
   <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-
-  <!-- Header -->
   <header>
     <nav>
       <ul class="menu">
         <li><a href="index.html">Inicio</a></li>
-        <li><a href="categorias.html?categoria=Ciencia">Ciencia</a></li>
-        <li><a href="categorias.html?categoria=Historia">Historia</a></li>
-        <li><a href="categorias.html?categoria=Animales">Animales</a></li>
+        <li><a href="categorias.html">Categorías</a></li>
+        <li><a href="buscar.html">Buscar</a></li>
       </ul>
-      <form id="search-form">
-        <input type="text" id="search-input" placeholder="Buscar dato curioso...">
-        <button type="submit">🔍</button>
-      </form>
     </nav>
   </header>
 
-  <!-- Contenido principal por categoría -->
   <main>
-    <h1 id="categoria-title"></h1>
-    <div class="contenido">
-      <div class="curiosidades-list" id="curiosidades-list"></div>
-      <aside class="recientes" id="recientes"></aside>
-    </div>
+    <h1>Categorías de Curiosidades</h1>
+    <ul>
+      <li><a href="index.html?categoria=Ciencia">Ciencia</a></li>
+      <li><a href="index.html?categoria=Animales">Animales</a></li>
+      <li><a href="index.html?categoria=Historia">Historia</a></li>
+      <li><a href="index.html?categoria=Vida Cotidiana">Vida Cotidiana</a></li>
+    </ul>
   </main>
 
-  <script src="js/main.js"></script>
+  <footer>
+    <p>&copy; 2025 Sabías Esto. Todos los derechos reservados.</p>
+  </footer>
 </body>
 </html>
