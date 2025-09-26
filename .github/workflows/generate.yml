@@ -1,34 +1,35 @@
-name: Generar Curiosidades
+name: Auto Generate Curiosity
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # Opcional: ejecuta diariamente a medianoche
+    - cron: '0 12 * * *'  # opcional: diario 12:00 UTC
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v3
         with:
-          python-version: '3.11'
+          persist-credentials: false
 
-      - run: pip install requests
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-      - name: Generar datos curiosos
-        run: python scripts/generate_post_dual_optimized.py
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run generate_post script
+        run: python scripts/generate_post.py
+
+      - name: Commit new posts and JSON
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-
-      - name: Configurar Git
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Commit y push automáticos
-        run: |
-          git add curiosidades.json
-          git commit -m "Auto: generar nuevas curiosidades" || echo "Sin cambios que commitear"
-          git push
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add _posts/ public/curiosidades.json curiosidades.json
+          git commit -m "Auto-generate 5 curiosity posts" || echo "No changes to commit"
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
