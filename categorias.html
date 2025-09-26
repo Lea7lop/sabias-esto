@@ -7,28 +7,32 @@
   <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-  <header>
+  <!-- Barra de navegación -->
+  <header class="navbar">
+    <div class="logo">🤯 Sabías Esto</div>
     <nav>
-      <ul class="menu">
+      <ul>
         <li><a href="index.html">Inicio</a></li>
-        <li><a href="categorias.html">Categorías</a></li>
-        <li><a href="buscar.html">Buscar</a></li>
+        <li><a href="categorias.html?categoria=ciencia">Ciencia</a></li>
+        <li><a href="categorias.html?categoria=historia">Historia</a></li>
+        <li><a href="categorias.html?categoria=animales">Animales</a></li>
       </ul>
     </nav>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Buscar dato curioso...">
+      <button onclick="buscarDato()">🔍</button>
+    </div>
   </header>
 
-  <main>
-    <h1>Categorías de Curiosidades</h1>
-    <ul>
-      <li><a href="index.html?categoria=Ciencia">Ciencia</a></li>
-      <li><a href="index.html?categoria=Animales">Animales</a></li>
-      <li><a href="index.html?categoria=Historia">Historia</a></li>
-      <li><a href="index.html?categoria=Vida Cotidiana">Vida Cotidiana</a></li>
-    </ul>
+  <main class="container">
+    <h2 id="categoria-title">Datos curiosos</h2>
+    <div id="lista-categoria" class="grid"></div>
   </main>
 
   <footer>
-    <p>&copy; 2025 Sabías Esto. Todos los derechos reservados.</p>
+    <p>© 2025 Sabías Esto - Todos los derechos reservados</p>
   </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
