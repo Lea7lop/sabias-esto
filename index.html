@@ -1,41 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <title>Curiosidades</title>
+  <meta charset="UTF-8">
+  <title>¿Sabías esto?</title>
   <style>
-    body { font-family: system-ui, Arial; max-width: 860px; margin: 32px auto; padding: 0 16px; background: #f6f7fb; }
-    .card { background: #fff; padding: 18px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 6px 18px rgba(20,30,50,0.06); }
-    h1 { margin-bottom: 12px; }
-    .meta { color:#666; font-size:12px; margin-bottom:8px; }
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fff; color:#111; }
+    header { padding:20px; text-align:center; background:#f5f5f5; }
+    nav { text-align:center; margin:10px 0; }
+    nav button { margin:0 5px; padding:10px 15px; border:none; background:#eee; cursor:pointer; border-radius:5px; transition:0.2s; }
+    nav button:hover { background:#ddd; }
+    .container { display:flex; flex-wrap:wrap; justify-content:center; padding:20px; gap:20px; }
+    .card { border:1px solid #eee; padding:15px; border-radius:8px; width:300px; background:#fafafa; box-shadow:0 2px 5px rgba(0,0,0,0.05); }
+    .card h3 { margin-top:0; font-size:18px; }
+    .card p { font-size:14px; line-height:1.4; }
   </style>
 </head>
 <body>
-  <h1>Curiosidades</h1>
-  <button id="cargar">Mostrar curiosidades</button>
-  <div id="lista"></div>
+
+<header>
+  <h1>¿Sabías esto?</h1>
+</header>
+
+<nav>
+  <button onclick="filterCategory('all')">Inicio</button>
+  <button onclick="filterCategory('Ciencia')">Ciencia</button>
+  <button onclick="filterCategory('Historia')">Historia</button>
+</nav>
+
+<div class="container" id="cards-container">
+  <!-- Aquí se cargan los datos desde JSON -->
+</div>
 
 <script>
-async function cargar() {
-  const lista = document.getElementById('lista');
-  lista.innerHTML = 'Cargando…';
-  try {
-    const resp = await fetch('curiosidades.json'); // busca en la raíz (script crea copia)
-    const datos = await resp.json();
-    lista.innerHTML = '';
-    const top = datos.slice(0, 10);
-    top.forEach(d => {
-      const el = document.createElement('div');
-      el.className = 'card';
-      el.innerHTML = `<div class="meta">${d.date || ''}</div><h2>¿Sabías que ${d.dato}?</h2><p>${d.explicacion}</p>`;
-      lista.appendChild(el);
-    });
-  } catch (e) {
-    lista.innerHTML = '<p>Error al cargar curiosidades.</p>';
-    console.error(e);
-  }
+async function cargarDatos() {
+  const res = await fetch('curiosidades.json');
+  const datos = await res.json();
+  
+  // Ordenar por fecha descendente
+  datos.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+  const container = document.getElementById('cards-container');
+  container.innerHTML = '';
+
+  datos.forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.category = d.category;
+    card.innerHTML = `<h3>${d.fact}</h3><p>${d.explanation}</p>`;
+    container.appendChild(card);
+  });
 }
-document.getElementById('cargar').addEventListener('click', cargar);
+
+// Filtrar por categoría
+function filterCategory(cat) {
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(c => {
+    if(cat === 'all' || c.dataset.category === cat) {
+      c.style.display = 'block';
+    } else {
+      c.style.display = 'none';
+    }
+  });
+}
+
+// Cargar al inicio
+cargarDatos();
 </script>
+
 </body>
 </html>
