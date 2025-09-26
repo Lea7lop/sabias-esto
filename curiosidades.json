@@ -1,22 +1,20 @@
 [
   {
-    "dato": "El cuerpo humano brilla en la oscuridad",
-    "explicacion": "Los seres humanos emiten una luz extremadamente débil, llamada bioluminiscencia, que es invisible al ojo humano. Estudios con cámaras ultrasensibles han demostrado que el brillo varía a lo largo del día, siendo más intenso por la tarde. Este fenómeno ocurre debido a reacciones químicas en las células durante el metabolismo. Aunque no lo percibamos, todos llevamos un resplandor natural."
+    "titulo": "Las abejas pueden reconocer rostros humanos",
+    "descripcion": "Un estudio descubrió que las abejas pueden identificar rostros de personas.",
+    "imagen": "https://images.unsplash.com/photo-1573451447135-0f18e9307f5c",
+    "categoria": "Ciencia"
   },
   {
-    "dato": "La Gran Muralla China no es visible desde la Luna",
-    "explicacion": "Durante mucho tiempo circuló la creencia de que la muralla podía verse desde el espacio a simple vista, pero esto es un mito. Los astronautas han confirmado que, aunque la muralla es muy larga, es demasiado estrecha y se camufla con el paisaje. Solo se puede distinguir con ayuda de lentes o cámaras potentes, igual que muchas otras construcciones humanas."
+    "titulo": "Los elefantes tienen memoria increíble",
+    "descripcion": "Pueden recordar rutas de agua y comida durante años.",
+    "imagen": "https://images.unsplash.com/photo-1517957754640-1e216d33d4f3",
+    "categoria": "Animales"
   },
   {
-    "dato": "El corazón de una ballena azul es tan grande como un coche pequeño",
-    "explicacion": "La ballena azul, el animal más grande del planeta, tiene un corazón que puede llegar a pesar más de 180 kilogramos. Sus latidos son tan potentes que pueden detectarse a varios kilómetros de distancia en el agua. Para ponerlo en perspectiva, una persona podría nadar dentro de sus arterias principales, que tienen un diámetro de unos 60 centímetros. Este dato refleja la magnitud impresionante de la biología marina."
-  },
-  {
-    "dato": "El sol representa el 99,8% de la masa del sistema solar",
-    "explicacion": "Nuestro Sol es una gigantesca esfera de plasma que concentra casi toda la masa del sistema solar. Los planetas, asteroides y cometas, aunque impresionantes para nosotros, son diminutos en comparación. Este dato explica por qué la gravedad del Sol domina el movimiento de todos los cuerpos celestes que orbitan a su alrededor."
-  },
-  {
-    "dato": "El tiburón de Groenlandia puede vivir más de 400 años",
-    "explicacion": "Este tiburón del Ártico es uno de los vertebrados más longevos conocidos. Se estima que algunos ejemplares superan los 400 años de edad. Crecen apenas 1 centímetro por año y alcanzan la madurez sexual alrededor de los 150 años. Su lento metabolismo, consecuencia de vivir en aguas frías, es uno de los factores que explican su extraordinaria longevidad."
+    "titulo": "La Gran Muralla China es visible desde el espacio",
+    "descripcion": "Aunque es un mito común, partes de la muralla son visibles con telescopios desde la órbita baja.",
+    "imagen": "https://images.unsplash.com/photo-1549887534-cfc6cf7e7de1",
+    "categoria": "Historia"
   }
 ]
