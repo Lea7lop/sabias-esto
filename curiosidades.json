@@ -1,22 +1,32 @@
 [
   {
-    "dato": "El cuerpo humano brilla en la oscuridad",
-    "explicacion": "Los seres humanos emiten una luz extremadamente débil, llamada bioluminiscencia, que es invisible al ojo humano. Estudios con cámaras ultrasensibles han demostrado que el brillo varía a lo largo del día, siendo más intenso por la tarde. Este fenómeno ocurre debido a reacciones químicas en las células durante el metabolismo. Aunque no lo percibamos, todos llevamos un resplandor natural."
+    "titulo": "Las abejas pueden reconocer rostros humanos",
+    "descripcion": "Un estudio demostró que las abejas son capaces de reconocer rostros humanos de forma similar a como lo hacen los primates.",
+    "imagen": "https://cdn.pixabay.com/photo/2017/08/30/01/05/bee-2693129_1280.jpg",
+    "categoria": "ciencia"
   },
   {
-    "dato": "La Gran Muralla China no es visible desde la Luna",
-    "explicacion": "Durante mucho tiempo circuló la creencia de que la muralla podía verse desde el espacio a simple vista, pero esto es un mito. Los astronautas han confirmado que, aunque la muralla es muy larga, es demasiado estrecha y se camufla con el paisaje. Solo se puede distinguir con ayuda de lentes o cámaras potentes, igual que muchas otras construcciones humanas."
+    "titulo": "El faraón más joven",
+    "descripcion": "Tutankamón se convirtió en faraón de Egipto a los 9 años y murió con apenas 18.",
+    "imagen": "https://cdn.pixabay.com/photo/2017/03/27/14/56/egypt-2189886_1280.jpg",
+    "categoria": "historia"
   },
   {
-    "dato": "El ajedrez tiene más combinaciones posibles que átomos en el universo conocido",
-    "explicacion": "El número de posiciones posibles en una partida de ajedrez es asombroso: se estima en 10^120, un número inconcebiblemente grande comparado con los aproximadamente 10^80 átomos que se calcula existen en el universo observable. Esto significa que cada partida de ajedrez puede considerarse prácticamente única, y que nunca en la historia se repetirán todas las posibles combinaciones de movimientos."
+    "titulo": "El corazón del camarón está en su cabeza",
+    "descripcion": "Curiosamente, los camarones tienen su órgano vital en un lugar muy inusual: dentro de su cabeza.",
+    "imagen": "https://cdn.pixabay.com/photo/2020/01/07/16/48/shrimp-4744823_1280.jpg",
+    "categoria": "animales"
   },
   {
-    "dato": "El corazón de una ballena azul es tan grande como un coche pequeño",
-    "explicacion": "La ballena azul, el animal más grande del planeta, tiene un corazón que puede llegar a pesar más de 180 kilogramos. Sus latidos son tan potentes que pueden detectarse a varios kilómetros de distancia en el agua. Para ponerlo en perspectiva, una persona podría nadar dentro de sus arterias principales, que tienen un diámetro de unos 60 centímetros. Este dato refleja la magnitud impresionante de la biología marina."
+    "titulo": "El Monte Everest crece cada año",
+    "descripcion": "El Everest crece aproximadamente 4 milímetros al año debido al choque de las placas tectónicas.",
+    "imagen": "https://cdn.pixabay.com/photo/2016/11/29/09/32/mount-everest-1869442_1280.jpg",
+    "categoria": "ciencia"
   },
   {
-    "dato": "El sonido viaja más rápido en el agua que en el aire",
-    "explicacion": "El sonido se desplaza aproximadamente 4,3 veces más rápido en el agua que en el aire. Esto ocurre porque las moléculas del agua están más juntas, transmitiendo las vibraciones de manera más eficiente. Para los animales marinos, como ballenas y delfines, esto significa que pueden comunicarse a distancias enormes bajo el mar mediante sonidos de baja frecuencia."
+    "titulo": "Julio César fue secuestrado por piratas",
+    "descripcion": "Cuando era joven, Julio César fue capturado por piratas en el mar Mediterráneo, pero terminó ordenando su ejecución tras ser liberado.",
+    "imagen": "https://cdn.pixabay.com/photo/2016/02/19/10/00/roman-1202642_1280.jpg",
+    "categoria": "historia"
   }
 ]
