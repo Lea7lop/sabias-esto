@@ -1,37 +1,104 @@
-const RUTA_JSON = 'curiosidades.json';
-
+// Cargar JSON
 async function cargarDatos() {
-  try {
-    const res = await fetch(RUTA_JSON);
-    const datos = await res.json();
-    return Array.isArray(datos) ? datos : [];
-  } catch (err) {
-    console.error("Error al cargar datos:", err);
-    return [];
+  const response = await fetch("curiosidades.json");
+  const datos = await response.json();
+  return datos;
+}
+
+// Renderizar tarjetas
+function crearCard(dato) {
+  return `
+    <div class="card">
+      <img src="${dato.imagen || 'https://via.placeholder.com/400x200?text=Curiosidad'}" alt="Imagen curiosidad">
+      <div class="card-content">
+        <h3>${dato.titulo}</h3>
+        <p>${dato.descripcion}</p>
+        <small><strong>Categoría:</strong> ${dato.categoria}</small>
+      </div>
+    </div>
+  `;
+}
+
+// Mostrar últimos 5 en index.html
+async function mostrarUltimos() {
+  const datos = await cargarDatos();
+  const ultimos = datos.slice(-5).reverse();
+  const contenedor = document.getElementById("ultimos-datos");
+
+  if (contenedor) {
+    contenedor.innerHTML = ultimos.map(d => crearCard(d)).join("");
   }
 }
 
-async function mostrarCuriosidades() {
+// Mostrar por categoría en categorias.html
+async function mostrarCategoria() {
+  const params = new URLSearchParams(window.location.search);
+  const categoria = params.get("categoria");
+
+  if (!categoria) return;
+
   const datos = await cargarDatos();
-  const lista = document.getElementById('curiosidades-list');
-  if (lista) lista.innerHTML = '';
+  const filtrados = datos.filter(d => d.categoria.toLowerCase() === categoria.toLowerCase());
 
-  datos.forEach(dato => {
-    const titulo = dato.titulo || 'Sin título';
-    const descripcion = dato.descripcion || 'Sin descripción';
-    const imagen = dato.imagen || 'https://via.placeholder.com/300x200?text=Sin+Imagen';
+  const titulo = document.getElementById("categoria-title");
+  const contenedor = document.getElementById("lista-categoria");
 
-    const div = document.createElement('div');
-    div.classList.add('curiosidad-item');
-    div.innerHTML = `
-      <img src="${imagen}" alt="${titulo}">
-      <div>
-        <h2>${titulo}</h2>
-        <p>${descripcion}</p>
-      </div>
-    `;
-    lista.appendChild(div);
-  });
+  if (titulo) titulo.textContent = `Datos curiosos de ${categoria.charAt(0).toUpperCase() + categoria.slice(1)}`;
+  if (contenedor) contenedor.innerHTML = filtrados.map(d => crearCard(d)).join("");
 }
 
-document.addEventListener('DOMContentLoaded', mostrarCuriosidades);
+// Buscar en todas las curiosidades
+async function buscarDato() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  if (!input) return;
+
+  const datos = await cargarDatos();
+  const resultados = datos.filter(d =>
+    d.titulo.toLowerCase().includes(input) ||
+    d.descripcion.toLowerCase().includes(input)
+  );
+
+  // Redirigir a una página de búsqueda
+  const contenedor = document.getElementById("lista-categoria");
+  const titulo = document.getElementById("categoria-title");
+
+  if (contenedor && titulo) {
+    titulo.textContent = `Resultados de búsqueda: "${input}"`;
+    contenedor.innerHTML = resultados.length
+      ? resultados.map(d => crearCard(d)).join("")
+      : `<p>No se encontraron resultados para "${input}".</p>`;
+  } else {
+    window.location.href = `categorias.html?categoria=buscar&query=${input}`;
+  }
+}
+
+// Mostrar resultados si es búsqueda desde URL
+async function mostrarBusqueda() {
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get("query");
+
+  if (!query) return;
+
+  const datos = await cargarDatos();
+  const resultados = datos.filter(d =>
+    d.titulo.toLowerCase().includes(query.toLowerCase()) ||
+    d.descripcion.toLowerCase().includes(query.toLowerCase())
+  );
+
+  const titulo = document.getElementById("categoria-title");
+  const contenedor = document.getElementById("lista-categoria");
+
+  if (titulo) titulo.textContent = `Resultados de búsqueda: "${query}"`;
+  if (contenedor) {
+    contenedor.innerHTML = resultados.length
+      ? resultados.map(d => crearCard(d)).join("")
+      : `<p>No se encontraron resultados para "${query}".</p>`;
+  }
+}
+
+// Ejecutar funciones dependiendo de la página
+document.addEventListener("DOMContentLoaded", () => {
+  mostrarUltimos();
+  mostrarCategoria();
+  mostrarBusqueda();
+});
