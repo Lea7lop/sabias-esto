@@ -1,22 +1,22 @@
 [
   {
-    "dato": "Las tortugas pueden respirar por el trasero",
-    "explicacion": "Durante la hibernación en aguas frías, algunas especies de tortugas, como la tortuga de caparazón blando, pueden absorber oxígeno a través de un área altamente vascularizada de su cloaca, una cavidad en la parte trasera de su cuerpo. Este mecanismo les permite sobrevivir meses bajo el agua sin necesidad de salir a respirar aire. Es una adaptación extrema para resistir en ambientes con poco oxígeno disponible."
+    "dato": "El cuerpo humano brilla en la oscuridad",
+    "explicacion": "Los seres humanos emiten una luz extremadamente débil, llamada bioluminiscencia, que es invisible al ojo humano. Estudios con cámaras ultrasensibles han demostrado que el brillo varía a lo largo del día, siendo más intenso por la tarde. Este fenómeno ocurre debido a reacciones químicas en las células durante el metabolismo. Aunque no lo percibamos, todos llevamos un resplandor natural."
   },
   {
-    "dato": "Los flamencos no nacen de color rosa",
-    "explicacion": "Cuando nacen, los flamencos tienen plumas grises o blancas. El característico color rosa se debe a los carotenoides presentes en los alimentos que consumen, como algas y crustáceos. Estos pigmentos se acumulan en sus plumas y piel a lo largo del tiempo, transformando su aspecto. Si un flamenco no consume suficiente de estos pigmentos, su color puede permanecer pálido. Así, su tonalidad es un reflejo directo de su dieta."
+    "dato": "La Gran Muralla China no es visible desde la Luna",
+    "explicacion": "Durante mucho tiempo circuló la creencia de que la muralla podía verse desde el espacio a simple vista, pero esto es un mito. Los astronautas han confirmado que, aunque la muralla es muy larga, es demasiado estrecha y se camufla con el paisaje. Solo se puede distinguir con ayuda de lentes o cámaras potentes, igual que muchas otras construcciones humanas."
   },
   {
-    "dato": "Los pulpos tienen tres corazones",
-    "explicacion": "Dos de los corazones bombean sangre hacia las branquias para oxigenarla, y el tercero la distribuye por el resto del cuerpo. Lo más curioso es que este tercer corazón deja de latir cuando el pulpo nada, lo que explica por qué prefieren arrastrarse por el fondo marino: les resulta menos cansador. Además, su sangre es de color azul debido a que contiene hemocianina en lugar de hemoglobina, lo que les ayuda a sobrevivir en aguas frías y con poco oxígeno."
-  },
-  {
-    "dato": "Las jirafas tienen el mismo número de vértebras en el cuello que los humanos",
-    "explicacion": "A pesar de tener cuellos de hasta dos metros de largo, las jirafas tienen solo siete vértebras cervicales, la misma cantidad que los humanos. La diferencia está en el tamaño de cada vértebra, que en jirafas puede superar los 25 centímetros. Esta adaptación les permite alcanzar hojas altas en los árboles y, al mismo tiempo, mantener la flexibilidad necesaria para defenderse con golpes de cuello."
+    "dato": "El corazón de una ballena azul es tan grande como un coche pequeño",
+    "explicacion": "La ballena azul, el animal más grande del planeta, tiene un corazón que puede llegar a pesar más de 180 kilogramos. Sus latidos son tan potentes que pueden detectarse a varios kilómetros de distancia en el agua. Para ponerlo en perspectiva, una persona podría nadar dentro de sus arterias principales, que tienen un diámetro de unos 60 centímetros. Este dato refleja la magnitud impresionante de la biología marina."
   },
   {
     "dato": "El sol representa el 99,8% de la masa del sistema solar",
     "explicacion": "Nuestro Sol es una gigantesca esfera de plasma que concentra casi toda la masa del sistema solar. Los planetas, asteroides y cometas, aunque impresionantes para nosotros, son diminutos en comparación. Este dato explica por qué la gravedad del Sol domina el movimiento de todos los cuerpos celestes que orbitan a su alrededor."
+  },
+  {
+    "dato": "El tiburón de Groenlandia puede vivir más de 400 años",
+    "explicacion": "Este tiburón del Ártico es uno de los vertebrados más longevos conocidos. Se estima que algunos ejemplares superan los 400 años de edad. Crecen apenas 1 centímetro por año y alcanzan la madurez sexual alrededor de los 150 años. Su lento metabolismo, consecuencia de vivir en aguas frías, es uno de los factores que explican su extraordinaria longevidad."
   }
 ]
