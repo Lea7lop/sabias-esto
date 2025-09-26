@@ -1,22 +1,22 @@
 [
   {
-    "dato": "Las estrellas de mar no tienen cerebro",
-    "explicacion": "En lugar de un cerebro central, las estrellas de mar tienen un sistema nervioso distribuido en forma de anillo alrededor de su cuerpo y prolongaciones en cada brazo. Esto les permite coordinar movimientos y responder a estímulos, aunque de manera más lenta que otros animales. A pesar de ello, pueden regenerar brazos perdidos e incluso un cuerpo completo a partir de uno solo, lo que las hace criaturas fascinantes."
-  },
-  {
-    "dato": "El Coliseo de Roma podía llenarse y vaciarse en 15 minutos",
-    "explicacion": "Este anfiteatro, construido hace casi 2000 años, tenía un sistema de pasillos y escaleras tan eficiente que permitía la entrada o salida de hasta 50.000 espectadores en muy poco tiempo. Su diseño inspiró la arquitectura de los estadios modernos, demostrando el ingenio de los ingenieros romanos en materia de organización y construcción."
-  },
-  {
     "dato": "El cuerpo humano brilla en la oscuridad",
     "explicacion": "Los seres humanos emiten una luz extremadamente débil, llamada bioluminiscencia, que es invisible al ojo humano. Estudios con cámaras ultrasensibles han demostrado que el brillo varía a lo largo del día, siendo más intenso por la tarde. Este fenómeno ocurre debido a reacciones químicas en las células durante el metabolismo. Aunque no lo percibamos, todos llevamos un resplandor natural."
   },
   {
-    "dato": "El Monte Everest crece cada año",
-    "explicacion": "El Everest, la montaña más alta del planeta, aumenta su altura lentamente debido al movimiento de las placas tectónicas. Se estima que crece entre 4 y 5 milímetros al año. Esto ocurre porque la placa tectónica india se desliza debajo de la placa euroasiática, empujando hacia arriba a la cordillera del Himalaya. Es un recordatorio de que la geología de la Tierra está en constante transformación."
+    "dato": "La Gran Muralla China no es visible desde la Luna",
+    "explicacion": "Durante mucho tiempo circuló la creencia de que la muralla podía verse desde el espacio a simple vista, pero esto es un mito. Los astronautas han confirmado que, aunque la muralla es muy larga, es demasiado estrecha y se camufla con el paisaje. Solo se puede distinguir con ayuda de lentes o cámaras potentes, igual que muchas otras construcciones humanas."
   },
   {
-    "dato": "El ADN humano y el del plátano comparten un 60% de similitud",
-    "explicacion": "Aunque parezca sorprendente, los seres humanos comparten gran parte de su información genética con muchas otras formas de vida. Con el plátano, la similitud ronda el 60%. Esto se debe a que los genes básicos que regulan funciones celulares esenciales son comunes en gran parte de los organismos vivos. La biología molecular revela así nuestra profunda conexión con la naturaleza."
+    "dato": "El ajedrez tiene más combinaciones posibles que átomos en el universo conocido",
+    "explicacion": "El número de posiciones posibles en una partida de ajedrez es asombroso: se estima en 10^120, un número inconcebiblemente grande comparado con los aproximadamente 10^80 átomos que se calcula existen en el universo observable. Esto significa que cada partida de ajedrez puede considerarse prácticamente única, y que nunca en la historia se repetirán todas las posibles combinaciones de movimientos."
+  },
+  {
+    "dato": "El corazón de una ballena azul es tan grande como un coche pequeño",
+    "explicacion": "La ballena azul, el animal más grande del planeta, tiene un corazón que puede llegar a pesar más de 180 kilogramos. Sus latidos son tan potentes que pueden detectarse a varios kilómetros de distancia en el agua. Para ponerlo en perspectiva, una persona podría nadar dentro de sus arterias principales, que tienen un diámetro de unos 60 centímetros. Este dato refleja la magnitud impresionante de la biología marina."
+  },
+  {
+    "dato": "El sonido viaja más rápido en el agua que en el aire",
+    "explicacion": "El sonido se desplaza aproximadamente 4,3 veces más rápido en el agua que en el aire. Esto ocurre porque las moléculas del agua están más juntas, transmitiendo las vibraciones de manera más eficiente. Para los animales marinos, como ballenas y delfines, esto significa que pueden comunicarse a distancias enormes bajo el mar mediante sonidos de baja frecuencia."
   }
 ]
