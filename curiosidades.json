@@ -1,32 +1,22 @@
 [
   {
-    "titulo": "Las abejas pueden reconocer rostros humanos",
-    "descripcion": "Un estudio demostró que las abejas son capaces de reconocer rostros humanos de forma similar a como lo hacen los primates.",
-    "imagen": "https://cdn.pixabay.com/photo/2017/08/30/01/05/bee-2693129_1280.jpg",
-    "categoria": "ciencia"
+    "dato": "Las jirafas tienen el mismo número de vértebras en el cuello que los humanos",
+    "explicacion": "A pesar de tener cuellos de hasta dos metros de largo, las jirafas tienen solo siete vértebras cervicales, la misma cantidad que los humanos. La diferencia está en el tamaño de cada vértebra, que en jirafas puede superar los 25 centímetros. Esta adaptación les permite alcanzar hojas altas en los árboles y, al mismo tiempo, mantener la flexibilidad necesaria para defenderse con golpes de cuello."
   },
   {
-    "titulo": "El faraón más joven",
-    "descripcion": "Tutankamón se convirtió en faraón de Egipto a los 9 años y murió con apenas 18.",
-    "imagen": "https://cdn.pixabay.com/photo/2017/03/27/14/56/egypt-2189886_1280.jpg",
-    "categoria": "historia"
+    "dato": "Las abejas pueden reconocer rostros humanos",
+    "explicacion": "Aunque su cerebro es diminuto, las abejas tienen la capacidad de distinguir y recordar patrones faciales humanos de manera similar a como lo hacen las personas. Esto se descubrió en experimentos donde se entrenó a las abejas con recompensas de azúcar. Sorprendentemente, lograron reconocer rostros específicos incluso días después. Este hallazgo sugiere que la habilidad de reconocer caras no requiere un cerebro grande, sino un sistema visual eficiente."
   },
   {
-    "titulo": "El corazón del camarón está en su cabeza",
-    "descripcion": "Curiosamente, los camarones tienen su órgano vital en un lugar muy inusual: dentro de su cabeza.",
-    "imagen": "https://cdn.pixabay.com/photo/2020/01/07/16/48/shrimp-4744823_1280.jpg",
-    "categoria": "animales"
+    "dato": "Las estrellas de mar no tienen cerebro",
+    "explicacion": "En lugar de un cerebro central, las estrellas de mar tienen un sistema nervioso distribuido en forma de anillo alrededor de su cuerpo y prolongaciones en cada brazo. Esto les permite coordinar movimientos y responder a estímulos, aunque de manera más lenta que otros animales. A pesar de ello, pueden regenerar brazos perdidos e incluso un cuerpo completo a partir de uno solo, lo que las hace criaturas fascinantes."
   },
   {
-    "titulo": "El Monte Everest crece cada año",
-    "descripcion": "El Everest crece aproximadamente 4 milímetros al año debido al choque de las placas tectónicas.",
-    "imagen": "https://cdn.pixabay.com/photo/2016/11/29/09/32/mount-everest-1869442_1280.jpg",
-    "categoria": "ciencia"
+    "dato": "El Monte Everest crece cada año",
+    "explicacion": "El Everest, la montaña más alta del planeta, aumenta su altura lentamente debido al movimiento de las placas tectónicas. Se estima que crece entre 4 y 5 milímetros al año. Esto ocurre porque la placa tectónica india se desliza debajo de la placa euroasiática, empujando hacia arriba a la cordillera del Himalaya. Es un recordatorio de que la geología de la Tierra está en constante transformación."
   },
   {
-    "titulo": "Julio César fue secuestrado por piratas",
-    "descripcion": "Cuando era joven, Julio César fue capturado por piratas en el mar Mediterráneo, pero terminó ordenando su ejecución tras ser liberado.",
-    "imagen": "https://cdn.pixabay.com/photo/2016/02/19/10/00/roman-1202642_1280.jpg",
-    "categoria": "historia"
+    "dato": "Los rayos son más calientes que la superficie del sol",
+    "explicacion": "Un rayo puede alcanzar temperaturas de hasta 30.000 grados Celsius, unas cinco veces más caliente que la superficie del sol. Esta descarga eléctrica ocurre en una fracción de segundo, liberando una energía enorme que ioniza el aire a su paso. El destello luminoso y el trueno posterior son la manifestación de este fenómeno tan común como asombroso."
   }
 ]
