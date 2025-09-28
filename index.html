@@ -2,39 +2,144 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🤯 Sabías Esto</title>
-  <link rel="stylesheet" href="CSS/style.css">
+  <title>Sabías Esto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f7;
+      color: #333;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    header a {
+      text-decoration: none;
+      color: #555;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    header a.active,
+    header a:hover {
+      color: #007bff;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .curiosidad {
+      background-color: #fff;
+      padding: 25px;
+      margin-bottom: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s forwards;
+    }
+
+    .curiosidad:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .curiosidad h2 {
+      margin-top: 0;
+      font-size: 22px;
+      color: #222;
+    }
+
+    .curiosidad p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* Colores por categoría */
+    .curiosidad.Ciencia h2 { color: #1e90ff; }
+    .curiosidad.Historia h2 { color: #d2691e; }
+
+    /* Animación */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Resaltado para datos nuevos */
+    .highlight {
+      animation: highlight 1.5s ease-in-out;
+    }
+
+    @keyframes highlight {
+      0% { background-color: #fffbcc; }
+      100% { background-color: #fff; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">🤯 Sabías Esto</div>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="categorias.html?cat=ciencia">Ciencia</a>
-      <a href="categorias.html?cat=historia">Historia</a>
-      <a href="categorias.html?cat=animales">Animales</a>
-    </nav>
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Buscar dato curioso...">
-      <button onclick="buscarCuriosidad()">🔍</button>
-    </div>
-  </header>
 
-  <!-- Contenido -->
-  <main>
-    <h2>Últimos Datos Curiosos</h2>
-    <div class="grid" id="curiosidades-container">
-      <!-- Aquí se insertan las tarjetas -->
-    </div>
-  </main>
+<header>
+  <a href="#" class="category-link active" data-category="Inicio">Inicio</a>
+  <a href="#" class="category-link" data-category="Ciencia">Ciencia</a>
+  <a href="#" class="category-link" data-category="Historia">Historia</a>
+</header>
 
-  <!-- Footer -->
-  <footer>
-    © 2025 Sabías Esto - Todos los derechos reservados
-  </footer>
+<main id="curiosidades-container">
+  <!-- Los datos curiosos se cargarán aquí -->
+</main>
 
-  <script src="js/main.js"></script>
+<script>
+  fetch('curiosidades.json')
+    .then(response => response.json())
+    .then(data => {
+      // Guardar globalmente y ordenar por fecha (últimos primero)
+      window.curiosidades = data.sort((a,b) => new Date(b.date) - new Date(a.date));
+      mostrarCuriosidades('Inicio');
+    });
+
+  function mostrarCuriosidades(categoria) {
+    const container = document.getElementById('curiosidades-container');
+    container.innerHTML = '';
+    let filtrados = categoria === 'Inicio' 
+      ? window.curiosidades 
+      : window.curiosidades.filter(d => d.category === categoria);
+
+    filtrados.forEach((d, i) => {
+      const div = document.createElement('div');
+      div.classList.add('curiosidad');
+      div.classList.add(d.category); // Clase para color por categoría
+      if (categoria === 'Inicio' && i < 3) {
+        div.classList.add('highlight'); // Resaltar los 3 más recientes
+      }
+      div.innerHTML = `<h2>${d.fact}</h2><p>${d.explanation}</p>`;
+      container.appendChild(div);
+    });
+  }
+
+  document.querySelectorAll('.category-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      mostrarCuriosidades(link.dataset.category);
+    });
+  });
+</script>
+
 </body>
 </html>
