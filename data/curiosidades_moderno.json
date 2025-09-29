@@ -2,43 +2,43 @@
   {
     "id": 1,
     "titulo": "Las estrellas de mar no tienen cerebro",
-    "descripcion": "Las estrellas de mar no tienen cerebro ni sangre, pero pueden regenerar brazos completos si los pierden.",
+    "descripcion": "Las estrellas de mar no tienen cerebro ni sangre. Pueden regenerar brazos perdidos y poseen un sistema nervioso muy simple.",
     "imagen": "https://cdn.pixabay.com/photo/2015/06/24/15/45/space-820604_1280.jpg",
     "categoria": "Ciencia"
   },
   {
     "id": 2,
-    "titulo": "El sonido viaja más rápido en el agua que en el aire",
-    "descripcion": "El sonido viaja aproximadamente 4 veces más rápido en el agua que en el aire debido a la densidad del medio.",
+    "titulo": "El sonido viaja más rápido en el agua",
+    "descripcion": "El sonido viaja más rápido en el agua que en el aire debido a la densidad y propiedades de transmisión del agua.",
     "imagen": "https://cdn.pixabay.com/photo/2017/08/06/15/13/book-2597350_1280.jpg",
     "categoria": "Historia"
   },
   {
     "id": 3,
-    "titulo": "Los rayos son más calientes que la superficie del sol",
-    "descripcion": "Un rayo puede alcanzar temperaturas de hasta 30.000 K, mucho más caliente que la superficie del sol que tiene 5.500 K.",
+    "titulo": "Los rayos son más calientes que el sol",
+    "descripcion": "Los rayos pueden alcanzar temperaturas superiores a 30,000 Kelvin, mucho más caliente que la superficie del sol.",
     "imagen": "https://cdn.pixabay.com/photo/2017/08/30/01/05/bee-2693129_1280.jpg",
     "categoria": "Animales"
   },
   {
     "id": 4,
     "titulo": "Las estrellas fugaces no son estrellas",
-    "descripcion": "Las estrellas fugaces son en realidad pequeños fragmentos de roca que se queman al entrar a la atmósfera terrestre.",
+    "descripcion": "Las estrellas fugaces son meteoritos que se queman al entrar en la atmósfera terrestre, no son estrellas reales.",
     "imagen": "https://cdn.pixabay.com/photo/2018/05/23/23/17/lion-3428058_1280.jpg",
     "categoria": "Animales"
   },
   {
     "id": 5,
     "titulo": "Las abejas pueden reconocer rostros humanos",
-    "descripcion": "Estudios han demostrado que las abejas pueden aprender y recordar rostros humanos mediante un patrón de entrenamiento.",
+    "descripcion": "Estudios han demostrado que las abejas pueden aprender a reconocer rostros humanos y diferenciarlos, similar a como lo hacen los humanos.",
     "imagen": "https://cdn.pixabay.com/photo/2020/01/07/16/48/shrimp-4744823_1280.jpg",
     "categoria": "Animales"
   },
   {
     "id": 6,
-    "titulo": "La Luna se aleja de la Tierra",
-    "descripcion": "Cada año la Luna se aleja unos 3,8 cm de la Tierra debido a la fricción de las mareas.",
-    "imagen": "https://cdn.pixabay.com/photo/2012/11/28/10/04/moon-67484_1280.jpg",
-    "categoria": "Ciencia"
+    "titulo": "El corazón de un colibrí late rapidísimo",
+    "descripcion": "El corazón de un colibrí puede latir hasta 1,260 veces por minuto durante el vuelo.",
+    "imagen": "https://cdn.pixabay.com/photo/2018/03/23/15/56/bird-3258187_1280.jpg",
+    "categoria": "Animales"
   }
 ]
