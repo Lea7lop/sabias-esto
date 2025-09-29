@@ -1,18 +1,13 @@
-// main.js adaptado para tu HTML actual
-
-// Cargar curiosidades desde el JSON moderno
 async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
   const response = await fetch("curiosidades_moderno.json");
   const datos = await response.json();
 
   let curiosidades = datos;
 
-  // Filtrar por categoría si existe
   if (filtroCategoria && filtroCategoria !== "Inicio") {
     curiosidades = curiosidades.filter(c => c.categoria === filtroCategoria);
   }
 
-  // Filtrar por texto si existe
   if (filtroTexto) {
     curiosidades = curiosidades.filter(c =>
       c.titulo.toLowerCase().includes(filtroTexto.toLowerCase()) ||
@@ -20,28 +15,38 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
     );
   }
 
+  // Tomar solo los 5 primeros si es Inicio
+  if (!filtroCategoria || filtroCategoria === "Inicio") {
+    curiosidades = curiosidades.slice(0, 5);
+  }
+
   const contenedor = document.getElementById("curiosidades-container");
   if (!contenedor) return;
-
   contenedor.innerHTML = "";
 
   curiosidades.forEach((c, i) => {
     const card = document.createElement("div");
     card.className = "card";
-    card.style.animationDelay = `${i * 0.1}s`; // efecto cascada igual que antes
+    card.style.animationDelay = `${i * 0.1}s`;
     card.innerHTML = `
-      <img src="${c.imagen || `https://picsum.photos/600/400?random=${i}`}" alt="Imagen curiosidad">
-      <div class="content">
-        <h2>${c.titulo}</h2>
-        <p>${c.descripcion}</p>
+      <img src="${c.imagen}" alt="Imagen curiosidad">
+      <div class="card-body">
+        <h3>${c.titulo}</h3>
+        <p>${c.descripcion.substring(0, 100)}...</p>
         <span class="categoria">Categoría: ${c.categoria}</span>
+        <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más</a>
       </div>
     `;
     contenedor.appendChild(card);
   });
 }
 
-// Detectar categoría desde los links del header
+// Dark/Light Mode
+document.querySelector(".theme-toggle").addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
+
+// Navegación por categorías
 document.querySelectorAll(".category-link").forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
@@ -51,20 +56,7 @@ document.querySelectorAll(".category-link").forEach(link => {
   });
 });
 
-// Función de búsqueda
-function buscarCuriosidad() {
-  const input = document.getElementById("searchInput");
-  if (!input) return;
-  cargarCuriosidades(null, input.value);
-}
-
-// Inicializar al cargar la página
+// Inicializar
 document.addEventListener("DOMContentLoaded", () => {
   cargarCuriosidades();
-
-  // Buscar en tiempo real si hay input
-  const searchInput = document.getElementById("searchInput");
-  if (searchInput) {
-    searchInput.addEventListener("input", buscarCuriosidad);
-  }
 });
