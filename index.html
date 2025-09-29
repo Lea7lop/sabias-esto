@@ -4,7 +4,130 @@
   <meta charset="UTF-8">
   <title>Sabías Esto</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    :root {
+      --bg: #f9f9f9;
+      --text: #222;
+      --card-bg: #fff;
+      --accent: #007bff;
+      --shadow: rgba(0,0,0,0.1);
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #e5e5e5;
+      --card-bg: #1e1e1e;
+      --accent: #4dabf7;
+      --shadow: rgba(0,0,0,0.6);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--card-bg);
+      box-shadow: 0 2px 10px var(--shadow);
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    nav .logo { font-size: 22px; font-weight: 800; color: var(--accent); }
+    nav .links { display: flex; gap: 20px; }
+    nav .links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s, color 0.3s;
+    }
+    nav .links a.active,
+    nav .links a:hover { background: var(--accent); color: #fff; }
+    nav .theme-toggle { cursor: pointer; font-size: 18px; }
+
+    .search-container {
+      margin: 20px auto;
+      text-align: center;
+    }
+    .search-container input {
+      padding: 10px;
+      width: 300px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      justify-content: center;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.6s forwards;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px var(--shadow);
+    }
+
+    .card img { width: 100%; height: 180px; object-fit: cover; }
+    .card .card-body { padding: 20px; flex-grow: 1; }
+    .card h3 { font-size: 20px; margin-bottom: 10px; color: var(--accent); }
+    .card p { font-size: 15px; line-height: 1.6; color: var(--text); }
+    .card .categoria { display: block; font-weight: 600; margin-top: 10px; }
+    .card .ver-mas {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--accent);
+      transition: color 0.3s;
+    }
+    .card .ver-mas:hover { color: #0056b3; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+      background: var(--card-bg);
+      box-shadow: 0 -2px 10px var(--shadow);
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
 <header>
@@ -15,19 +138,16 @@
       <a href="#" class="category-link" data-category="Ciencia">Ciencia</a>
       <a href="#" class="category-link" data-category="Historia">Historia</a>
       <a href="#" class="category-link" data-category="Animales">Animales</a>
-      <input type="text" id="searchInput" placeholder="Buscar dato curioso...">
-      <button id="searchBtn">🔍</button>
     </div>
     <div class="theme-toggle">🌓</div>
   </nav>
 </header>
 
-<section class="hero">
-  <h1>Descubre Datos Curiosos</h1>
-  <p>Ciencia, Historia y Animales como nunca te lo contaron</p>
-</section>
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder="Buscar dato curioso...">
+</div>
 
-<main id="curiosidades-container" class="cards-grid">
+<main id="curiosidades-container">
   <!-- Cards generadas dinámicamente -->
 </main>
 
@@ -35,6 +155,6 @@
   © 2025 Sabías Esto | Todos los derechos reservados
 </footer>
 
-<script src="js/main.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
