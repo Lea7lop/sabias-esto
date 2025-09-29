@@ -23,7 +23,6 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
   const contenedor = document.getElementById("curiosidades-container");
   contenedor.innerHTML = "";
 
-  // Animación en cascada
   curiosidades.forEach((c, i) => {
     const card = document.createElement("div");
     card.className = "card";
@@ -41,7 +40,6 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
   });
 }
 
-// Categorías
 document.querySelectorAll(".category-link").forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
@@ -51,7 +49,6 @@ document.querySelectorAll(".category-link").forEach(link => {
   });
 });
 
-// Búsqueda
 document.getElementById("searchBtn").addEventListener("click", () => {
   const input = document.getElementById("searchInput").value;
   cargarCuriosidades(null, input);
