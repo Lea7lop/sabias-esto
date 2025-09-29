@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>🤯 Sabías Esto</title>
+  <title>Sabías Esto</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,9 +14,9 @@
       <a href="#" class="category-link active" data-category="Inicio">Inicio</a>
       <a href="#" class="category-link" data-category="Ciencia">Ciencia</a>
       <a href="#" class="category-link" data-category="Historia">Historia</a>
+      <input type="text" id="searchInput" placeholder="Buscar dato curioso...">
+      <button id="searchBtn">🔍</button>
     </div>
-    <input type="text" id="searchInput" placeholder="Buscar..." />
-    <button id="searchBtn">🔍</button>
     <div class="theme-toggle">🌓</div>
   </nav>
 </header>
@@ -26,8 +26,8 @@
   <p>Ciencia y Historia como nunca te lo contaron</p>
 </section>
 
-<main id="curiosidades-container">
-  <!-- 5 cards generadas dinámicamente -->
+<main id="curiosidades-container" class="cards-grid">
+  <!-- Cards generadas dinámicamente -->
 </main>
 
 <footer>
