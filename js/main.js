@@ -1,46 +1,47 @@
-// Dark/Light Mode
-document.querySelector(".theme-toggle").addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-});
+document.addEventListener("DOMContentLoaded", async () => {
+  const toggle = document.querySelector(".theme-toggle");
+  toggle.addEventListener("click", () => document.body.classList.toggle("dark"));
 
-// Cargar curiosidades
-async function cargarCuriosidades(filtroCategoria = null) {
+  const container = document.getElementById("curiosidades-container");
+  const searchBtn = document.getElementById("searchBtn");
+  const searchInput = document.getElementById("searchInput");
+
   const response = await fetch("curiosidades_moderno.json");
-  const datos = await response.json();
-  let curiosidades = datos;
+  let datos = await response.json();
 
-  if (filtroCategoria && filtroCategoria !== "Inicio") {
-    curiosidades = curiosidades.filter(c => c.categoria === filtroCategoria.toLowerCase());
+  function mostrarCuriosidades(categoria = "Inicio", texto = "") {
+    container.innerHTML = "";
+    let filtrados = datos.filter(c => 
+      (categoria === "Inicio" || c.categoria === categoria) &&
+      (texto === "" || c.titulo.toLowerCase().includes(texto.toLowerCase()) || c.descripcion.toLowerCase().includes(texto.toLowerCase()))
+    );
+
+    filtrados.slice(0,5).forEach(c => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${c.imagen}" alt="Imagen curiosidad">
+        <div class="card-body">
+          <h3>${c.titulo}</h3>
+          <p>${c.descripcion.substring(0, 100)}...</p>
+          <span class="categoria">Categoría: ${c.categoria}</span>
+          <a class="ver-mas" href="curiosidad.html?id=${c.id}">Ver más →</a>
+        </div>
+      `;
+      container.appendChild(card);
+    });
   }
 
-  const contenedor = document.getElementById("curiosidades-container");
-  contenedor.innerHTML = "";
-
-  curiosidades.forEach(c => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <img src="${c.imagen}" alt="Imagen curiosidad">
-      <div class="card-body">
-        <h3>${c.titulo}</h3>
-        <p>${c.descripcion.substring(0, 60)}...</p>
-        <span class="categoria">Categoría: ${c.categoria}</span>
-        <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más</a>
-      </div>
-    `;
-    contenedor.appendChild(card);
+  document.querySelectorAll(".category-link").forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      document.querySelectorAll(".category-link").forEach(l => l.classList.remove("active"));
+      link.classList.add("active");
+      mostrarCuriosidades(link.dataset.category);
+    });
   });
-}
 
-// Categorías
-document.querySelectorAll(".category-link").forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    document.querySelectorAll(".category-link").forEach(l => l.classList.remove("active"));
-    link.classList.add("active");
-    cargarCuriosidades(link.dataset.category);
-  });
+  searchBtn.addEventListener("click", () => mostrarCuriosidades("Inicio", searchInput.value));
+
+  mostrarCuriosidades();
 });
-
-// Inicializar
-document.addEventListener("DOMContentLoaded", () => cargarCuriosidades("Inicio"));
