@@ -1,23 +1,22 @@
 // Dark/Light Mode
-document.querySelector(".theme-toggle").addEventListener("click", () => {
+const toggle = document.querySelector(".theme-toggle");
+toggle.addEventListener("click", () => {
   document.body.classList.toggle("dark");
 });
 
-let curiosidadesGlobal = [];
-
+// Cargar curiosidades desde JSON moderno
 async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
-  const response = await fetch("curiosidades_moderno.json");
+  const response = await fetch("data/curiosidades_moderno.json");
   const datos = await response.json();
 
-  let curiosidades = datos.map((c,i) => ({...c, id:i+1}));
-  curiosidadesGlobal = curiosidades;
+  let curiosidades = datos;
 
   // Filtrar por categoría
   if (filtroCategoria && filtroCategoria !== "Inicio") {
     curiosidades = curiosidades.filter(c => c.categoria === filtroCategoria);
   }
 
-  // Filtrar por texto
+  // Filtrar por búsqueda
   if (filtroTexto) {
     curiosidades = curiosidades.filter(c =>
       c.titulo.toLowerCase().includes(filtroTexto.toLowerCase()) ||
@@ -25,13 +24,13 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
     );
   }
 
-  // Limitar a 5 en Inicio
-  if (!filtroCategoria || filtroCategoria === "Inicio") {
-    curiosidades = curiosidades.slice(-5).reverse();
-  }
+  const container = document.getElementById("curiosidades-container");
+  container.innerHTML = "";
 
-  const contenedor = document.getElementById("curiosidades-container");
-  contenedor.innerHTML = "";
+  // Si es inicio, mostrar solo los 5 primeros
+  if (!filtroCategoria || filtroCategoria === "Inicio") {
+    curiosidades = curiosidades.slice(0, 5);
+  }
 
   curiosidades.forEach(c => {
     const card = document.createElement("div");
@@ -45,16 +44,11 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
         <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más →</a>
       </div>
     `;
-    contenedor.appendChild(card);
+    container.appendChild(card);
   });
 }
 
-// Búsqueda
-document.getElementById("searchInput").addEventListener("input", (e) => {
-  cargarCuriosidades(null, e.target.value);
-});
-
-// Categorías
+// Navegación por categorías
 document.querySelectorAll(".category-link").forEach(link => {
   link.addEventListener("click", e => {
     e.preventDefault();
