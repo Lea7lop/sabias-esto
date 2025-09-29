@@ -1,13 +1,17 @@
+// main.js
+
 async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
   const response = await fetch("curiosidades_moderno.json");
   const datos = await response.json();
 
   let curiosidades = datos;
 
-  if (filtroCategoria && filtroCategoria !== "Inicio") {
+  // Filtrar por categoría si existe
+  if (filtroCategoria) {
     curiosidades = curiosidades.filter(c => c.categoria === filtroCategoria);
   }
 
+  // Filtrar por texto si existe
   if (filtroTexto) {
     curiosidades = curiosidades.filter(c =>
       c.titulo.toLowerCase().includes(filtroTexto.toLowerCase()) ||
@@ -15,8 +19,11 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
     );
   }
 
-  // Tomar solo los 5 primeros si es Inicio
-  if (!filtroCategoria || filtroCategoria === "Inicio") {
+  // Ordenar por fecha descendente si existe campo date, sino por id
+  curiosidades.sort((a,b) => (b.date ? new Date(b.date) - new Date(a.date) : b.id - a.id));
+
+  // Tomar solo los 5 primeros si no hay filtro de texto ni categoría
+  if (!filtroCategoria && !filtroTexto) {
     curiosidades = curiosidades.slice(0, 5);
   }
 
@@ -24,15 +31,14 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
   if (!contenedor) return;
   contenedor.innerHTML = "";
 
-  curiosidades.forEach((c, i) => {
+  curiosidades.forEach(c => {
     const card = document.createElement("div");
     card.className = "card";
-    card.style.animationDelay = `${i * 0.1}s`;
     card.innerHTML = `
       <img src="${c.imagen}" alt="Imagen curiosidad">
       <div class="card-body">
         <h3>${c.titulo}</h3>
-        <p>${c.descripcion.substring(0, 100)}...</p>
+        <p>${c.descripcion.length > 100 ? c.descripcion.substring(0, 100) + "..." : c.descripcion}</p>
         <span class="categoria">Categoría: ${c.categoria}</span>
         <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más</a>
       </div>
@@ -41,22 +47,26 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
   });
 }
 
-// Dark/Light Mode
-document.querySelector(".theme-toggle").addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-});
+// Detectar categoría en URL
+function detectarCategoriaDeURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("cat");
+}
 
-// Navegación por categorías
-document.querySelectorAll(".category-link").forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    document.querySelectorAll(".category-link").forEach(l => l.classList.remove("active"));
-    link.classList.add("active");
-    cargarCuriosidades(link.dataset.category);
-  });
-});
+// Búsqueda
+function buscarCuriosidad() {
+  const input = document.getElementById("searchInput").value;
+  cargarCuriosidades(null, input);
+}
 
 // Inicializar
 document.addEventListener("DOMContentLoaded", () => {
-  cargarCuriosidades();
+  const categoria = detectarCategoriaDeURL();
+  if (categoria) {
+    const title = document.getElementById("categoria-title");
+    if (title) title.textContent = "Categoría: " + categoria;
+    cargarCuriosidades(categoria);
+  } else {
+    cargarCuriosidades(); // Esto carga los 5 datos principales
+  }
 });
