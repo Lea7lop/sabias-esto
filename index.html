@@ -33,36 +33,5 @@
 </footer>
 
 <script src="js/main.js"></script>
-<script>
-  // Dark/Light Mode
-  document.querySelector(".theme-toggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-  });
-
-  // Mostrar curiosidades con botón Ver más
-  async function cargarCuriosidades() {
-    const response = await fetch("curiosidades_moderno.json");
-    const datos = await response.json();
-    const contenedor = document.getElementById("curiosidades-container");
-    contenedor.innerHTML = "";
-
-    datos.forEach(c => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <img src="${c.imagen}" alt="Imagen curiosidad">
-        <div class="card-body">
-          <h3>${c.titulo}</h3>
-          <p>${c.descripcion}</p>
-          <span class="categoria">Categoría: ${c.categoria}</span>
-          <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más</a>
-        </div>
-      `;
-      contenedor.appendChild(card);
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", cargarCuriosidades);
-</script>
 </body>
 </html>
