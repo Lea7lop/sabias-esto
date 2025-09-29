@@ -2,43 +2,43 @@
   {
     "id": 1,
     "titulo": "Las estrellas de mar no tienen cerebro",
-    "descripcion": "Aunque parezca sorprendente, las estrellas de mar carecen de cerebro, pero poseen un sistema nervioso que les permite moverse, alimentarse y reaccionar al entorno.",
+    "descripcion": "Las estrellas de mar no tienen cerebro, pero pueden moverse y reaccionar a su entorno gracias a un sistema nervioso distribuido.",
     "imagen": "https://cdn.pixabay.com/photo/2015/06/24/15/45/space-820604_1280.jpg",
-    "categoria": "ciencia"
+    "categoria": "Ciencia"
   },
   {
     "id": 2,
-    "titulo": "El sonido viaja más rápido en el agua que en el aire",
-    "descripcion": "El sonido se propaga más rápido en el agua debido a que las partículas están más juntas, permitiendo que las ondas sonoras se transmitan más eficientemente.",
+    "titulo": "El sonido viaja más rápido en el agua",
+    "descripcion": "El sonido viaja más rápido en el agua que en el aire debido a la mayor densidad del agua.",
     "imagen": "https://cdn.pixabay.com/photo/2017/08/06/15/13/book-2597350_1280.jpg",
-    "categoria": "historia"
+    "categoria": "Historia"
   },
   {
     "id": 3,
-    "titulo": "Los rayos son más calientes que la superficie del sol",
-    "descripcion": "Un rayo puede alcanzar temperaturas de hasta 30,000 kelvins, más de cinco veces la temperatura de la superficie del sol, haciendo que su energía sea inmensa.",
+    "titulo": "Los rayos son más calientes que el sol",
+    "descripcion": "Un rayo puede alcanzar temperaturas de hasta 30,000 kelvin, más calientes que la superficie del sol.",
     "imagen": "https://cdn.pixabay.com/photo/2017/08/30/01/05/bee-2693129_1280.jpg",
-    "categoria": "animales"
+    "categoria": "Animales"
   },
   {
     "id": 4,
     "titulo": "Las estrellas fugaces no son estrellas",
-    "descripcion": "Las estrellas fugaces son en realidad meteoroides que se queman al entrar en la atmósfera de la Tierra, creando un destello luminoso que parece una estrella cayendo.",
+    "descripcion": "Las estrellas fugaces son meteoroides que se queman al entrar en la atmósfera terrestre, no son estrellas reales.",
     "imagen": "https://cdn.pixabay.com/photo/2018/05/23/23/17/lion-3428058_1280.jpg",
-    "categoria": "animales"
+    "categoria": "Animales"
   },
   {
     "id": 5,
     "titulo": "Las abejas pueden reconocer rostros humanos",
-    "descripcion": "Las abejas tienen la capacidad de recordar y distinguir rostros humanos, un hecho sorprendente considerando su pequeño tamaño cerebral.",
+    "descripcion": "Estudios demuestran que las abejas tienen la capacidad de aprender y reconocer rostros humanos.",
     "imagen": "https://cdn.pixabay.com/photo/2020/01/07/16/48/shrimp-4744823_1280.jpg",
-    "categoria": "animales"
+    "categoria": "Animales"
   },
   {
     "id": 6,
-    "titulo": "El ADN humano es 99.9% igual entre todos",
-    "descripcion": "A pesar de nuestras diferencias físicas, el ADN de todos los humanos es 99.9% idéntico, lo que demuestra la cercanía genética de nuestra especie.",
-    "imagen": "https://cdn.pixabay.com/photo/2016/11/21/15/56/dna-1845638_1280.jpg",
-    "categoria": "ciencia"
+    "titulo": "La luz tarda 8 minutos en llegar a la Tierra",
+    "descripcion": "La luz del sol tarda aproximadamente 8 minutos y 20 segundos en viajar hasta nuestro planeta.",
+    "imagen": "https://cdn.pixabay.com/photo/2016/11/29/03/35/earth-1869776_1280.jpg",
+    "categoria": "Ciencia"
   }
 ]
