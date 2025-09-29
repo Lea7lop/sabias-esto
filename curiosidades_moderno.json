@@ -1,32 +1,42 @@
 [
   {
-    "titulo": "Las estrellas de mar no tienen...",
-    "descripcion": "Las estrellas de mar no tienen cerebro",
-    "imagen": "https://cdn.pixabay.com/photo/2017/08/30/01/05/bee-2693129_1280.jpg",
-    "categoria": "animales"
+    "id": 1,
+    "titulo": "El corazón de un colibrí late increíblemente rápido",
+    "descripcion": "El corazón de un colibrí puede latir hasta 1,260 veces por minuto durante el vuelo. Esto les permite tener suficiente energía para batir sus alas a gran velocidad.",
+    "categoria": "Ciencia",
+    "imagen": "https://picsum.photos/600/400?random=1",
+    "date": "2025-09-28T08:00:00"
   },
   {
-    "titulo": "El sonido viaja más rápido en...",
-    "descripcion": "El sonido viaja más rápido en el agua que en el aire",
-    "imagen": "https://cdn.pixabay.com/photo/2017/03/27/14/56/egypt-2189886_1280.jpg",
-    "categoria": "historia"
+    "id": 2,
+    "titulo": "La Gran Muralla China es visible desde el espacio?",
+    "descripcion": "Contrario a la creencia popular, la Gran Muralla China no es fácilmente visible desde el espacio a simple vista. Su tamaño y color se mezclan con el terreno circundante.",
+    "categoria": "Historia",
+    "imagen": "https://picsum.photos/600/400?random=2",
+    "date": "2025-09-28T08:05:00"
   },
   {
-    "titulo": "Los rayos son más calientes que...",
-    "descripcion": "Los rayos son más calientes que la superficie del sol",
-    "imagen": "https://cdn.pixabay.com/photo/2018/05/23/23/17/lion-3428058_1280.jpg",
-    "categoria": "animales"
+    "id": 3,
+    "titulo": "El chocolate fue moneda en Mesoamérica",
+    "descripcion": "Los antiguos mayas y aztecas utilizaban los granos de cacao como moneda. Además, preparaban una bebida amarga que consideraban sagrada.",
+    "categoria": "Historia",
+    "imagen": "https://picsum.photos/600/400?random=3",
+    "date": "2025-09-28T08:10:00"
   },
   {
-    "titulo": "Las estrellas fugaces no son estrellas...",
-    "descripcion": "Las estrellas fugaces no son estrellas",
-    "imagen": "https://cdn.pixabay.com/photo/2020/01/07/16/48/shrimp-4744823_1280.jpg",
-    "categoria": "animales"
+    "id": 4,
+    "titulo": "Las estrellas de mar pueden regenerar sus brazos",
+    "descripcion": "Si pierden un brazo, muchas especies de estrellas de mar pueden regenerarlo completamente. En algunos casos, un brazo perdido puede incluso regenerar un nuevo cuerpo completo.",
+    "categoria": "Ciencia",
+    "imagen": "https://picsum.photos/600/400?random=4",
+    "date": "2025-09-28T08:15:00"
   },
   {
-    "titulo": "Las abejas pueden reconocer rostros humanos...",
-    "descripcion": "Las abejas pueden reconocer rostros humanos",
-    "imagen": "https://cdn.pixabay.com/photo/2015/11/19/21/11/dolphin-1058779_1280.jpg",
-    "categoria": "animales"
+    "id": 5,
+    "titulo": "Napoleón Bonaparte no era extremadamente bajo",
+    "descripcion": "Aunque la leyenda lo describe como muy bajo, Napoleón medía alrededor de 1,68 m, que era promedio para su época. El mito probablemente surgió por diferencias de medidas entre Francia e Inglaterra.",
+    "categoria": "Historia",
+    "imagen": "https://picsum.photos/600/400?random=5",
+    "date": "2025-09-28T08:20:00"
   }
 ]
