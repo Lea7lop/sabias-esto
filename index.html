@@ -12,7 +12,6 @@
       --accent: #007bff;
       --shadow: rgba(0,0,0,0.1);
     }
-
     body.dark {
       --bg: #121212;
       --text: #e5e5e5;
@@ -20,7 +19,6 @@
       --accent: #4dabf7;
       --shadow: rgba(0,0,0,0.6);
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
@@ -28,7 +26,6 @@
       color: var(--text);
       transition: background 0.3s, color 0.3s;
     }
-
     header {
       position: sticky;
       top: 0;
@@ -36,7 +33,6 @@
       box-shadow: 0 2px 10px var(--shadow);
       z-index: 1000;
     }
-
     nav {
       max-width: 1100px;
       margin: auto;
@@ -45,7 +41,6 @@
       align-items: center;
       padding: 15px 20px;
     }
-
     nav .logo { font-size: 22px; font-weight: 800; color: var(--accent); }
     nav .links { display: flex; gap: 20px; }
     nav .links a {
@@ -59,17 +54,14 @@
     nav .links a.active,
     nav .links a:hover { background: var(--accent); color: #fff; }
     nav .theme-toggle { cursor: pointer; font-size: 18px; }
-
     .hero {
       text-align: center;
       padding: 80px 20px 40px;
       background: linear-gradient(135deg, var(--accent), #6bc1ff);
       color: #fff;
     }
-
     .hero h1 { font-size: 48px; margin-bottom: 10px; }
     .hero p { font-size: 18px; opacity: 0.9; }
-
     main {
       max-width: 1100px;
       margin: 40px auto;
@@ -78,7 +70,6 @@
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 25px;
     }
-
     .card {
       background: var(--card-bg);
       border-radius: 15px;
@@ -95,7 +86,6 @@
       transform: translateY(-5px);
       box-shadow: 0 6px 20px var(--shadow);
     }
-
     .card img { width: 100%; height: 180px; object-fit: cover; }
     .card .card-body { padding: 20px; flex-grow: 1; }
     .card h3 { font-size: 20px; margin-bottom: 10px; color: var(--accent); }
@@ -110,12 +100,10 @@
       transition: color 0.3s;
     }
     .card .ver-mas:hover { color: #0056b3; }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     footer {
       text-align: center;
       padding: 30px 20px;
@@ -152,6 +140,7 @@
   © 2025 Sabías Esto | Todos los derechos reservados
 </footer>
 
-<script src="main.js"></script>
+<!-- RUTA CORRECTA DEL JS -->
+<script src="js/main.js"></script>
 </body>
 </html>
