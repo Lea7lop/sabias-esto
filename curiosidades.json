@@ -1,22 +1,22 @@
 [
   {
-    "dato": "Los flamencos no nacen de color rosa",
-    "explicacion": "Cuando nacen, los flamencos tienen plumas grises o blancas. El característico color rosa se debe a los carotenoides presentes en los alimentos que consumen, como algas y crustáceos. Estos pigmentos se acumulan en sus plumas y piel a lo largo del tiempo, transformando su aspecto. Si un flamenco no consume suficiente de estos pigmentos, su color puede permanecer pálido. Así, su tonalidad es un reflejo directo de su dieta."
-  },
-  {
-    "dato": "El corazón de una ballena azul es tan grande como un coche pequeño",
-    "explicacion": "La ballena azul, el animal más grande del planeta, tiene un corazón que puede llegar a pesar más de 180 kilogramos. Sus latidos son tan potentes que pueden detectarse a varios kilómetros de distancia en el agua. Para ponerlo en perspectiva, una persona podría nadar dentro de sus arterias principales, que tienen un diámetro de unos 60 centímetros. Este dato refleja la magnitud impresionante de la biología marina."
-  },
-  {
     "dato": "Los plátanos son bayas, pero las fresas no",
     "explicacion": "Botánicamente hablando, los plátanos cumplen con la definición de baya: se desarrollan a partir de un solo ovario y contienen semillas en su interior. En cambio, las fresas son un 'fruto agregado', formado por múltiples ovarios de una sola flor. Es un recordatorio de que las categorías científicas no siempre coinciden con la percepción popular de los alimentos."
   },
   {
-    "dato": "Las estrellas de mar no tienen cerebro",
-    "explicacion": "En lugar de un cerebro central, las estrellas de mar tienen un sistema nervioso distribuido en forma de anillo alrededor de su cuerpo y prolongaciones en cada brazo. Esto les permite coordinar movimientos y responder a estímulos, aunque de manera más lenta que otros animales. A pesar de ello, pueden regenerar brazos perdidos e incluso un cuerpo completo a partir de uno solo, lo que las hace criaturas fascinantes."
+    "dato": "El Coliseo de Roma podía llenarse y vaciarse en 15 minutos",
+    "explicacion": "Este anfiteatro, construido hace casi 2000 años, tenía un sistema de pasillos y escaleras tan eficiente que permitía la entrada o salida de hasta 50.000 espectadores en muy poco tiempo. Su diseño inspiró la arquitectura de los estadios modernos, demostrando el ingenio de los ingenieros romanos en materia de organización y construcción."
   },
   {
-    "dato": "El océano produce más del 50% del oxígeno del planeta",
-    "explicacion": "Muchas personas creen que los bosques son la principal fuente de oxígeno, pero en realidad, organismos microscópicos llamados fitoplancton, que flotan en la superficie del océano, generan más de la mitad del oxígeno que respiramos. Estos diminutos productores convierten la energía del sol en alimento y liberan oxígeno como subproducto. Sin ellos, la vida en la Tierra no sería posible."
+    "dato": "Los flamencos no nacen de color rosa",
+    "explicacion": "Cuando nacen, los flamencos tienen plumas grises o blancas. El característico color rosa se debe a los carotenoides presentes en los alimentos que consumen, como algas y crustáceos. Estos pigmentos se acumulan en sus plumas y piel a lo largo del tiempo, transformando su aspecto. Si un flamenco no consume suficiente de estos pigmentos, su color puede permanecer pálido. Así, su tonalidad es un reflejo directo de su dieta."
+  },
+  {
+    "dato": "En la antigua Roma, la orina se usaba para lavar la ropa",
+    "explicacion": "La orina era recogida en recipientes públicos porque contenía amoníaco, un químico natural que funciona como limpiador. Los 'fullones', que eran los lavadores de ropa romanos, la utilizaban para blanquear y desinfectar prendas. Aunque hoy nos parece repulsivo, en su época era una práctica común e incluso llegó a ser tan importante que se le aplicaba un impuesto."
+  },
+  {
+    "dato": "El corazón de una ballena azul es tan grande como un coche pequeño",
+    "explicacion": "La ballena azul, el animal más grande del planeta, tiene un corazón que puede llegar a pesar más de 180 kilogramos. Sus latidos son tan potentes que pueden detectarse a varios kilómetros de distancia en el agua. Para ponerlo en perspectiva, una persona podría nadar dentro de sus arterias principales, que tienen un diámetro de unos 60 centímetros. Este dato refleja la magnitud impresionante de la biología marina."
   }
 ]
