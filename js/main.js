@@ -1,47 +1,62 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  const toggle = document.querySelector(".theme-toggle");
-  toggle.addEventListener("click", () => document.body.classList.toggle("dark"));
+document.querySelector(".theme-toggle").addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
 
-  const container = document.getElementById("curiosidades-container");
-  const searchBtn = document.getElementById("searchBtn");
-  const searchInput = document.getElementById("searchInput");
-
+async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
   const response = await fetch("curiosidades_moderno.json");
-  let datos = await response.json();
+  const datos = await response.json();
+  let curiosidades = datos;
 
-  function mostrarCuriosidades(categoria = "Inicio", texto = "") {
-    container.innerHTML = "";
-    let filtrados = datos.filter(c => 
-      (categoria === "Inicio" || c.categoria === categoria) &&
-      (texto === "" || c.titulo.toLowerCase().includes(texto.toLowerCase()) || c.descripcion.toLowerCase().includes(texto.toLowerCase()))
-    );
-
-    filtrados.slice(0,5).forEach(c => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <img src="${c.imagen}" alt="Imagen curiosidad">
-        <div class="card-body">
-          <h3>${c.titulo}</h3>
-          <p>${c.descripcion.substring(0, 100)}...</p>
-          <span class="categoria">Categoría: ${c.categoria}</span>
-          <a class="ver-mas" href="curiosidad.html?id=${c.id}">Ver más →</a>
-        </div>
-      `;
-      container.appendChild(card);
-    });
+  if (filtroCategoria && filtroCategoria !== "Inicio") {
+    curiosidades = curiosidades.filter(c => c.categoria.toLowerCase() === filtroCategoria.toLowerCase());
   }
 
-  document.querySelectorAll(".category-link").forEach(link => {
-    link.addEventListener("click", e => {
-      e.preventDefault();
-      document.querySelectorAll(".category-link").forEach(l => l.classList.remove("active"));
-      link.classList.add("active");
-      mostrarCuriosidades(link.dataset.category);
-    });
+  if (filtroTexto) {
+    curiosidades = curiosidades.filter(c =>
+      c.titulo.toLowerCase().includes(filtroTexto.toLowerCase()) ||
+      c.descripcion.toLowerCase().includes(filtroTexto.toLowerCase())
+    );
+  }
+
+  if (!filtroCategoria && !filtroTexto) curiosidades = curiosidades.slice(0, 5);
+
+  const contenedor = document.getElementById("curiosidades-container");
+  contenedor.innerHTML = "";
+
+  // Animación en cascada
+  curiosidades.forEach((c, i) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.animation = `fadeUp 0.6s forwards ${i * 0.15}s`;
+    card.innerHTML = `
+      <img src="${c.imagen}" alt="Imagen curiosidad">
+      <div class="card-body">
+        <h3>${c.titulo}</h3>
+        <p>${c.descripcion.substring(0, 150)}...</p>
+        <span class="categoria">Categoría: ${c.categoria}</span>
+        <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más →</a>
+      </div>
+    `;
+    contenedor.appendChild(card);
   });
+}
 
-  searchBtn.addEventListener("click", () => mostrarCuriosidades("Inicio", searchInput.value));
+// Categorías
+document.querySelectorAll(".category-link").forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    document.querySelectorAll(".category-link").forEach(l => l.classList.remove("active"));
+    link.classList.add("active");
+    cargarCuriosidades(link.dataset.category);
+  });
+});
 
-  mostrarCuriosidades();
+// Búsqueda
+document.getElementById("searchBtn").addEventListener("click", () => {
+  const input = document.getElementById("searchInput").value;
+  cargarCuriosidades(null, input);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  cargarCuriosidades();
 });
