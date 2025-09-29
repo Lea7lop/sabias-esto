@@ -2,43 +2,43 @@
   {
     "id": 1,
     "titulo": "Las estrellas de mar no tienen cerebro",
-    "descripcion": "Las estrellas de mar no tienen cerebro ni sangre. Pueden regenerar brazos perdidos y poseen un sistema nervioso muy simple.",
+    "descripcion": "Aunque parezca sorprendente, las estrellas de mar carecen de cerebro, pero poseen un sistema nervioso que les permite moverse, alimentarse y reaccionar al entorno.",
     "imagen": "https://cdn.pixabay.com/photo/2015/06/24/15/45/space-820604_1280.jpg",
-    "categoria": "Ciencia"
+    "categoria": "ciencia"
   },
   {
     "id": 2,
-    "titulo": "El sonido viaja más rápido en el agua",
-    "descripcion": "El sonido viaja más rápido en el agua que en el aire debido a la densidad y propiedades de transmisión del agua.",
+    "titulo": "El sonido viaja más rápido en el agua que en el aire",
+    "descripcion": "El sonido se propaga más rápido en el agua debido a que las partículas están más juntas, permitiendo que las ondas sonoras se transmitan más eficientemente.",
     "imagen": "https://cdn.pixabay.com/photo/2017/08/06/15/13/book-2597350_1280.jpg",
-    "categoria": "Historia"
+    "categoria": "historia"
   },
   {
     "id": 3,
-    "titulo": "Los rayos son más calientes que el sol",
-    "descripcion": "Los rayos pueden alcanzar temperaturas superiores a 30,000 Kelvin, mucho más caliente que la superficie del sol.",
+    "titulo": "Los rayos son más calientes que la superficie del sol",
+    "descripcion": "Un rayo puede alcanzar temperaturas de hasta 30,000 kelvins, más de cinco veces la temperatura de la superficie del sol, haciendo que su energía sea inmensa.",
     "imagen": "https://cdn.pixabay.com/photo/2017/08/30/01/05/bee-2693129_1280.jpg",
-    "categoria": "Animales"
+    "categoria": "animales"
   },
   {
     "id": 4,
     "titulo": "Las estrellas fugaces no son estrellas",
-    "descripcion": "Las estrellas fugaces son meteoritos que se queman al entrar en la atmósfera terrestre, no son estrellas reales.",
+    "descripcion": "Las estrellas fugaces son en realidad meteoroides que se queman al entrar en la atmósfera de la Tierra, creando un destello luminoso que parece una estrella cayendo.",
     "imagen": "https://cdn.pixabay.com/photo/2018/05/23/23/17/lion-3428058_1280.jpg",
-    "categoria": "Animales"
+    "categoria": "animales"
   },
   {
     "id": 5,
     "titulo": "Las abejas pueden reconocer rostros humanos",
-    "descripcion": "Estudios han demostrado que las abejas pueden aprender a reconocer rostros humanos y diferenciarlos, similar a como lo hacen los humanos.",
+    "descripcion": "Las abejas tienen la capacidad de recordar y distinguir rostros humanos, un hecho sorprendente considerando su pequeño tamaño cerebral.",
     "imagen": "https://cdn.pixabay.com/photo/2020/01/07/16/48/shrimp-4744823_1280.jpg",
-    "categoria": "Animales"
+    "categoria": "animales"
   },
   {
     "id": 6,
-    "titulo": "El corazón de un colibrí late rapidísimo",
-    "descripcion": "El corazón de un colibrí puede latir hasta 1,260 veces por minuto durante el vuelo.",
-    "imagen": "https://cdn.pixabay.com/photo/2018/03/23/15/56/bird-3258187_1280.jpg",
-    "categoria": "Animales"
+    "titulo": "El ADN humano es 99.9% igual entre todos",
+    "descripcion": "A pesar de nuestras diferencias físicas, el ADN de todos los humanos es 99.9% idéntico, lo que demuestra la cercanía genética de nuestra especie.",
+    "imagen": "https://cdn.pixabay.com/photo/2016/11/21/15/56/dna-1845638_1280.jpg",
+    "categoria": "ciencia"
   }
 ]
