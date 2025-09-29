@@ -27,6 +27,7 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
+/* Header y Navegación */
 header {
   position: sticky;
   top: 0;
@@ -36,14 +37,12 @@ header {
 }
 
 nav {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  flex-wrap: wrap;
-  gap: 10px;
 }
 
 nav .logo {
@@ -55,7 +54,6 @@ nav .logo {
 nav .links {
   display: flex;
   gap: 15px;
-  flex-wrap: wrap;
 }
 
 nav .links a {
@@ -73,22 +71,46 @@ nav .links a:hover {
   color: #fff;
 }
 
-nav input#searchInput {
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  flex-grow: 1;
-  max-width: 250px;
-}
-
 nav .theme-toggle {
   cursor: pointer;
   font-size: 18px;
 }
 
+/* Barra de búsqueda */
+.search-container {
+  max-width: 1100px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20px;
+  gap: 5px;
+}
+
+.search-container input {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  flex: 1;
+}
+
+.search-container button {
+  padding: 6px 12px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.search-container button:hover {
+  background: #0056b3;
+}
+
+/* Hero */
 .hero {
   text-align: center;
-  padding: 80px 20px 40px;
+  padding: 60px 20px 30px;
   background: linear-gradient(135deg, var(--accent), #6bc1ff);
   color: #fff;
 }
@@ -103,8 +125,9 @@ nav .theme-toggle {
   opacity: 0.9;
 }
 
+/* Main y Cards */
 main {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 40px auto;
   padding: 0 20px;
   display: grid;
@@ -124,8 +147,6 @@ main {
   opacity: 0;
   transform: translateY(30px);
   animation: fadeUp 0.6s forwards;
-  width: 100%;
-  max-width: 300px;
 }
 
 .card:hover {
@@ -175,11 +196,13 @@ main {
   color: #0056b3;
 }
 
+/* Animación de cards */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Footer */
 footer {
   text-align: center;
   padding: 30px 20px;
