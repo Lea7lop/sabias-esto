@@ -1,32 +1,37 @@
 [
   {
-    "titulo": "Los plátanos son bayas, pero las...",
-    "descripcion": "Los plátanos son bayas, pero las fresas no",
-    "imagen": "https://cdn.pixabay.com/photo/2019/10/15/20/25/castle-4551443_1280.jpg",
-    "categoria": "historia"
+    "id": 1,
+    "titulo": "El corazón de una ballena azul",
+    "descripcion": "El corazón de la ballena azul es tan grande que un ser humano podría nadar por sus arterias.",
+    "categoria": "Ciencia",
+    "imagen": "https://picsum.photos/600/400?random=1"
   },
   {
-    "titulo": "El Coliseo de Roma podía llenarse...",
-    "descripcion": "El Coliseo de Roma podía llenarse y vaciarse en 15 minutos",
-    "imagen": "https://cdn.pixabay.com/photo/2017/01/14/12/59/library-1976496_1280.jpg",
-    "categoria": "historia"
+    "id": 2,
+    "titulo": "La biblioteca de Alejandría",
+    "descripcion": "Se cree que la Biblioteca de Alejandría albergaba cientos de miles de pergaminos, pero fue destruida hace siglos.",
+    "categoria": "Historia",
+    "imagen": "https://picsum.photos/600/400?random=2"
   },
   {
-    "titulo": "Los flamencos no nacen de color...",
-    "descripcion": "Los flamencos no nacen de color rosa",
-    "imagen": "https://cdn.pixabay.com/photo/2017/03/27/14/56/egypt-2189886_1280.jpg",
-    "categoria": "historia"
+    "id": 3,
+    "titulo": "El misterio de los gatos egipcios",
+    "descripcion": "En el antiguo Egipto, matar un gato era considerado un crimen grave, incluso con pena de muerte.",
+    "categoria": "Historia",
+    "imagen": "https://picsum.photos/600/400?random=3"
   },
   {
-    "titulo": "En la antigua Roma, la orina...",
-    "descripcion": "En la antigua Roma, la orina se usaba para lavar la ropa",
-    "imagen": "https://cdn.pixabay.com/photo/2017/08/06/15/13/book-2597350_1280.jpg",
-    "categoria": "historia"
+    "id": 4,
+    "titulo": "El veneno de la avispa de mar",
+    "descripcion": "La avispa de mar tiene un veneno tan potente que puede matar a un adulto en minutos.",
+    "categoria": "Ciencia",
+    "imagen": "https://picsum.photos/600/400?random=4"
   },
   {
-    "titulo": "El corazón de una ballena azul...",
-    "descripcion": "El corazón de una ballena azul es tan grande como un coche pequeño",
-    "imagen": "https://cdn.pixabay.com/photo/2015/11/19/21/11/dolphin-1058779_1280.jpg",
-    "categoria": "animales"
+    "id": 5,
+    "titulo": "El mapa más antiguo conocido",
+    "descripcion": "El mapa más antiguo conocido data de hace más de 5.000 años y representa territorios de Mesopotamia.",
+    "categoria": "Historia",
+    "imagen": "https://picsum.photos/600/400?random=5"
   }
 ]
