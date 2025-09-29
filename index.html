@@ -21,11 +21,7 @@
       --shadow: rgba(0,0,0,0.6);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -34,134 +30,46 @@
       transition: background 0.3s, color 0.3s;
     }
 
-    header {
-      position: sticky;
-      top: 0;
-      background: var(--card-bg);
-      box-shadow: 0 2px 10px var(--shadow);
-      z-index: 1000;
-    }
+    header { position: sticky; top: 0; background: var(--card-bg); box-shadow:0 2px 10px var(--shadow); z-index:1000; }
 
-    nav {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-    }
+    nav { max-width:1100px; margin:auto; display:flex; justify-content:space-between; align-items:center; padding:15px 20px; }
 
-    nav .logo {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--accent);
-    }
+    nav .logo { font-size:22px; font-weight:800; color:var(--accent); }
 
-    nav .links {
-      display: flex;
-      gap: 20px;
-    }
+    nav .links { display:flex; gap:20px; }
 
-    nav .links a {
-      text-decoration: none;
-      font-weight: 600;
-      color: var(--text);
-      padding: 8px 12px;
-      border-radius: 6px;
-      transition: background 0.3s, color 0.3s;
-    }
+    nav .links a { text-decoration:none; font-weight:600; color:var(--text); padding:8px 12px; border-radius:6px; transition:background 0.3s,color 0.3s; }
 
     nav .links a.active,
-    nav .links a:hover {
-      background: var(--accent);
-      color: #fff;
-    }
+    nav .links a:hover { background:var(--accent); color:#fff; }
 
-    nav .theme-toggle {
-      cursor: pointer;
-      font-size: 18px;
-    }
+    nav .theme-toggle { cursor:pointer; font-size:18px; }
 
-    .hero {
-      text-align: center;
-      padding: 80px 20px 40px;
-      background: linear-gradient(135deg, var(--accent), #6bc1ff);
-      color: #fff;
-    }
+    .hero { text-align:center; padding:60px 20px 40px; background:linear-gradient(135deg, var(--accent), #6bc1ff); color:#fff; }
 
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
+    .hero h1 { font-size:48px; margin-bottom:10px; }
+    .hero p { font-size:18px; opacity:0.9; }
 
-    .hero p {
-      font-size: 18px;
-      opacity: 0.9;
-    }
+    .search-container { max-width:1100px; margin:20px auto; text-align:center; }
+    .search-container input { width:100%; max-width:400px; padding:10px 15px; border-radius:8px; border:1px solid #ccc; font-size:16px; }
 
-    main {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-    }
+    main { max-width:1100px; margin:40px auto; padding:0 20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:25px; }
 
-    .card {
-      background: var(--card-bg);
-      border-radius: 15px;
-      box-shadow: 0 4px 15px var(--shadow);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s, box-shadow 0.3s;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeUp 0.6s forwards;
-    }
+    .card { background:var(--card-bg); border-radius:15px; box-shadow:0 4px 15px var(--shadow); overflow:hidden; display:flex; flex-direction:column; transition:transform 0.3s,box-shadow 0.3s; opacity:0; transform:translateY(30px); animation:fadeUp 0.6s forwards; }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px var(--shadow);
-    }
+    .card:hover { transform:translateY(-5px); box-shadow:0 6px 20px var(--shadow); }
 
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
+    .card img { width:100%; height:180px; object-fit:cover; }
 
-    .card .content {
-      padding: 20px;
-      flex-grow: 1;
-    }
+    .card .content { padding:20px; flex-grow:1; }
 
-    .card h2 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      color: var(--accent);
-    }
+    .card h2 { font-size:20px; margin-bottom:10px; color:var(--accent); }
+    .card p { font-size:15px; line-height:1.6; color:var(--text); }
+    .card .categoria { display:block; margin-top:10px; font-size:13px; color:#555; }
 
-    .card p {
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--text);
-    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 14px;
-      background: var(--card-bg);
-      box-shadow: 0 -2px 10px var(--shadow);
-      margin-top: 40px;
-    }
+    footer { text-align:center; padding:30px 20px; font-size:14px; background:var(--card-bg); box-shadow:0 -2px 10px var(--shadow); margin-top:40px; }
   </style>
 </head>
 <body>
@@ -182,6 +90,11 @@
   <p>Ciencia y Historia como nunca te lo contaron</p>
 </section>
 
+<!-- Input de búsqueda -->
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder="Buscar dato curioso...">
+</div>
+
 <main id="curiosidades-container">
   <!-- Cards generadas dinámicamente -->
 </main>
@@ -197,46 +110,62 @@
     document.body.classList.toggle("dark");
   });
 
-  // Cargar curiosidades
-  fetch('curiosidades.json')
-    .then(r => r.json())
-    .then(data => {
-      window.curiosidades = data.sort((a,b) => new Date(b.date) - new Date(a.date));
-      mostrarCuriosidades("Inicio");
-    });
+  // Cargar curiosidades desde JSON moderno
+  async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
+    const response = await fetch("curiosidades_moderno.json");
+    const datos = await response.json();
+    let curiosidades = datos;
 
-  function mostrarCuriosidades(categoria) {
-    const container = document.getElementById("curiosidades-container");
-    container.innerHTML = "";
+    if (filtroCategoria && filtroCategoria !== "Inicio") {
+      curiosidades = curiosidades.filter(c => c.categoria === filtroCategoria);
+    }
 
-    let filtrados = categoria === "Inicio"
-      ? window.curiosidades
-      : window.curiosidades.filter(d => d.category === categoria);
+    if (filtroTexto) {
+      curiosidades = curiosidades.filter(c =>
+        c.titulo.toLowerCase().includes(filtroTexto.toLowerCase()) ||
+        c.descripcion.toLowerCase().includes(filtroTexto.toLowerCase())
+      );
+    }
 
-    filtrados.forEach((d, i) => {
+    const contenedor = document.getElementById("curiosidades-container");
+    if (!contenedor) return;
+    contenedor.innerHTML = "";
+
+    curiosidades.forEach((c, i) => {
       const card = document.createElement("div");
-      card.classList.add("card");
-      card.style.animationDelay = `${i * 0.1}s`; // efecto cascada
-
+      card.className = "card";
+      card.style.animationDelay = `${i * 0.1}s`;
       card.innerHTML = `
-        <img src="https://picsum.photos/600/400?random=${i}" alt="Imagen curiosidad">
+        <img src="${c.imagen || `https://picsum.photos/600/400?random=${i}`}" alt="Imagen curiosidad">
         <div class="content">
-          <h2>${d.fact}</h2>
-          <p>${d.explanation}</p>
+          <h2>${c.titulo}</h2>
+          <p>${c.descripcion}</p>
+          <span class="categoria">Categoría: ${c.categoria}</span>
         </div>
       `;
-      container.appendChild(card);
+      contenedor.appendChild(card);
     });
   }
 
-  // Navegación por categorías
+  // Filtrar por categoría
   document.querySelectorAll(".category-link").forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
       document.querySelectorAll(".category-link").forEach(l => l.classList.remove("active"));
       link.classList.add("active");
-      mostrarCuriosidades(link.dataset.category);
+      cargarCuriosidades(link.dataset.category);
     });
+  });
+
+  // Filtrar por búsqueda
+  const searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("input", () => {
+    cargarCuriosidades(null, searchInput.value);
+  });
+
+  // Inicializar al cargar la página
+  document.addEventListener("DOMContentLoaded", () => {
+    cargarCuriosidades();
   });
 </script>
 </body>
