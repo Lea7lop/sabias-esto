@@ -2,7 +2,7 @@
   {
     "id": 1,
     "titulo": "Las estrellas de mar no tienen cerebro",
-    "descripcion": "Las estrellas de mar no tienen cerebro, ni sangre. Su sistema nervioso es muy simple y se comunican a través de impulsos eléctricos.",
+    "descripcion": "Las estrellas de mar no tienen cerebro ni sangre. Su sistema nervioso es muy simple y se comunican a través de impulsos eléctricos.",
     "imagen": "https://cdn.pixabay.com/photo/2015/06/24/15/45/space-820604_1280.jpg",
     "categoria": "Ciencia"
   },
@@ -23,7 +23,7 @@
   {
     "id": 4,
     "titulo": "Las estrellas fugaces no son estrellas",
-    "descripcion": "Las estrellas fugaces son en realidad meteoros que se queman al entrar en la atmósfera de la Tierra y no tienen ninguna relación con las estrellas.",
+    "descripcion": "Las estrellas fugaces son meteoros que se queman al entrar en la atmósfera de la Tierra y no tienen ninguna relación con las estrellas.",
     "imagen": "https://cdn.pixabay.com/photo/2018/05/23/23/17/lion-3428058_1280.jpg",
     "categoria": "Animales"
   },
