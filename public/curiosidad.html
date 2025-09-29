@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalle de Curiosidad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f9f9f9;
+      --text: #222;
+      --card-bg: #fff;
+      --accent: #007bff;
+      --shadow: rgba(0,0,0,0.1);
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #e5e5e5;
+      --card-bg: #1e1e1e;
+      --accent: #4dabf7;
+      --shadow: rgba(0,0,0,0.6);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--card-bg);
+      box-shadow: 0 2px 10px var(--shadow);
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    nav .logo { font-size: 22px; font-weight: 800; color: var(--accent); }
+    nav .links { display: flex; gap: 20px; }
+    nav .links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s, color 0.3s;
+    }
+    nav .links a:hover { background: var(--accent); color: #fff; }
+    nav .theme-toggle { cursor: pointer; font-size: 18px; }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card img { width: 100%; height: 300px; object-fit: cover; }
+    .card .card-body { padding: 20px; }
+    .card h1 { font-size: 28px; margin-bottom: 15px; color: var(--accent); }
+    .card p { font-size: 16px; line-height: 1.7; margin-bottom: 15px; }
+    .card .categoria { font-weight: 600; color: var(--accent); }
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .back-link:hover { color: #0056b3; }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+      background: var(--card-bg);
+      box-shadow: 0 -2px 10px var(--shadow);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">🤯 Sabías Esto</div>
+    <div class="links">
+      <a href="index.html">Inicio</a>
+      <a href="#">Ciencia</a>
+      <a href="#">Historia</a>
+    </div>
+    <div class="theme-toggle">🌓</div>
+  </nav>
+</header>
+
+<main id="curiosidad-container">
+  <!-- Dato curioso cargado dinámicamente -->
+</main>
+
+<footer>
+  © 2025 Sabías Esto | Todos los derechos reservados
+</footer>
+
+<script>
+  // Dark/Light Mode
+  document.querySelector(".theme-toggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+  });
+
+  function obtenerIdDeURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("id");
+  }
+
+  async function cargarCuriosidad() {
+    const id = obtenerIdDeURL();
+    if (!id) return;
+
+    const response = await fetch("curiosidades_moderno.json");
+    const datos = await response.json();
+    const c = datos.find(item => item.id == id);
+    if (!c) return;
+
+    const contenedor = document.getElementById("curiosidad-container");
+    contenedor.innerHTML = `
+      <div class="card">
+        <img src="${c.imagen}" alt="Imagen curiosidad">
+        <div class="card-body">
+          <h1>${c.titulo}</h1>
+          <p>${c.descripcion}</p>
+          <span class="categoria">Categoría: ${c.categoria}</span>
+          <a href="index.html" class="back-link">← Volver al Inicio</a>
+        </div>
+      </div>
+    `;
+  }
+
+  document.addEventListener("DOMContentLoaded", cargarCuriosidad);
+</script>
+</body>
+</html>
