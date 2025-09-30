@@ -4,12 +4,8 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
 
   let curiosidades = datos;
 
-  // IDs de los primeros 5 datos fijos (incluye la pirata mujer)
-  const primeros5Ids = [1,2,3,4,5];
-  const primeros5 = curiosidades.filter(c => primeros5Ids.includes(c.id));
-
   // Filtrar por categoría
-  if (filtroCategoria && filtroCategoria !== "Inicio") {
+  if (filtroCategoria && filtroCategoria !== "Todos") {
     curiosidades = curiosidades.filter(c => c.categoria === filtroCategoria);
   }
 
@@ -26,20 +22,10 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
 
   contenedor.innerHTML = "";
 
-  let mostrar = [];
-
-  if (!filtroCategoria || filtroCategoria === "Inicio") {
-    // Al inicio siempre mostrar los 5 fijos
-    mostrar = primeros5;
-  } else {
-    // En categorías, mostrar máximo 50 curiosidades sin duplicados
-    const idsMostrados = new Set();
-    mostrar = curiosidades.filter(c => {
-      if(idsMostrados.has(c.id)) return false;
-      idsMostrados.add(c.id);
-      return true;
-    }).slice(0, 50);
-  }
+  // Mostrar solo 5 en Inicio
+  const mostrar = filtroCategoria === null || filtroCategoria === "Todos" ? 
+                  curiosidades.slice(0,5) : 
+                  curiosidades.slice(0,50);
 
   mostrar.forEach(c => {
     const card = document.createElement("div");
@@ -55,29 +41,25 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
   });
 }
 
+const filtros = document.querySelectorAll('.filtro');
+const busquedaInput = document.getElementById('busqueda');
+
+// Mostrar al inicio
 document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.querySelector(".theme-toggle");
-  if(toggle) toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-  });
+  cargarCuriosidades();
 
-  cargarCuriosidades(); // al cargar la página
-
-  // Filtrar por categorías
-  document.querySelectorAll(".filtro").forEach(link => {
-    link.addEventListener("click", e => {
+  // Filtrar por categoría
+  filtros.forEach(filtro => {
+    filtro.addEventListener('click', e => {
       e.preventDefault();
-      const cat = link.dataset.categoria;
-      cargarCuriosidades(cat === "Todos" ? null : cat);
+      const cat = filtro.dataset.categoria;
+      cargarCuriosidades(cat);
     });
   });
 
   // Buscar por texto
-  const busquedaInput = document.getElementById("busqueda");
-  if(busquedaInput) {
-    busquedaInput.addEventListener("input", () => {
-      const termino = busquedaInput.value.toLowerCase();
-      cargarCuriosidades(null, termino);
-    });
-  }
+  busquedaInput.addEventListener('input', () => {
+    const termino = busquedaInput.value.toLowerCase();
+    cargarCuriosidades(null, termino);
+  });
 });
