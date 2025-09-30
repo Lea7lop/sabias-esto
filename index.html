@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sabías Esto</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #333; }
     header { background: #333; color: white; padding: 20px; text-align: center; }
     nav { background: #555; color: white; display: flex; justify-content: center; padding: 10px; gap: 15px; }
     nav a { color: white; text-decoration: none; font-weight: bold; }
@@ -13,13 +13,13 @@
     .search-container { text-align: center; padding: 15px; }
     .search-container input { width: 60%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
     .curiosidades { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-    .curiosidad-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; padding: 15px; text-align: center; }
-    .curiosidad-card img { width: 100%; border-radius: 10px; }
-    .curiosidad-card h3 { margin: 10px 0 5px; font-size: 18px; }
-    .curiosidad-card p { font-size: 14px; color: #333; }
-    .categoria { font-size: 12px; color: #777; margin-bottom: 5px; }
-    body.dark { background: #121212; color: white; }
-    body.dark .curiosidad-card { background: #1e1e1e; color: white; }
+    .card { background: #e0f0ff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; padding: 15px; text-align: center; }
+    .card img { width: 100%; border-radius: 10px; }
+    .card h3 { margin: 10px 0 5px; font-size: 18px; color: #0077cc; }
+    .card p { font-size: 14px; color: #333; }
+    .categoria { font-size: 12px; color: #005599; margin-bottom: 5px; display:block; }
+    .ver-mas { text-decoration: none; font-weight: bold; color: #0077cc; }
+    .ver-mas:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -37,80 +37,74 @@
   <a href="#" class="filtro" data-categoria="Ciencia">Ciencia</a>
   <a href="#" class="filtro" data-categoria="Historia">Historia</a>
   <a href="#" class="filtro" data-categoria="Animales">Animales</a>
-  <span class="theme-toggle" style="cursor:pointer; margin-left:20px;">🌓</span>
 </nav>
 
-<div class="curiosidades" id="curiosidadesContainer"></div>
+<div class="curiosidades" id="curiosidadesContainer">
+  <!-- Las tarjetas se generarán aquí con JavaScript -->
+</div>
 
 <script>
-const curiosidades = [];
+  const curiosidades = [
+    // Aquí pegas tu JSON de 50 curiosidades
+  ];
 
-async function cargarJSON() {
-  const response = await fetch("data/curiosidades_moderno.json");
-  const datos = await response.json();
-  curiosidades.push(...datos);
+  const container = document.getElementById('curiosidadesContainer');
+  const busquedaInput = document.getElementById('busqueda');
+  const filtros = document.querySelectorAll('.filtro');
 
-  // Mostrar 5 aleatorias al inicio
-  mostrarCuriosidades(aleatorio(curiosidades,5));
-}
+  // Los primeros 5 fijos, incluyendo la pirata
+  const primeros5Ids = [1,2,3,4,5]; // ID 1 = pirata mujer
+  const primeros5 = curiosidades.filter(c => primeros5Ids.includes(c.id));
 
-const container = document.getElementById('curiosidadesContainer');
-const busquedaInput = document.getElementById('busqueda');
-const filtros = document.querySelectorAll('.filtro');
+  function mostrarCuriosidades(lista) {
+    container.innerHTML = '';
+    if(lista.length === 0) {
+      container.innerHTML = '<p>No se encontraron resultados.</p>';
+      return;
+    }
+    const idsMostrados = new Set();
+    lista.forEach(c => {
+      if(idsMostrados.has(c.id)) return; // Evita duplicados
+      idsMostrados.add(c.id);
 
-function aleatorio(array, n) {
-  const copia = [...array];
-  const resultado = [];
-  for(let i=0;i<n;i++){
-    if(copia.length===0) break;
-    const index = Math.floor(Math.random() * copia.length);
-    resultado.push(copia.splice(index,1)[0]);
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.innerHTML = `
+        <img src="${c.imagen}" alt="${c.titulo}">
+        <div class="categoria">${c.categoria}</div>
+        <h3>${c.titulo}</h3>
+        <p>${c.descripcion.length > 200 ? c.descripcion.substring(0,200)+"..." : c.descripcion}</p>
+        <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más →</a>
+      `;
+      container.appendChild(card);
+    });
   }
-  return resultado;
-}
 
-function mostrarCuriosidades(lista) {
-  container.innerHTML = '';
-  if(lista.length === 0) {
-    container.innerHTML = '<p>No se encontraron resultados.</p>';
-    return;
-  }
-  lista.forEach(c => {
-    const card = document.createElement('div');
-    card.classList.add('curiosidad-card');
-    card.innerHTML = `
-      <img src="${c.imagen}" alt="${c.titulo}">
-      <div class="categoria">${c.categoria}</div>
-      <h3>${c.titulo}</h3>
-      <p>${c.descripcion.length > 120 ? c.descripcion.substring(0,120) + '...' : c.descripcion}</p>
-      <a href="curiosidad.html?id=${c.id}" style="text-decoration:none; font-weight:bold; display:block; margin-top:10px;">Ver más →</a>
-    `;
-    container.appendChild(card);
+  // Mostrar los 5 primeros al inicio
+  mostrarCuriosidades(primeros5);
+
+  // Filtrar por categorías
+  filtros.forEach(filtro => {
+    filtro.addEventListener('click', e => {
+      e.preventDefault();
+      const cat = filtro.dataset.categoria;
+      if(cat === 'Todos') {
+        mostrarCuriosidades(primeros5); // Mantiene los 5 fijos
+      } else {
+        mostrarCuriosidades(curiosidades.filter(c => c.categoria === cat));
+      }
+    });
   });
-}
 
-// Filtrar por categoría
-filtros.forEach(filtro => {
-  filtro.addEventListener('click', e => {
-    e.preventDefault();
-    const cat = filtro.dataset.categoria;
-    if(cat === 'Todos') mostrarCuriosidades(aleatorio(curiosidades,5));
-    else mostrarCuriosidades(curiosidades.filter(c => c.categoria === cat));
+  // Buscar por texto
+  busquedaInput.addEventListener('input', () => {
+    const termino = busquedaInput.value.toLowerCase();
+    const filtradas = curiosidades.filter(c => 
+      c.titulo.toLowerCase().includes(termino) || 
+      c.descripcion.toLowerCase().includes(termino)
+    );
+    mostrarCuriosidades(filtradas);
   });
-});
-
-// Buscar por texto
-busquedaInput.addEventListener('input', () => {
-  const termino = busquedaInput.value.toLowerCase();
-  const filtradas = curiosidades.filter(c => c.titulo.toLowerCase().includes(termino) || c.descripcion.toLowerCase().includes(termino));
-  mostrarCuriosidades(filtradas);
-});
-
-// Tema oscuro
-document.querySelector('.theme-toggle').addEventListener('click', () => document.body.classList.toggle('dark'));
-
-// Cargar JSON al inicio
-cargarJSON();
 </script>
 
 </body>
