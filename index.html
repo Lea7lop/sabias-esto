@@ -50,6 +50,15 @@
   const busquedaInput = document.getElementById('busqueda');
   const filtros = document.querySelectorAll('.filtro');
 
+  // Definimos los 5 datos principales fijos (incluyendo Ching Shih)
+  const datosPrincipales = [
+    curiosidades.find(c => c.titulo.includes("Ching Shih")),
+    curiosidades.find(c => c.id === 2),
+    curiosidades.find(c => c.id === 3),
+    curiosidades.find(c => c.id === 4),
+    curiosidades.find(c => c.id === 5)
+  ];
+
   function mostrarCuriosidades(lista, inicio = false) {
     container.innerHTML = '';
     if(lista.length === 0) {
@@ -60,8 +69,9 @@
     let mostrarLista = lista;
 
     if (inicio) {
-      const chingShih = lista.find(c => c.titulo.includes("Ching Shih"));
-      mostrarLista = [chingShih, ...lista.filter(c => c.titulo !== chingShih.titulo)].slice(0,5);
+      // Colocamos los 5 principales primero y luego los demás
+      const resto = lista.filter(c => !datosPrincipales.includes(c));
+      mostrarLista = [...datosPrincipales, ...resto];
     }
 
     mostrarLista.forEach(c => {
@@ -79,6 +89,7 @@
     });
   }
 
+  // Mostrar al inicio con 5 fijos
   mostrarCuriosidades(curiosidades, true);
 
   filtros.forEach(filtro => {
@@ -93,7 +104,9 @@
   busquedaInput.addEventListener('input', () => {
     const termino = busquedaInput.value.toLowerCase();
     const filtradas = curiosidades.filter(c => c.titulo.toLowerCase().includes(termino) || c.descripcion.toLowerCase().includes(termino));
-    mostrarCuriosidades(filtradas);
+    // Mostrar siempre los 5 principales + resultados filtrados (sin repetir)
+    const filtradasSinPrincipales = filtradas.filter(c => !datosPrincipales.includes(c));
+    mostrarCuriosidades([...datosPrincipales, ...filtradasSinPrincipales]);
   });
 </script>
 
