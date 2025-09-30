@@ -4,7 +4,7 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
 
   let curiosidades = datos;
 
-  // IDs de los primeros 5 datos fijos
+  // IDs de los primeros 5 datos fijos (incluye la pirata mujer)
   const primeros5Ids = [1,2,3,4,5];
   const primeros5 = curiosidades.filter(c => primeros5Ids.includes(c.id));
 
@@ -21,7 +21,7 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
     );
   }
 
-  const contenedor = document.getElementById("curiosidades-container");
+  const contenedor = document.getElementById("curiosidadesContainer");
   if (!contenedor) return;
 
   contenedor.innerHTML = "";
@@ -43,28 +43,16 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
 
   mostrar.forEach(c => {
     const card = document.createElement("div");
-    card.className = "card";
+    card.className = "curiosidad-card";
     card.innerHTML = `
-      ${c.imagen ? `<img src="${c.imagen}" alt="${c.titulo}" class="card-img">` : ""}
-      <div class="card-body">
-        <span class="categoria">${c.categoria}</span>
-        <h3>${c.titulo}</h3>
-        <p>${c.descripcion.length > 200 ? c.descripcion.substring(0,200) + "..." : c.descripcion}</p>
-        <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más →</a>
-      </div>
+      ${c.imagen ? `<img src="${c.imagen}" alt="${c.titulo}">` : ""}
+      <div class="categoria">${c.categoria}</div>
+      <h3>${c.titulo}</h3>
+      <p>${c.descripcion.length > 200 ? c.descripcion.substring(0,200) + "..." : c.descripcion}</p>
+      <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más →</a>
     `;
     contenedor.appendChild(card);
   });
-}
-
-function detectarCategoriaDeURL() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("cat");
-}
-
-function buscarCuriosidad() {
-  const input = document.getElementById("searchInput").value;
-  cargarCuriosidades(null, input);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -73,19 +61,23 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("dark");
   });
 
-  const categoria = detectarCategoriaDeURL();
-  if (categoria) {
-    cargarCuriosidades(categoria);
-  } else {
-    cargarCuriosidades();
-  }
+  cargarCuriosidades(); // al cargar la página
 
-  document.querySelectorAll(".category-link").forEach(link => {
+  // Filtrar por categorías
+  document.querySelectorAll(".filtro").forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
-      document.querySelectorAll(".category-link").forEach(l => l.classList.remove("active"));
-      link.classList.add("active");
-      cargarCuriosidades(link.dataset.category);
+      const cat = link.dataset.categoria;
+      cargarCuriosidades(cat === "Todos" ? null : cat);
     });
   });
+
+  // Buscar por texto
+  const busquedaInput = document.getElementById("busqueda");
+  if(busquedaInput) {
+    busquedaInput.addEventListener("input", () => {
+      const termino = busquedaInput.value.toLowerCase();
+      cargarCuriosidades(null, termino);
+    });
+  }
 });
