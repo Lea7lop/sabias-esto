@@ -2,36 +2,94 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>🤯 Sabías Esto</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabías Esto</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
+    header { background: #333; color: white; padding: 20px; text-align: center; }
+    nav { background: #555; color: white; display: flex; justify-content: center; padding: 10px; gap: 15px; }
+    nav a { color: white; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .search-container { text-align: center; padding: 15px; }
+    .search-container input { width: 60%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
+    .curiosidades { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+    .curiosidad-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; padding: 15px; text-align: center; }
+    .curiosidad-card img { width: 100%; border-radius: 10px; }
+    .curiosidad-card h3 { margin: 10px 0 5px; font-size: 18px; }
+    .curiosidad-card p { font-size: 14px; color: #333; }
+    .categoria { font-size: 12px; color: #777; margin-bottom: 5px; }
+  </style>
 </head>
 <body>
+
 <header>
-  <nav>
-    <div class="logo">🤯 Sabías Esto</div>
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Buscar dato curioso...">
-      <button onclick="buscarCuriosidad()">🔍</button>
-    </div>
-    <div class="links">
-      <a href="index.html" class="category-link" data-category="Inicio">Inicio</a>
-      <a href="#" class="category-link" data-category="Ciencia">Ciencia</a>
-      <a href="#" class="category-link" data-category="Historia">Historia</a>
-      <a href="#" class="category-link" data-category="Animales">Animales</a>
-    </div>
-    <div class="theme-toggle">🌓</div>
-  </nav>
+  <h1>🤯 Sabías Esto</h1>
 </header>
 
-<main id="curiosidades-container">
-  <!-- Datos curiosos cargados dinámicamente -->
-</main>
+<div class="search-container">
+  <input type="text" id="busqueda" placeholder="Buscar dato curioso...">
+</div>
 
-<footer>
-  © 2025 Sabías Esto | Todos los derechos reservados
-</footer>
+<nav>
+  <a href="#" class="filtro" data-categoria="Todos">Inicio</a>
+  <a href="#" class="filtro" data-categoria="Ciencia">Ciencia</a>
+  <a href="#" class="filtro" data-categoria="Historia">Historia</a>
+  <a href="#" class="filtro" data-categoria="Animales">Animales</a>
+</nav>
 
-<script src="js/main.js"></script>
+<div class="curiosidades" id="curiosidadesContainer">
+  <!-- Las tarjetas se generarán aquí con JavaScript -->
+</div>
+
+<script>
+  // Cargar el JSON de curiosidades
+  const curiosidades = [
+    // Aquí pegas el JSON de las 50 curiosidades con imágenes que te di antes
+  ];
+
+  const container = document.getElementById('curiosidadesContainer');
+  const busquedaInput = document.getElementById('busqueda');
+  const filtros = document.querySelectorAll('.filtro');
+
+  function mostrarCuriosidades(lista) {
+    container.innerHTML = '';
+    if(lista.length === 0) {
+      container.innerHTML = '<p>No se encontraron resultados.</p>';
+      return;
+    }
+    lista.forEach(c => {
+      const card = document.createElement('div');
+      card.classList.add('curiosidad-card');
+      card.innerHTML = `
+        <img src="${c.imagen}" alt="${c.titulo}">
+        <div class="categoria">${c.categoria}</div>
+        <h3>${c.titulo}</h3>
+        <p>${c.descripcion}</p>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Mostrar todas al inicio
+  mostrarCuriosidades(curiosidades);
+
+  // Filtrar por categorías
+  filtros.forEach(filtro => {
+    filtro.addEventListener('click', e => {
+      e.preventDefault();
+      const cat = filtro.dataset.categoria;
+      if(cat === 'Todos') mostrarCuriosidades(curiosidades);
+      else mostrarCuriosidades(curiosidades.filter(c => c.categoria === cat));
+    });
+  });
+
+  // Buscar por texto
+  busquedaInput.addEventListener('input', () => {
+    const termino = busquedaInput.value.toLowerCase();
+    const filtradas = curiosidades.filter(c => c.titulo.toLowerCase().includes(termino) || c.descripcion.toLowerCase().includes(termino));
+    mostrarCuriosidades(filtradas);
+  });
+</script>
+
 </body>
 </html>
