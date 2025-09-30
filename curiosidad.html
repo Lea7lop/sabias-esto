@@ -1,32 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Detalle de Curiosidad</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<header>
-  <nav>
-    <div class="logo">🤯 Sabías Esto</div>
-    <div class="links">
-      <a href="index.html">Inicio</a>
-      <a href="#">Ciencia</a>
-      <a href="#">Historia</a>
-      <a href="#">Animales</a>
-    </div>
-    <div class="theme-toggle">🌓</div>
-  </nav>
-</header>
-
 <main id="curiosidad-container">
   <!-- Dato curioso cargado dinámicamente -->
 </main>
-
-<footer>
-  © 2025 Sabías Esto | Todos los derechos reservados
-</footer>
 
 <script>
 document.querySelector(".theme-toggle").addEventListener("click", () => {
@@ -45,7 +19,6 @@ async function cargarCuriosidad() {
   const response = await fetch("data/curiosidades_moderno.json");
   const datos = await response.json();
 
-  // Buscar por ID numérico
   const c = datos.find(item => item.id == id);
   if (!c) {
     document.getElementById("curiosidad-container").innerHTML = "<p>Dato no encontrado.</p>";
@@ -55,6 +28,7 @@ async function cargarCuriosidad() {
   const contenedor = document.getElementById("curiosidad-container");
   contenedor.innerHTML = `
     <div class="card">
+      ${c.imagen ? `<img src="${c.imagen}" alt="${c.titulo}" class="card-img">` : ""}
       <div class="card-body">
         <h1>${c.titulo}</h1>
         <p>${c.descripcion}</p>
@@ -67,5 +41,3 @@ async function cargarCuriosidad() {
 
 document.addEventListener("DOMContentLoaded", cargarCuriosidad);
 </script>
-</body>
-</html>
