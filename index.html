@@ -6,18 +6,18 @@
   <title>Sabías Esto</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
-    header { background: #333; color: #007BFF; padding: 20px; text-align: center; } /* azul */
-    nav { background: #555; color: white; display: flex; justify-content: center; padding: 10px; gap: 15px; }
-    nav a { color: #007BFF; text-decoration: none; font-weight: bold; } /* azul */
+    header { background: #007BFF; color: white; padding: 20px; text-align: center; } /* fondo azul */
+    nav { background: #007BFF; color: white; display: flex; justify-content: center; padding: 10px; gap: 15px; } /* fondo azul */
+    nav a { color: white; text-decoration: none; font-weight: bold; }
     nav a:hover { text-decoration: underline; }
     .search-container { text-align: center; padding: 15px; }
     .search-container input { width: 60%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
     .curiosidades { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
     .curiosidad-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; padding: 15px; text-align: center; }
     .curiosidad-card img { width: 100%; border-radius: 10px; }
-    .curiosidad-card h3 { margin: 10px 0 5px; font-size: 18px; color: #007BFF; } /* azul */
+    .curiosidad-card h3 { margin: 10px 0 5px; font-size: 18px; color: #007BFF; } /* título azul */
     .curiosidad-card p { font-size: 14px; color: #333; }
-    .categoria { font-size: 12px; color: #007BFF; margin-bottom: 5px; } /* azul */
+    .categoria { font-size: 12px; color: #007BFF; margin-bottom: 5px; } /* categoría azul */
   </style>
 </head>
 <body>
@@ -41,7 +41,61 @@
   <!-- Las tarjetas se generarán aquí con JavaScript -->
 </div>
 
-<script src="js/main.js"></script>
+<script>
+  const curiosidades = [
+    // Pega aquí tu JSON completo
+  ];
+
+  const container = document.getElementById('curiosidadesContainer');
+  const busquedaInput = document.getElementById('busqueda');
+  const filtros = document.querySelectorAll('.filtro');
+
+  function mostrarCuriosidades(lista, mantener5Principales = false) {
+    container.innerHTML = '';
+    if(lista.length === 0) {
+      container.innerHTML = '<p>No se encontraron resultados.</p>';
+      return;
+    }
+
+    let mostrar = lista;
+
+    if (mantener5Principales) {
+      // Mantener siempre los 5 iniciales, colocando Ching Shih primero
+      const chingShih = lista.find(c => c.titulo.includes("Ching Shih"));
+      mostrar = [chingShih, ...lista.filter(c => c.titulo !== chingShih.titulo)].slice(0,5);
+    }
+
+    mostrar.forEach(c => {
+      const card = document.createElement('div');
+      card.classList.add('curiosidad-card');
+      card.innerHTML = `
+        <img src="${c.imagen}" alt="${c.titulo}">
+        <div class="categoria">${c.categoria}</div>
+        <h3>${c.titulo}</h3>
+        <p>${c.descripcion}</p>
+        <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más →</a>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  mostrarCuriosidades(curiosidades, true); // mostrar 5 iniciales con Ching Shih
+
+  filtros.forEach(filtro => {
+    filtro.addEventListener('click', e => {
+      e.preventDefault();
+      const cat = filtro.dataset.categoria;
+      if(cat === 'Todos') mostrarCuriosidades(curiosidades, true);
+      else mostrarCuriosidades(curiosidades.filter(c => c.categoria === cat));
+    });
+  });
+
+  busquedaInput.addEventListener('input', () => {
+    const termino = busquedaInput.value.toLowerCase();
+    const filtradas = curiosidades.filter(c => c.titulo.toLowerCase().includes(termino) || c.descripcion.toLowerCase().includes(termino));
+    mostrarCuriosidades(filtradas);
+  });
+</script>
 
 </body>
 </html>
