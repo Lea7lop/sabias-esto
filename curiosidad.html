@@ -44,13 +44,17 @@ async function cargarCuriosidad() {
 
   const response = await fetch("data/curiosidades_moderno.json");
   const datos = await response.json();
-  const c = datos.find(item => item.id == id);
-  if (!c) return;
+
+  // Buscar usando el número en el título (Dato Curioso #X)
+  const c = datos.find(item => item.titulo === `Dato Curioso #${id}`);
+  if (!c) {
+    document.getElementById("curiosidad-container").innerHTML = "<p>Dato no encontrado.</p>";
+    return;
+  }
 
   const contenedor = document.getElementById("curiosidad-container");
   contenedor.innerHTML = `
     <div class="card">
-      <img src="${c.imagen}" alt="Imagen curiosidad">
       <div class="card-body">
         <h1>${c.titulo}</h1>
         <p>${c.descripcion}</p>
