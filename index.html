@@ -10,6 +10,10 @@
 <header>
   <nav>
     <div class="logo">🤯 Sabías Esto</div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Buscar dato curioso...">
+      <button onclick="buscarCuriosidad()">🔍</button>
+    </div>
     <div class="links">
       <a href="index.html" class="category-link" data-category="Inicio">Inicio</a>
       <a href="#" class="category-link" data-category="Ciencia">Ciencia</a>
@@ -18,14 +22,10 @@
     </div>
     <div class="theme-toggle">🌓</div>
   </nav>
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Buscar dato curioso...">
-    <button onclick="buscarCuriosidad()">🔍</button>
-  </div>
 </header>
 
 <main id="curiosidades-container">
-  <!-- Datos cargados dinámicamente -->
+  <!-- Datos curiosos cargados dinámicamente -->
 </main>
 
 <footer>
