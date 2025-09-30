@@ -42,14 +42,17 @@
 </div>
 
 <script>
-  // Cargar el JSON de curiosidades
-  const curiosidades = [
-    // Aquí pegas el JSON de las 50 curiosidades con imágenes que te di antes
-  ];
+  // Cargar JSON desde el archivo
+  async function cargarCuriosidades() {
+    const response = await fetch('data/curiosidades_moderno.json');
+    const curiosidades = await response.json();
+    return curiosidades;
+  }
 
   const container = document.getElementById('curiosidadesContainer');
   const busquedaInput = document.getElementById('busqueda');
   const filtros = document.querySelectorAll('.filtro');
+  let todasCuriosidades = [];
 
   function mostrarCuriosidades(lista) {
     container.innerHTML = '';
@@ -70,23 +73,28 @@
     });
   }
 
-  // Mostrar todas al inicio
-  mostrarCuriosidades(curiosidades);
+  // Inicializar todo
+  cargarCuriosidades().then(data => {
+    todasCuriosidades = data;
+    mostrarCuriosidades(todasCuriosidades);
+  });
 
   // Filtrar por categorías
   filtros.forEach(filtro => {
     filtro.addEventListener('click', e => {
       e.preventDefault();
       const cat = filtro.dataset.categoria;
-      if(cat === 'Todos') mostrarCuriosidades(curiosidades);
-      else mostrarCuriosidades(curiosidades.filter(c => c.categoria === cat));
+      if(cat === 'Todos') mostrarCuriosidades(todasCuriosidades);
+      else mostrarCuriosidades(todasCuriosidades.filter(c => c.categoria === cat));
     });
   });
 
   // Buscar por texto
   busquedaInput.addEventListener('input', () => {
     const termino = busquedaInput.value.toLowerCase();
-    const filtradas = curiosidades.filter(c => c.titulo.toLowerCase().includes(termino) || c.descripcion.toLowerCase().includes(termino));
+    const filtradas = todasCuriosidades.filter(c =>
+      c.titulo.toLowerCase().includes(termino) || c.descripcion.toLowerCase().includes(termino)
+    );
     mostrarCuriosidades(filtradas);
   });
 </script>
