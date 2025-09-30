@@ -22,8 +22,8 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
 
   contenedor.innerHTML = "";
 
-  // Mostrar solo 5 datos en Inicio
-  const mostrar = filtroCategoria === null || filtroCategoria === "Inicio" ? curiosidades.slice(0,5) : curiosidades;
+  // Mostrar solo 5 en Inicio, máximo 50 en categorías
+  const mostrar = filtroCategoria === null || filtroCategoria === "Inicio" ? curiosidades.slice(0,5) : curiosidades.slice(0,50);
 
   mostrar.forEach((c, index) => {
     const card = document.createElement("div");
@@ -31,7 +31,7 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
     card.innerHTML = `
       <div class="card-body">
         <h3>${c.titulo}</h3>
-        <p>${c.descripcion.length > 200 ? c.descripcion.substring(0,200)+"..." : c.descripcion}</p>
+        <p>${c.descripcion.length > 200 ? c.descripcion.substring(0,200) + "..." : c.descripcion}</p>
         <span class="categoria">Categoría: ${c.categoria}</span>
         <a href="curiosidad.html?id=${index + 1}" class="ver-mas">Ver más →</a>
       </div>
