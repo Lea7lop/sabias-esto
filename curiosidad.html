@@ -2,11 +2,29 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalle de Curiosidad</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
+    header { background: #333; color: white; padding: 15px; }
+    nav { display: flex; justify-content: space-between; align-items: center; }
+    nav .logo { font-size: 20px; font-weight: bold; }
+    nav .links a { color: white; text-decoration: none; margin-left: 15px; }
+    nav .links a:hover { text-decoration: underline; }
+    .theme-toggle { cursor: pointer; font-size: 20px; margin-left: 20px; }
+    main { max-width: 800px; margin: 30px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    main img { width: 100%; border-radius: 10px; margin: 20px 0; }
+    .categoria { font-size: 14px; color: #777; margin-top: 10px; display: block; }
+    .back-link { display: inline-block; margin-top: 20px; color: #333; text-decoration: none; font-weight: bold; }
+    .back-link:hover { text-decoration: underline; }
+    body.dark { background: #121212; color: white; }
+    body.dark main { background: #1e1e1e; color: white; }
+    body.dark .back-link { color: #ccc; }
+    body.dark nav { background: #222; }
+  </style>
 </head>
 <body>
+
 <header>
   <nav>
     <div class="logo">🤯 Sabías Esto</div>
@@ -24,14 +42,12 @@
   <!-- Dato curioso cargado dinámicamente -->
 </main>
 
-<footer>
+<footer style="text-align:center; padding:10px; margin-top:20px; color:#777;">
   © 2025 Sabías Esto | Todos los derechos reservados
 </footer>
 
-<!-- JS al final para evitar errores -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-
   // Tema oscuro
   const toggle = document.querySelector(".theme-toggle");
   if(toggle) toggle.addEventListener("click", () => document.body.classList.toggle("dark"));
@@ -59,22 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     contenedor.innerHTML = `
-      <div class="card">
-        <div class="card-body">
-          <h1>${c.titulo}</h1>
-          <img src="${c.imagen}" alt="${c.titulo}" style="max-width:100%; margin:20px 0;">
-          <p>${c.descripcion}</p>
-          <span class="categoria">Categoría: ${c.categoria}</span>
-          <br>
-          <a href="index.html" class="back-link">← Volver al Inicio</a>
-        </div>
-      </div>
+      <h1>${c.titulo}</h1>
+      <img src="${c.imagen}" alt="${c.titulo}">
+      <p>${c.descripcion}</p>
+      <span class="categoria">Categoría: ${c.categoria}</span>
+      <br>
+      <a href="index.html" class="back-link">← Volver al Inicio</a>
     `;
   }
 
   cargarCuriosidad();
-
 });
 </script>
+
 </body>
 </html>
