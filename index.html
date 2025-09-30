@@ -43,18 +43,31 @@
 <div class="curiosidades" id="curiosidadesContainer"></div>
 
 <script>
-const curiosidades = []; // Aquí se cargará dinámicamente el JSON
+const curiosidades = [];
 
 async function cargarJSON() {
   const response = await fetch("data/curiosidades_moderno.json");
   const datos = await response.json();
   curiosidades.push(...datos);
-  mostrarCuriosidades(curiosidades);
+
+  // Mostrar 5 aleatorias al inicio
+  mostrarCuriosidades(aleatorio(curiosidades,5));
 }
 
 const container = document.getElementById('curiosidadesContainer');
 const busquedaInput = document.getElementById('busqueda');
 const filtros = document.querySelectorAll('.filtro');
+
+function aleatorio(array, n) {
+  const copia = [...array];
+  const resultado = [];
+  for(let i=0;i<n;i++){
+    if(copia.length===0) break;
+    const index = Math.floor(Math.random() * copia.length);
+    resultado.push(copia.splice(index,1)[0]);
+  }
+  return resultado;
+}
 
 function mostrarCuriosidades(lista) {
   container.innerHTML = '';
@@ -81,7 +94,7 @@ filtros.forEach(filtro => {
   filtro.addEventListener('click', e => {
     e.preventDefault();
     const cat = filtro.dataset.categoria;
-    if(cat === 'Todos') mostrarCuriosidades(curiosidades);
+    if(cat === 'Todos') mostrarCuriosidades(aleatorio(curiosidades,5));
     else mostrarCuriosidades(curiosidades.filter(c => c.categoria === cat));
   });
 });
