@@ -6,92 +6,57 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
     header { background: #00BFFF; color: white; padding: 20px; text-align: center; }
-    nav { background: #00BFFF; color: white; display: flex; justify-content: center; padding: 10px; gap: 15px; }
-    nav a { color: white; text-decoration: none; font-weight: bold; }
+    nav a { color: white; text-decoration: none; font-weight: bold; margin-right: 15px; }
     nav a:hover { text-decoration: underline; }
-    main { padding: 20px; max-width: 800px; margin: auto; }
-    .categoria { font-size: 14px; color: #00BFFF; margin-bottom: 10px; }
-    h1 { color: #00BFFF; }
-    .back-link { display: inline-block; margin-top: 20px; color: #00BFFF; text-decoration: none; font-weight: bold; }
-    .back-link:hover { text-decoration: underline; }
+    .card { max-width: 800px; margin: 20px auto; background: white; padding: 20px; border-radius: 10px; }
+    .card img { width: 100%; border-radius: 10px; margin: 20px 0; }
+    .categoria { font-size: 12px; color: #00BFFF; margin-top: 10px; display:block; }
+    .back-link { display:block; margin-top: 15px; text-decoration:none; color:#00BFFF; }
   </style>
 </head>
 <body>
 <header>
   <nav>
     <a href="index.html">Inicio</a>
+    <a href="#">Ciencia</a>
+    <a href="#">Historia</a>
+    <a href="#">Animales</a>
   </nav>
 </header>
 
-<main id="curiosidad-container">
-  <!-- Información completa cargada por JS -->
-</main>
+<main id="curiosidad-container"></main>
 
 <script>
-const curiosidades = [
-  {
-    "id":1,
-    "titulo":"Ching Shih, la pirata más temida de China",
-    "categoria":"Historia",
-    "descripcionCompleta":"Ching Shih fue una de las piratas más temidas de la historia, operando en el siglo XIX en el mar de China Meridional. Lideró una flota de más de 300 barcos y cerca de 20.000 piratas, incluidos hombres y mujeres, imponiendo un estricto código de conducta entre sus seguidores. Se convirtió en una estratega implacable, evitando capturas durante años y negociando su retiro con la Marina china conservando su fortuna. Su historia demuestra cómo una mujer pudo desafiar las estructuras de poder de su época y dominar completamente una región estratégica del comercio marítimo.",
-    "imagen":"images/pirata_china.jpg"
-  },
-  {
-    "id":2,
-    "titulo":"El corazón del camarón está en su cabeza",
-    "categoria":"Animales",
-    "descripcionCompleta":"El corazón de un camarón se encuentra en su cabeza, debido a la fusión de cabeza y tórax en el cefalotórax, lo que permite que su sistema circulatorio funcione de manera eficiente, transportando sangre a todas sus partes.",
-    "imagen":"images/corazon_camaron.jpg"
-  },
-  {
-    "id":3,
-    "titulo":"Pulpos con tres corazones y sangre azul",
-    "categoria":"Ciencia",
-    "descripcionCompleta":"Los pulpos tienen tres corazones y sangre azul. Dos corazones bombean sangre a las branquias mientras que el tercero lo hace al resto del cuerpo. Su sangre contiene hemocianina, rica en cobre, que transporta oxígeno de manera eficiente en agua fría y con poco oxígeno.",
-    "imagen":"images/pulpo_tres_corazones.jpg"
-  },
-  {
-    "id":4,
-    "titulo":"Cleopatra más cerca del iPhone que de las pirámides",
-    "categoria":"Historia",
-    "descripcionCompleta":"Cleopatra VII vivió más cerca del lanzamiento del iPhone que de la construcción de las pirámides de Giza. Esto ilustra cómo percibimos la historia y la magnitud de los tiempos históricos.",
-    "imagen":"images/cleopatra_iphone.jpg"
-  },
-  {
-    "id":5,
-    "titulo":"Los gatos no pueden saborear lo dulce",
-    "categoria":"Animales",
-    "descripcionCompleta":"Los gatos no pueden saborear lo dulce debido a una mutación en sus receptores del gusto. Esto hace que no sientan atracción por alimentos azucarados, concentrándose más en olores y texturas para elegir su alimento.",
-    "imagen":"images/gato_dulce.jpg"
+document.addEventListener('DOMContentLoaded', async () => {
+  function obtenerIdDeURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("id");
   }
-];
 
-function obtenerIdDeURL(){
-  const params = new URLSearchParams(window.location.search);
-  return parseInt(params.get("id"));
-}
-
-function mostrarCuriosidadCompleta(){
   const id = obtenerIdDeURL();
-  const c = curiosidades.find(item => item.id === id);
+  if(!id) return;
+
+  const response = await fetch("data/curiosidades_moderno.json");
+  const datos = await response.json();
+
+  const c = datos.find(item => item.id === parseInt(id));
   const contenedor = document.getElementById("curiosidad-container");
 
-  if(!c){
+  if(!c) {
     contenedor.innerHTML = "<p>Dato no encontrado.</p>";
     return;
   }
 
   contenedor.innerHTML = `
-    <h1>${c.titulo}</h1>
-    <div class="categoria">Categoría: ${c.categoria}</div>
-    <img src="${c.imagen}" alt="${c.titulo}" style="width:100%; margin:20px 0; border-radius:10px;">
-    <p>${c.descripcionCompleta}</p>
-    <a href="index.html" class="back-link">← Volver al Inicio</a>
+    <div class="card">
+      <h1>${c.titulo}</h1>
+      <img src="${c.imagen}" alt="${c.titulo}">
+      <p>${c.descripcionCompleta}</p>
+      <span class="categoria">Categoría: ${c.categoria}</span>
+      <a href="index.html" class="back-link">← Volver al Inicio</a>
+    </div>
   `;
-}
-
-mostrarCuriosidadCompleta();
+});
 </script>
-
 </body>
 </html>
