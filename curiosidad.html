@@ -42,27 +42,32 @@ async function cargarCuriosidad() {
   const id = obtenerIdDeURL();
   if (!id) return;
 
-  const response = await fetch("data/curiosidades_moderno.json");
-  const datos = await response.json();
+  try {
+    const response = await fetch("data/curiosidades_moderno.json");
+    const datos = await response.json();
 
-  // Buscar usando el número en el título (Dato Curioso #X)
-  const c = datos.find(item => item.titulo === `Dato Curioso #${id}`);
-  if (!c) {
-    document.getElementById("curiosidad-container").innerHTML = "<p>Dato no encontrado.</p>";
-    return;
-  }
+    // Buscar por ID en lugar de título
+    const c = datos.find(item => item.id == id);
+    if (!c) {
+      document.getElementById("curiosidad-container").innerHTML = "<p>Dato no encontrado.</p>";
+      return;
+    }
 
-  const contenedor = document.getElementById("curiosidad-container");
-  contenedor.innerHTML = `
-    <div class="card">
-      <div class="card-body">
-        <h1>${c.titulo}</h1>
-        <p>${c.descripcion}</p>
-        <span class="categoria">Categoría: ${c.categoria}</span>
-        <a href="index.html" class="back-link">← Volver al Inicio</a>
+    const contenedor = document.getElementById("curiosidad-container");
+    contenedor.innerHTML = `
+      <div class="card">
+        <div class="card-body">
+          <h1>${c.titulo}</h1>
+          <p>${c.descripcion}</p>
+          <span class="categoria">Categoría: ${c.categoria}</span>
+          <a href="index.html" class="back-link">← Volver al Inicio</a>
+        </div>
       </div>
-    </div>
-  `;
+    `;
+  } catch (error) {
+    console.error("Error al cargar el dato curioso:", error);
+    document.getElementById("curiosidad-container").innerHTML = "<p>Error al cargar el dato.</p>";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", cargarCuriosidad);
