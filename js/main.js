@@ -1,5 +1,5 @@
 async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
-  const response = await fetch("data/curiosidades_moderno.json");
+  const response = await fetch("curiosidades.json"); // archivo JSON con 100 datos
   const datos = await response.json();
 
   let curiosidades = datos;
@@ -27,10 +27,10 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
-      <img src="${c.imagen}" alt="Imagen curiosidad">
+      ${c.imagen ? `<img src="${c.imagen}" alt="Imagen curiosidad">` : ""}
       <div class="card-body">
         <h3>${c.titulo}</h3>
-        <p>${c.descripcion.length > 100 ? c.descripcion.substring(0,100)+"..." : c.descripcion}</p>
+        <p>${c.descripcion}</p>
         <span class="categoria">Categoría: ${c.categoria}</span>
         <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más →</a>
       </div>
