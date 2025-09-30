@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sabías Esto</title>
-<style>
-  body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
-  header { background: #87CEEB; color: white; padding: 20px; text-align: center; } /* fondo azul cielo */
-  nav { background: #87CEEB; color: white; display: flex; justify-content: center; padding: 10px; gap: 15px; } /* fondo azul cielo */
-  nav a { color: white; text-decoration: none; font-weight: bold; }
-  nav a:hover { text-decoration: underline; }
-  .search-container { text-align: center; padding: 15px; }
-  .search-container input { width: 60%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
-  .curiosidades { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-  .curiosidad-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; padding: 15px; text-align: center; }
-  .curiosidad-card img { width: 100%; border-radius: 10px; }
-  .curiosidad-card h3 { margin: 10px 0 5px; font-size: 18px; color: #87CEEB; } /* título azul cielo */
-  .curiosidad-card p { font-size: 14px; color: #333; }
-  .categoria { font-size: 12px; color: #87CEEB; margin-bottom: 5px; } /* categoría azul cielo */
-  .modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
-           background-color: rgba(0,0,0,0.7); }
-  .modal-content { background: white; margin: 10% auto; padding: 20px; border-radius: 10px; width: 80%; max-width: 600px; position: relative; }
-  .close { position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabías Esto</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #cce7ff; } /* azul claro */
+    header { background: #007BFF; color: white; padding: 20px; text-align: center; }
+    nav { background: #007BFF; color: white; display: flex; justify-content: center; padding: 10px; gap: 15px; }
+    nav a { color: white; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .search-container { text-align: center; padding: 15px; }
+    .search-container input { width: 60%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
+    .curiosidades { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+    .curiosidad-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; padding: 15px; text-align: center; }
+    .curiosidad-card img { width: 100%; border-radius: 10px; }
+    .curiosidad-card h3 { margin: 10px 0 5px; font-size: 18px; color: #007BFF; }
+    .curiosidad-card p { font-size: 14px; color: #333; }
+    .categoria { font-size: 12px; color: #007BFF; margin-bottom: 5px; }
+    .ver-mas { text-decoration: none; color: #007BFF; font-weight: bold; }
+    .ver-mas:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
 
@@ -43,98 +41,60 @@
 
 <div class="curiosidades" id="curiosidadesContainer"></div>
 
-<!-- Modal -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h3 id="modalTitulo"></h3>
-    <img id="modalImagen" src="" alt="" style="width:100%; border-radius:10px; margin:10px 0;">
-    <p id="modalDescripcion"></p>
-  </div>
-</div>
-
 <script>
-// JSON de curiosidades
-const curiosidades = [
-  {"id":1,"titulo":"Ching Shih, la pirata más temida de China","categoria":"Historia","miniDescripcion":"Una mujer que dominó el comercio marítimo del siglo XIX.","descripcionCompleta":"Ching Shih fue una de las piratas más temidas de la historia, operando en el siglo XIX en el mar de China Meridional. Lideró una flota de más de 300 barcos y cerca de 20.000 piratas, incluidos hombres y mujeres, imponiendo un estricto código de conducta entre sus seguidores. Se convirtió en una estratega implacable, evitando capturas durante años y negociando su retiro con la Marina china conservando su fortuna. Su historia demuestra cómo una mujer pudo desafiar las estructuras de poder de su época y dominar completamente una región estratégica del comercio marítimo.","imagen":"images/pirata_china.jpg"},
-  {"id":2,"titulo":"El corazón del camarón está en su cabeza","categoria":"Animales","miniDescripcion":"Corazón en su cabeza gracias al cefalotórax.","descripcionCompleta":"El corazón de un camarón se encuentra en su cabeza, debido a la fusión de cabeza y tórax en el cefalotórax, lo que permite que su sistema circulatorio funcione de manera eficiente, transportando sangre a todas sus partes a pesar de su pequeño tamaño.","imagen":"images/corazon_camaron.jpg"},
-  // ... continúa con los 50 datos completos en el mismo formato
-];
+  const curiosidades = [
+    // Pega aquí tu JSON completo de 50 curiosidades
+  ];
 
-// Elementos
-const container = document.getElementById('curiosidadesContainer');
-const busquedaInput = document.getElementById('busqueda');
-const filtros = document.querySelectorAll('.filtro');
-const modal = document.getElementById('modal');
-const modalTitulo = document.getElementById('modalTitulo');
-const modalImagen = document.getElementById('modalImagen');
-const modalDescripcion = document.getElementById('modalDescripcion');
-const closeModal = document.querySelector('.close');
+  const container = document.getElementById('curiosidadesContainer');
+  const busquedaInput = document.getElementById('busqueda');
+  const filtros = document.querySelectorAll('.filtro');
 
-// Función para mostrar curiosidades
-function mostrarCuriosidades(lista) {
-  container.innerHTML = '';
-  if(lista.length === 0){
-    container.innerHTML = '<p>No se encontraron resultados.</p>';
-    return;
+  function mostrarCuriosidades(lista, inicio = false) {
+    container.innerHTML = '';
+    if(lista.length === 0) {
+      container.innerHTML = '<p>No se encontraron resultados.</p>';
+      return;
+    }
+
+    let mostrarLista = lista;
+
+    if (inicio) {
+      const chingShih = lista.find(c => c.titulo.includes("Ching Shih"));
+      mostrarLista = [chingShih, ...lista.filter(c => c.titulo !== chingShih.titulo)].slice(0,5);
+    }
+
+    mostrarLista.forEach(c => {
+      const card = document.createElement('div');
+      card.classList.add('curiosidad-card');
+      const miniDescripcion = c.descripcion.length > 100 ? c.descripcion.substring(0,100) + "..." : c.descripcion;
+      card.innerHTML = `
+        <img src="${c.imagen}" alt="${c.titulo}">
+        <div class="categoria">${c.categoria}</div>
+        <h3>${c.titulo}</h3>
+        <p>${miniDescripcion}</p>
+        <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más →</a>
+      `;
+      container.appendChild(card);
+    });
   }
-  lista.forEach(c => {
-    const card = document.createElement('div');
-    card.classList.add('curiosidad-card');
-    card.innerHTML = `
-      <img src="${c.imagen}" alt="${c.titulo}">
-      <div class="categoria">${c.categoria}</div>
-      <h3>${c.titulo}</h3>
-      <p>${c.miniDescripcion}</p>
-      <a href="#" class="ver-mas" data-id="${c.id}">Ver más →</a>
-    `;
-    container.appendChild(card);
-  });
 
-  // Abrir modal al hacer clic en "Ver más"
-  const botonesVerMas = document.querySelectorAll('.ver-mas');
-  botonesVerMas.forEach(boton => {
-    boton.addEventListener('click', e => {
+  mostrarCuriosidades(curiosidades, true);
+
+  filtros.forEach(filtro => {
+    filtro.addEventListener('click', e => {
       e.preventDefault();
-      const id = parseInt(boton.dataset.id);
-      const c = curiosidades.find(item => item.id === id);
-      if(c){
-        modalTitulo.textContent = c.titulo;
-        modalImagen.src = c.imagen;
-        modalDescripcion.textContent = c.descripcionCompleta;
-        modal.style.display = 'block';
-      }
+      const cat = filtro.dataset.categoria;
+      if(cat === 'Todos') mostrarCuriosidades(curiosidades, true);
+      else mostrarCuriosidades(curiosidades.filter(c => c.categoria === cat));
     });
   });
-}
 
-// Cerrar modal
-closeModal.onclick = () => { modal.style.display = 'none'; }
-window.onclick = e => { if(e.target === modal) modal.style.display = 'none'; }
-
-// Mostrar todas al inicio
-mostrarCuriosidades(curiosidades);
-
-// Filtrar por categoría
-filtros.forEach(filtro => {
-  filtro.addEventListener('click', e => {
-    e.preventDefault();
-    const cat = filtro.dataset.categoria;
-    if(cat === 'Todos') mostrarCuriosidades(curiosidades);
-    else mostrarCuriosidades(curiosidades.filter(c => c.categoria === cat));
+  busquedaInput.addEventListener('input', () => {
+    const termino = busquedaInput.value.toLowerCase();
+    const filtradas = curiosidades.filter(c => c.titulo.toLowerCase().includes(termino) || c.descripcion.toLowerCase().includes(termino));
+    mostrarCuriosidades(filtradas);
   });
-});
-
-// Filtrar por búsqueda
-busquedaInput.addEventListener('input', () => {
-  const termino = busquedaInput.value.toLowerCase();
-  const filtradas = curiosidades.filter(c => 
-    c.titulo.toLowerCase().includes(termino) || 
-    c.miniDescripcion.toLowerCase().includes(termino) ||
-    c.descripcionCompleta.toLowerCase().includes(termino)
-  );
-  mostrarCuriosidades(filtradas);
-});
 </script>
 
 </body>
