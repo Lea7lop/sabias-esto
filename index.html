@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sabías Esto</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #333; }
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
     header { background: #333; color: white; padding: 20px; text-align: center; }
     nav { background: #555; color: white; display: flex; justify-content: center; padding: 10px; gap: 15px; }
     nav a { color: white; text-decoration: none; font-weight: bold; }
@@ -13,13 +13,11 @@
     .search-container { text-align: center; padding: 15px; }
     .search-container input { width: 60%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
     .curiosidades { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-    .card { background: #e0f0ff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; padding: 15px; text-align: center; }
-    .card img { width: 100%; border-radius: 10px; }
-    .card h3 { margin: 10px 0 5px; font-size: 18px; color: #0077cc; }
-    .card p { font-size: 14px; color: #333; }
-    .categoria { font-size: 12px; color: #005599; margin-bottom: 5px; display:block; }
-    .ver-mas { text-decoration: none; font-weight: bold; color: #0077cc; }
-    .ver-mas:hover { text-decoration: underline; }
+    .curiosidad-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; padding: 15px; text-align: center; }
+    .curiosidad-card img { width: 100%; border-radius: 10px; }
+    .curiosidad-card h3 { margin: 10px 0 5px; font-size: 18px; color: #007BFF; } /* Azul */
+    .curiosidad-card p { font-size: 14px; color: #333; }
+    .categoria { font-size: 12px; color: #007BFF; margin-bottom: 5px; } /* Azul */
   </style>
 </head>
 <body>
@@ -43,69 +41,7 @@
   <!-- Las tarjetas se generarán aquí con JavaScript -->
 </div>
 
-<script>
-  const curiosidades = [
-    // Aquí pegas tu JSON de 50 curiosidades
-  ];
-
-  const container = document.getElementById('curiosidadesContainer');
-  const busquedaInput = document.getElementById('busqueda');
-  const filtros = document.querySelectorAll('.filtro');
-
-  // Los primeros 5 fijos, incluyendo la pirata
-  const primeros5Ids = [1,2,3,4,5]; // ID 1 = pirata mujer
-  const primeros5 = curiosidades.filter(c => primeros5Ids.includes(c.id));
-
-  function mostrarCuriosidades(lista) {
-    container.innerHTML = '';
-    if(lista.length === 0) {
-      container.innerHTML = '<p>No se encontraron resultados.</p>';
-      return;
-    }
-    const idsMostrados = new Set();
-    lista.forEach(c => {
-      if(idsMostrados.has(c.id)) return; // Evita duplicados
-      idsMostrados.add(c.id);
-
-      const card = document.createElement('div');
-      card.classList.add('card');
-      card.innerHTML = `
-        <img src="${c.imagen}" alt="${c.titulo}">
-        <div class="categoria">${c.categoria}</div>
-        <h3>${c.titulo}</h3>
-        <p>${c.descripcion.length > 200 ? c.descripcion.substring(0,200)+"..." : c.descripcion}</p>
-        <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más →</a>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  // Mostrar los 5 primeros al inicio
-  mostrarCuriosidades(primeros5);
-
-  // Filtrar por categorías
-  filtros.forEach(filtro => {
-    filtro.addEventListener('click', e => {
-      e.preventDefault();
-      const cat = filtro.dataset.categoria;
-      if(cat === 'Todos') {
-        mostrarCuriosidades(primeros5); // Mantiene los 5 fijos
-      } else {
-        mostrarCuriosidades(curiosidades.filter(c => c.categoria === cat));
-      }
-    });
-  });
-
-  // Buscar por texto
-  busquedaInput.addEventListener('input', () => {
-    const termino = busquedaInput.value.toLowerCase();
-    const filtradas = curiosidades.filter(c => 
-      c.titulo.toLowerCase().includes(termino) || 
-      c.descripcion.toLowerCase().includes(termino)
-    );
-    mostrarCuriosidades(filtradas);
-  });
-</script>
+<script src="js/main.js"></script>
 
 </body>
 </html>
