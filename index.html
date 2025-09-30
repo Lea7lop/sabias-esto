@@ -6,8 +6,8 @@
   <title>Sabías Esto</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; }
-    header { background: #007BFF; color: white; padding: 20px; text-align: center; }
-    nav { background: #007BFF; color: white; display: flex; justify-content: center; padding: 10px; gap: 15px; }
+    header { background: #00BFFF; color: white; padding: 20px; text-align: center; } /* fondo azul cielo */
+    nav { background: #00BFFF; color: white; display: flex; justify-content: center; padding: 10px; gap: 15px; } /* fondo azul cielo */
     nav a { color: white; text-decoration: none; font-weight: bold; }
     nav a:hover { text-decoration: underline; }
     .search-container { text-align: center; padding: 15px; }
@@ -15,10 +15,10 @@
     .curiosidades { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
     .curiosidad-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; padding: 15px; text-align: center; }
     .curiosidad-card img { width: 100%; border-radius: 10px; }
-    .curiosidad-card h3 { margin: 10px 0 5px; font-size: 18px; color: #007BFF; }
+    .curiosidad-card h3 { margin: 10px 0 5px; font-size: 18px; color: #00BFFF; } /* título azul cielo */
     .curiosidad-card p { font-size: 14px; color: #333; }
-    .categoria { font-size: 12px; color: #007BFF; margin-bottom: 5px; }
-    .ver-mas { display: inline-block; margin-top: 10px; color: #007BFF; text-decoration: none; font-weight: bold; }
+    .categoria { font-size: 12px; color: #00BFFF; margin-bottom: 5px; } /* categoría azul cielo */
+    .ver-mas { display: inline-block; margin-top: 10px; color: #00BFFF; text-decoration: none; font-weight: bold; }
     .ver-mas:hover { text-decoration: underline; }
   </style>
 </head>
@@ -70,7 +70,6 @@
       const chingShih = lista.find(c => c.titulo.includes("Ching Shih"));
       mostrar = [chingShih, ...lista.filter(c => c.titulo !== chingShih.titulo)].slice(0,5);
     } else {
-      // Evitar duplicados
       const vistos = new Set();
       mostrar = lista.filter(c => {
         if(vistos.has(c.titulo)) return false;
@@ -93,7 +92,6 @@
     });
   }
 
-  // Mostrar 5 iniciales con Ching Shih primero
   mostrarCuriosidades(curiosidades, true);
 
   filtros.forEach(filtro => {
