@@ -4,6 +4,10 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
 
   let curiosidades = datos;
 
+  // IDs de los primeros 5 datos fijos
+  const primeros5Ids = [1,2,3,4,5];
+  const primeros5 = curiosidades.filter(c => primeros5Ids.includes(c.id));
+
   // Filtrar por categoría
   if (filtroCategoria && filtroCategoria !== "Inicio") {
     curiosidades = curiosidades.filter(c => c.categoria === filtroCategoria);
@@ -22,18 +26,30 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
 
   contenedor.innerHTML = "";
 
-  // Mostrar solo 5 en Inicio, máximo 50 en categorías
-  const mostrar = filtroCategoria === null || filtroCategoria === "Inicio" ? curiosidades.slice(0,5) : curiosidades.slice(0,50);
+  let mostrar = [];
 
-  mostrar.forEach((c, index) => {
+  if (!filtroCategoria || filtroCategoria === "Inicio") {
+    // Al inicio siempre mostrar los 5 fijos
+    mostrar = primeros5;
+  } else {
+    // En categorías, mostrar máximo 50 curiosidades sin duplicados
+    const idsMostrados = new Set();
+    mostrar = curiosidades.filter(c => {
+      if(idsMostrados.has(c.id)) return false;
+      idsMostrados.add(c.id);
+      return true;
+    }).slice(0, 50);
+  }
+
+  mostrar.forEach(c => {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
       ${c.imagen ? `<img src="${c.imagen}" alt="${c.titulo}" class="card-img">` : ""}
       <div class="card-body">
+        <span class="categoria">${c.categoria}</span>
         <h3>${c.titulo}</h3>
         <p>${c.descripcion.length > 200 ? c.descripcion.substring(0,200) + "..." : c.descripcion}</p>
-        <span class="categoria">Categoría: ${c.categoria}</span>
         <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más →</a>
       </div>
     `;
@@ -52,7 +68,8 @@ function buscarCuriosidad() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector(".theme-toggle").addEventListener("click", () => {
+  const toggle = document.querySelector(".theme-toggle");
+  if(toggle) toggle.addEventListener("click", () => {
     document.body.classList.toggle("dark");
   });
 
