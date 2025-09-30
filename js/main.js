@@ -33,7 +33,7 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
         <h3>${c.titulo}</h3>
         <p>${c.descripcion.length > 200 ? c.descripcion.substring(0,200) + "..." : c.descripcion}</p>
         <span class="categoria">Categoría: ${c.categoria}</span>
-        <a href="curiosidad.html?id=${index + 1}" class="ver-mas">Ver más →</a>
+        <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más →</a>
       </div>
     `;
     contenedor.appendChild(card);
