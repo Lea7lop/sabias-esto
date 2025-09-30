@@ -23,13 +23,13 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
   contenedor.innerHTML = "";
 
   // Mostrar solo 5 en Inicio, máximo 50 en categorías
-  const mostrar = (filtroCategoria === null || filtroCategoria === "Inicio") ? curiosidades.slice(0,5) : curiosidades.slice(0,50);
+  const mostrar = filtroCategoria === null || filtroCategoria === "Inicio" ? curiosidades.slice(0,5) : curiosidades.slice(0,50);
 
-  mostrar.forEach(c => {
+  mostrar.forEach((c, index) => {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
-      ${c.imagen ? `<img src="${c.imagen}" alt="${c.titulo}" class="card-img">` : ''}
+      ${c.imagen ? `<img src="${c.imagen}" alt="${c.titulo}" class="card-img">` : ""}
       <div class="card-body">
         <h3>${c.titulo}</h3>
         <p>${c.descripcion.length > 200 ? c.descripcion.substring(0,200) + "..." : c.descripcion}</p>
@@ -39,6 +39,11 @@ async function cargarCuriosidades(filtroCategoria = null, filtroTexto = null) {
     `;
     contenedor.appendChild(card);
   });
+}
+
+function detectarCategoriaDeURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("cat");
 }
 
 function buscarCuriosidad() {
@@ -51,16 +56,13 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("dark");
   });
 
-  // Detectar categoría de URL
-  const params = new URLSearchParams(window.location.search);
-  const categoria = params.get("cat");
+  const categoria = detectarCategoriaDeURL();
   if (categoria) {
     cargarCuriosidades(categoria);
   } else {
     cargarCuriosidades();
   }
 
-  // Manejar clics en categorías
   document.querySelectorAll(".category-link").forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
@@ -68,11 +70,5 @@ document.addEventListener("DOMContentLoaded", () => {
       link.classList.add("active");
       cargarCuriosidades(link.dataset.category);
     });
-  });
-
-  // Buscar al presionar Enter
-  const input = document.getElementById("searchInput");
-  input.addEventListener("keyup", e => {
-    if (e.key === "Enter") buscarCuriosidad();
   });
 });
