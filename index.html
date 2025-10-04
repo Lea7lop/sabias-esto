@@ -3,112 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sabías Esto</title>
+  <title>🤯 Sabías Esto</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #cce7ff; } /* azul claro */
-    header { background: #007BFF; color: white; padding: 20px; text-align: center; }
-    nav { background: #007BFF; color: white; display: flex; justify-content: center; padding: 10px; gap: 15px; }
-    nav a { color: white; text-decoration: none; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    .search-container { text-align: center; padding: 15px; }
-    .search-container input { width: 60%; padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
-    .curiosidades { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-    .curiosidad-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; padding: 15px; text-align: center; }
-    .curiosidad-card img { width: 100%; border-radius: 10px; }
-    .curiosidad-card h3 { margin: 10px 0 5px; font-size: 18px; color: #007BFF; }
-    .curiosidad-card p { font-size: 14px; color: #333; }
-    .categoria { font-size: 12px; color: #007BFF; margin-bottom: 5px; }
-    .ver-mas { text-decoration: none; color: #007BFF; font-weight: bold; }
-    .ver-mas:hover { text-decoration: underline; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0ff; /* un azul suave */
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #004080;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 1rem;
+    }
+    .dato {
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .categoria {
+      font-size: 0.9rem;
+      color: #004080;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>🤯 Sabías Esto</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="curiosidad.html?categoria=Ciencia">Ciencia</a>
+      <a href="curiosidad.html?categoria=Historia">Historia</a>
+      <a href="curiosidad.html?categoria=Animales">Animales</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h2>Últimos Datos Curiosos</h2>
+    <div id="curiosidades"></div>
+  </div>
 
-<header>
-  <h1>🤯 Sabías Esto</h1>
-</header>
+  <script>
+    async function cargarCuriosidades() {
+      try {
+        const res = await fetch("curiosidades_moderno.json");
+        const datos = await res.json();
 
-<div class="search-container">
-  <input type="text" id="busqueda" placeholder="Buscar dato curioso...">
-</div>
+        // Mezclar y elegir 5 aleatorios
+        const seleccion = datos.sort(() => 0.5 - Math.random()).slice(0, 5);
 
-<nav>
-  <a href="#" class="filtro" data-categoria="Todos">Inicio</a>
-  <a href="#" class="filtro" data-categoria="Ciencia">Ciencia</a>
-  <a href="#" class="filtro" data-categoria="Historia">Historia</a>
-  <a href="#" class="filtro" data-categoria="Animales">Animales</a>
-</nav>
-
-<div class="curiosidades" id="curiosidadesContainer"></div>
-
-<script>
-  const curiosidades = [
-    // Pega aquí tu JSON completo de 50 curiosidades
-  ];
-
-  const container = document.getElementById('curiosidadesContainer');
-  const busquedaInput = document.getElementById('busqueda');
-  const filtros = document.querySelectorAll('.filtro');
-
-  // Definimos los 5 datos principales fijos (incluyendo Ching Shih)
-  const datosPrincipales = [
-    curiosidades.find(c => c.titulo.includes("Ching Shih")),
-    curiosidades.find(c => c.id === 2),
-    curiosidades.find(c => c.id === 3),
-    curiosidades.find(c => c.id === 4),
-    curiosidades.find(c => c.id === 5)
-  ];
-
-  function mostrarCuriosidades(lista, inicio = false) {
-    container.innerHTML = '';
-    if(lista.length === 0) {
-      container.innerHTML = '<p>No se encontraron resultados.</p>';
-      return;
+        const contenedor = document.getElementById("curiosidades");
+        seleccion.forEach(dato => {
+          const div = document.createElement("div");
+          div.className = "dato";
+          div.innerHTML = `
+            <h3>${dato.titulo}</h3>
+            <p class="categoria">Categoría: ${dato.categoria}</p>
+            <p>${dato.descripcion}</p>
+          `;
+          contenedor.appendChild(div);
+        });
+      } catch (error) {
+        console.error("Error cargando curiosidades:", error);
+      }
     }
-
-    let mostrarLista = lista;
-
-    if (inicio) {
-      // Colocamos los 5 principales primero y luego los demás
-      const resto = lista.filter(c => !datosPrincipales.includes(c));
-      mostrarLista = [...datosPrincipales, ...resto];
-    }
-
-    mostrarLista.forEach(c => {
-      const card = document.createElement('div');
-      card.classList.add('curiosidad-card');
-      const miniDescripcion = c.descripcion.length > 100 ? c.descripcion.substring(0,100) + "..." : c.descripcion;
-      card.innerHTML = `
-        <img src="${c.imagen}" alt="${c.titulo}">
-        <div class="categoria">${c.categoria}</div>
-        <h3>${c.titulo}</h3>
-        <p>${miniDescripcion}</p>
-        <a href="curiosidad.html?id=${c.id}" class="ver-mas">Ver más →</a>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  // Mostrar al inicio con 5 fijos
-  mostrarCuriosidades(curiosidades, true);
-
-  filtros.forEach(filtro => {
-    filtro.addEventListener('click', e => {
-      e.preventDefault();
-      const cat = filtro.dataset.categoria;
-      if(cat === 'Todos') mostrarCuriosidades(curiosidades, true);
-      else mostrarCuriosidades(curiosidades.filter(c => c.categoria === cat));
-    });
-  });
-
-  busquedaInput.addEventListener('input', () => {
-    const termino = busquedaInput.value.toLowerCase();
-    const filtradas = curiosidades.filter(c => c.titulo.toLowerCase().includes(termino) || c.descripcion.toLowerCase().includes(termino));
-    // Mostrar siempre los 5 principales + resultados filtrados (sin repetir)
-    const filtradasSinPrincipales = filtradas.filter(c => !datosPrincipales.includes(c));
-    mostrarCuriosidades([...datosPrincipales, ...filtradasSinPrincipales]);
-  });
-</script>
-
+    cargarCuriosidades();
+  </script>
 </body>
 </html>
