@@ -7,12 +7,12 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #e6f0ff; /* un azul suave */
+      background-color: #f0f8ff; /* azul más claro */
       margin: 0;
       padding: 0;
     }
     header {
-      background: #004080;
+      background: #3399ff; /* azul más suave */
       color: white;
       padding: 1rem;
       text-align: center;
@@ -21,6 +21,7 @@
       color: white;
       margin: 0 10px;
       text-decoration: none;
+      font-weight: bold;
     }
     .container {
       max-width: 900px;
@@ -36,7 +37,7 @@
     }
     .categoria {
       font-size: 0.9rem;
-      color: #004080;
+      color: #3399ff;
       font-weight: bold;
     }
   </style>
@@ -62,10 +63,12 @@
         const res = await fetch("curiosidades_moderno.json");
         const datos = await res.json();
 
-        // Mezclar y elegir 5 aleatorios
+        // Mezclar y elegir SOLO 5
         const seleccion = datos.sort(() => 0.5 - Math.random()).slice(0, 5);
 
         const contenedor = document.getElementById("curiosidades");
+        contenedor.innerHTML = ""; // limpiar antes de cargar
+
         seleccion.forEach(dato => {
           const div = document.createElement("div");
           div.className = "dato";
