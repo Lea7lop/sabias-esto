@@ -1,52 +1,303 @@
 [
-  {"id":1,"titulo":"Dato Curioso #1","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios.","imagen":"images/ciencia.jpg"},
-  {"id":2,"titulo":"Dato Curioso #2","categoria":"Animales","descripcion":"El corazón de un camarón se encuentra en su cabeza, debido a la fusión de cabeza y tórax en el cefalotórax, lo que permite que su sistema circulatorio funcione de manera eficiente, transportando sangre a todas sus partes a pesar de su pequeño tamaño.","imagen":"images/animales.jpg"},
-  {"id":3,"titulo":"Dato Curioso #3","categoria":"Ciencia","descripcion":"Los pulpos tienen tres corazones y sangre azul. Dos corazones bombean sangre a las branquias mientras que el tercero lo hace al resto del cuerpo. Su sangre contiene hemocianina, rica en cobre, que transporta oxígeno de manera eficiente en agua fría y con poco oxígeno.","imagen":"images/ciencia.jpg"},
-  {"id":4,"titulo":"Dato Curioso #4","categoria":"Historia","descripcion":"Cleopatra VII vivió más cerca del lanzamiento del iPhone que de la construcción de las pirámides de Giza. Esto ilustra cómo percibimos la historia y la magnitud de los tiempos históricos, mostrando que eventos antiguos pueden parecer más recientes de lo que creemos.","imagen":"images/historia.jpg"},
-  {"id":5,"titulo":"Dato Curioso #5","categoria":"Animales","descripcion":"Los gatos no pueden saborear lo dulce debido a una mutación en sus receptores del gusto. Esto hace que no sientan atracción por alimentos azucarados, concentrándose más en olores y texturas para elegir su alimento.","imagen":"images/animales.jpg"},
-  {"id":6,"titulo":"Dato Curioso #6","categoria":"Ciencia","descripcion":"El ADN humano comparte aproximadamente un 60% de similitud con el plátano. Esto evidencia cómo ciertos genes esenciales se conservan a lo largo de la evolución, mostrando conexiones sorprendentes entre organismos aparentemente muy distintos.","imagen":"images/ciencia.jpg"},
-  {"id":7,"titulo":"Dato Curioso #7","categoria":"Historia","descripcion":"Napoleón Bonaparte medía alrededor de 1,68 m, una altura promedio para su época. La idea de que era muy bajo proviene de diferencias entre unidades francesas y británicas y de la propaganda de sus enemigos.","imagen":"images/historia.jpg"},
-  {"id":8,"titulo":"Dato Curioso #8","categoria":"Animales","descripcion":"Las jirafas tienen siete vértebras en el cuello, igual que los humanos, pero cada una puede medir más de 25 centímetros, permitiéndoles alcanzar hojas altas y demostrando una adaptación evolutiva extraordinaria.","imagen":"images/animales.jpg"},
-  {"id":9,"titulo":"Dato Curioso #9","categoria":"Ciencia","descripcion":"Un vaso de agua contiene más átomos que vasos de agua existen en todos los océanos de la Tierra, mostrando la escala microscópica de la materia y cómo los elementos básicos se repiten de manera infinita en la naturaleza.","imagen":"images/ciencia.jpg"},
-  {"id":10,"titulo":"Dato Curioso #10","categoria":"Animales","descripcion":"Los tiburones existieron antes que los árboles, hace más de 400 millones de años. Esto refleja su capacidad de adaptación y supervivencia, convirtiéndolos en una de las especies más longevas y exitosas del planeta.","imagen":"images/animales.jpg"},
-  {"id":11,"titulo":"Dato Curioso #11","categoria":"Historia","descripcion":"El primer código de barras se escaneó en 1974 en un paquete de chicles, marcando el inicio de la automatización del comercio y revolucionando el control de inventarios y las transacciones comerciales.","imagen":"images/historia.jpg"},
-  {"id":12,"titulo":"Dato Curioso #12","categoria":"Ciencia","descripcion":"El corazón humano genera suficiente presión al latir para que la sangre pueda ser expulsada hasta 9 metros de distancia, mostrando la potencia del bombeo y la eficiencia del sistema circulatorio humano.","imagen":"images/ciencia.jpg"},
-  {"id":13,"titulo":"Dato Curioso #13","categoria":"Animales","descripcion":"Los caballitos de mar macho son los que se embarazan y dan a luz, un raro fenómeno en el reino animal que demuestra la diversidad de estrategias reproductivas y cuidado parental.","imagen":"images/animales.jpg"},
-  {"id":14,"titulo":"Dato Curioso #14","categoria":"Historia","descripcion":"El papel moneda se inventó en China alrededor del año 700 d.C., facilitando el comercio a larga distancia y reemplazando gradualmente el trueque y las monedas metálicas, sentando las bases de los sistemas económicos modernos.","imagen":"images/historia.jpg"},
-  {"id":15,"titulo":"Dato Curioso #15","categoria":"Ciencia","descripcion":"El sol libera más energía en un segundo que toda la humanidad consume en un año, mostrando la inmensa potencia de la energía solar y su potencial como fuente limpia y renovable.","imagen":"images/ciencia.jpg"},
-  {"id":16,"titulo":"Dato Curioso #16","categoria":"Animales","descripcion":"Los pulpos pueden cambiar de color y textura para camuflarse y escapar de depredadores, controlando células especializadas llamadas cromatóforos y mostrando una sofisticada adaptación al medio.","imagen":"images/animales.jpg"},
-  {"id":17,"titulo":"Dato Curioso #17","categoria":"Historia","descripcion":"La Gran Muralla China no es visible desde la luna a simple vista, contrariamente a la creencia popular. Este mito demuestra cómo las historias exageradas pueden convertirse en leyendas urbanas a lo largo del tiempo.","imagen":"images/historia.jpg"},
-  {"id":18,"titulo":"Dato Curioso #18","categoria":"Ciencia","descripcion":"El agua puede hervir y congelarse al mismo tiempo en un fenómeno llamado 'punto triple', donde coexisten las tres fases: sólido, líquido y gas, evidenciando propiedades físicas únicas de este compuesto.","imagen":"images/ciencia.jpg"},
-  {"id":19,"titulo":"Dato Curioso #19","categoria":"Animales","descripcion":"Las hormigas pueden levantar objetos 50 veces su peso corporal gracias a su relación superficie-volumen y a su estructura muscular, demostrando un gran poder relativo a su tamaño y colaborando en equipo.","imagen":"images/animales.jpg"},
-  {"id":20,"titulo":"Dato Curioso #20","categoria":"Historia","descripcion":"En la antigua Roma se utilizaba la orina como detergente para lavar ropa debido a su contenido de amoníaco, mostrando la creatividad y recursos químicos utilizados por civilizaciones antiguas.","imagen":"images/historia.jpg"},
-  {"id":21,"titulo":"Dato Curioso #21","categoria":"Ciencia","descripcion":"El cerebro humano contiene aproximadamente 86 mil millones de neuronas, cada una conectada a miles de otras, creando una red compleja que permite la memoria, el aprendizaje y la creatividad.","imagen":"images/ciencia.jpg"},
-  {"id":22,"titulo":"Dato Curioso #22","categoria":"Animales","descripcion":"Los flamencos adquieren su color rosa gracias a los carotenoides de los camarones y algas que consumen, demostrando cómo la dieta influye directamente en la pigmentación de los animales.","imagen":"images/animales.jpg"},
-  {"id":23,"titulo":"Dato Curioso #23","categoria":"Historia","descripcion":"La biblioteca de Alejandría contenía cientos de miles de pergaminos y su destrucción representó la pérdida de un conocimiento invaluable del mundo antiguo, subrayando la importancia de preservar la información.","imagen":"images/historia.jpg"},
-  {"id":24,"titulo":"Dato Curioso #24","categoria":"Ciencia","descripcion":"La luz viaja a aproximadamente 299.792 kilómetros por segundo, lo que significa que la luz del sol tarda unos 8 minutos y 20 segundos en llegar a la Tierra, mostrando la velocidad increíble de las ondas electromagnéticas.","imagen":"images/ciencia.jpg"},
-  {"id":25,"titulo":"Dato Curioso #25","categoria":"Animales","descripcion":"Los camaleones pueden mover sus ojos de manera independiente, permitiéndoles observar a su alrededor sin mover la cabeza, una ventaja para detectar depredadores y presas en su entorno.","imagen":"images/animales.jpg"},
-  {"id":26,"titulo":"Dato Curioso #26","categoria":"Historia","descripcion":"El Coliseo romano podía albergar entre 50.000 y 80.000 espectadores, reflejando avances en ingeniería y arquitectura y la importancia de los espectáculos públicos en la sociedad romana.","imagen":"images/historia.jpg"},
-  {"id":27,"titulo":"Dato Curioso #27","categoria":"Ciencia","descripcion":"El océano Atlántico contiene aproximadamente 310 millones de kilómetros cúbicos de agua, lo que representa una parte significativa del agua de la Tierra y tiene un papel crucial en la regulación climática global.","imagen":"images/ciencia.jpg"},
-  {"id":28,"titulo":"Dato Curioso #28","categoria":"Animales","descripcion":"Los murciélagos son los únicos mamíferos capaces de volar activamente y utilizan la ecolocalización para navegar y cazar insectos durante la noche, un sistema de orientación altamente eficiente.","imagen":"images/animales.jpg"},
-  {"id":29,"titulo":"Dato Curioso #29","categoria":"Historia","descripcion":"La Torre Eiffel, construida en 1889 para la Exposición Universal en París, fue la estructura más alta del mundo durante 41 años y simboliza la ingeniería avanzada del siglo XIX.","imagen":"images/historia.jpg"},
-  {"id":30,"titulo":"Dato Curioso #30","categoria":"Ciencia","descripcion":"Marte tiene el volcán más grande del sistema solar, Olympus Mons, que mide aproximadamente 22 km de altura, casi tres veces la altura del Monte Everest, mostrando la escala de fenómenos geológicos fuera de la Tierra.","imagen":"images/ciencia.jpg"},
-  {"id":31,"titulo":"Dato Curioso #31","categoria":"Animales","descripcion":"Los caballos pueden dormir tanto de pie como acostados, gracias a un sistema de ligamentos especiales en sus patas que les permite relajarse sin caerse, una adaptación evolutiva que les ayuda a escapar de depredadores.","imagen":"images/animales.jpg"},
-  {"id":32,"titulo":"Dato Curioso #32","categoria":"Historia","descripcion":"La imprenta de Gutenberg, inventada en el siglo XV, permitió la producción masiva de libros, acelerando la difusión del conocimiento y sentando las bases para la educación moderna y la alfabetización generalizada.","imagen":"images/historia.jpg"},
-  {"id":33,"titulo":"Dato Curioso #33","categoria":"Ciencia","descripcion":"El cuerpo humano tiene aproximadamente 37 billones de células, cada una especializada en funciones distintas, formando un sistema altamente organizado y eficiente que mantiene la vida.","imagen":"images/ciencia.jpg"},
-  {"id":34,"titulo":"Dato Curioso #34","categoria":"Animales","descripcion":"Los elefantes tienen una memoria excepcional, capaz de recordar rutas migratorias y fuentes de agua durante décadas, lo que les ayuda a sobrevivir en ambientes cambiantes y a mantener estructuras sociales complejas.","imagen":"images/animales.jpg"},
-  {"id":35,"titulo":"Dato Curioso #35","categoria":"Historia","descripcion":"La Revolución Francesa, que comenzó en 1789, transformó radicalmente la estructura política y social de Francia, inspirando movimientos de derechos humanos y democráticos en todo el mundo.","imagen":"images/historia.jpg"},
-  {"id":36,"titulo":"Dato Curioso #36","categoria":"Ciencia","descripcion":"Los rayos son descargas eléctricas de gran intensidad que pueden alcanzar temperaturas cinco veces superiores a las de la superficie del sol, demostrando la energía extrema de los fenómenos atmosféricos.","imagen":"images/ciencia.jpg"},
-  {"id":37,"titulo":"Dato Curioso #37","categoria":"Animales","descripcion":"Los delfines poseen un cerebro altamente desarrollado y son capaces de comunicarse entre ellos mediante sonidos complejos y patrones de comportamiento, mostrando inteligencia social avanzada en el reino animal.","imagen":"images/animales.jpg"},
-  {"id":38,"titulo":"Dato Curioso #38","categoria":"Historia","descripcion":"El código de Hammurabi, creado en el año 1754 a.C., es uno de los conjuntos de leyes más antiguos y detallados de la historia, estableciendo principios legales que influyeron en civilizaciones posteriores.","imagen":"images/historia.jpg"},
-  {"id":39,"titulo":"Dato Curioso #39","categoria":"Ciencia","descripcion":"El oxígeno líquido es de color azul y se comporta de manera diferente al oxígeno gaseoso. Se utiliza en cohetes y experimentos científicos debido a su alta densidad y capacidad de liberar energía al vaporizarse.","imagen":"images/ciencia.jpg"},
-  {"id":40,"titulo":"Dato Curioso #40","categoria":"Animales","descripcion":"Los camellos pueden beber hasta 40 litros de agua en 15 minutos y almacenar grasa en sus jorobas, lo que les permite sobrevivir durante largos periodos en el desierto sin acceso a agua.","imagen":"images/animales.jpg"},
-  {"id":41,"titulo":"Dato Curioso #41","categoria":"Historia","descripcion":"El Imperio Mongol, bajo el liderazgo de Gengis Kan, se expandió en el siglo XIII hasta abarcar gran parte de Asia y Europa, construyendo la red de comunicación y comercio más extensa de su época.","imagen":"images/historia.jpg"},
-  {"id":42,"titulo":"Dato Curioso #42","categoria":"Ciencia","descripcion":"El ser humano comparte aproximadamente el 98% de su ADN con los chimpancés, lo que evidencia nuestra cercanía evolutiva y la importancia de los estudios comparativos en biología y genética.","imagen":"images/ciencia.jpg"},
-  {"id":43,"titulo":"Dato Curioso #43","categoria":"Animales","descripcion":"Las abejas son esenciales para la polinización y la producción de alimentos, realizando vuelos precisos y comunicándose mediante danzas para transmitir información sobre fuentes de néctar.","imagen":"images/animales.jpg"},
-  {"id":44,"titulo":"Dato Curioso #44","categoria":"Historia","descripcion":"La primera mujer en votar fue en Nueva Zelanda en 1893, un hito histórico que marcó el inicio de la participación femenina en la política y la lucha por los derechos civiles de las mujeres.","imagen":"images/historia.jpg"},
-  {"id":45,"titulo":"Dato Curioso #45","categoria":"Ciencia","descripcion":"Los volcanes submarinos son responsables de gran parte de la actividad geotérmica de la Tierra y contribuyen a la formación de nuevas islas y estructuras geológicas bajo el agua.","imagen":"images/ciencia.jpg"},
-  {"id":46,"titulo":"Dato Curioso #46","categoria":"Animales","descripcion":"Los lobos se comunican a través de aullidos, gestos corporales y vocalizaciones complejas, manteniendo la cohesión del grupo y coordinando la caza de manera eficiente.","imagen":"images/animales.jpg"},
-  {"id":47,"titulo":"Dato Curioso #47","categoria":"Historia","descripcion":"La Revolución Industrial, iniciada en el siglo XVIII, transformó la economía, la producción y la vida urbana, introduciendo maquinaria avanzada y cambiando la estructura social y laboral de Europa.","imagen":"images/historia.jpg"},
-  {"id":48,"titulo":"Dato Curioso #48","categoria":"Ciencia","descripcion":"El hielo es menos denso que el agua líquida, lo que hace que flote. Esta propiedad permite que los ecosistemas acuáticos sobrevivan bajo la superficie congelada durante los inviernos.","imagen":"images/ciencia.jpg"},
-  {"id":49,"titulo":"Dato Curioso #49","categoria":"Animales","descripcion":"Los pingüinos emperador pueden sumergirse hasta 500 metros y permanecer bajo el agua más de 20 minutos, utilizando adaptaciones fisiológicas que les permiten conservar oxígeno y soportar la presión extrema.","imagen":"images/animales.jpg"},
-  {"id":50,"titulo":"Dato Curioso #50","categoria":"Historia","descripcion":"El Renacimiento europeo, entre los siglos XIV y XVII, fue un periodo de intensa actividad cultural, científica y artística, marcando un resurgimiento del conocimiento y sentando las bases de la modernidad.","imagen":"images/historia.jpg"}
+  {
+    "id": 1,
+    "titulo": "La miel eterna",
+    "categoria": "Ciencia",
+    "descripcion": "La miel es uno de los pocos alimentos que no se echa a perder. Gracias a su baja humedad y alta concentración de azúcares, las bacterias y hongos no pueden desarrollarse en ella. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, lo que demuestra que su composición natural permite su conservación por milenios sin necesidad de refrigeración ni preservantes químicos. Además, contiene enzimas y antioxidantes que contribuyen a mantener sus propiedades intactas a lo largo del tiempo."
+  },
+  {
+    "id": 2,
+    "titulo": "El corazón del camarón",
+    "categoria": "Animales",
+    "descripcion": "El corazón de un camarón se encuentra en su cabeza debido a la fusión de cabeza y tórax en el cefalotórax. Esta ubicación permite que su sistema circulatorio funcione de manera eficiente, transportando sangre a todas las partes del cuerpo a pesar de su pequeño tamaño. Su sistema abierto, junto con un corazón muscular que bombea hemolinfa, facilita la distribución de nutrientes y oxígeno, demostrando una adaptación evolutiva fascinante en animales diminutos."
+  },
+  {
+    "id": 3,
+    "titulo": "Los pulpos y su sangre azul",
+    "categoria": "Ciencia",
+    "descripcion": "Los pulpos tienen tres corazones y sangre azul. Dos corazones bombean sangre a las branquias mientras que el tercero lo hace al resto del cuerpo. Su sangre contiene hemocianina, rica en cobre, que transporta oxígeno de manera eficiente en agua fría y con poco oxígeno. Esta adaptación permite a los pulpos sobrevivir en profundidades marinas donde el oxígeno es limitado y los depredadores abundan, demostrando su sofisticación biológica y resistencia."
+  },
+  {
+    "id": 4,
+    "titulo": "Cleopatra y el tiempo",
+    "categoria": "Historia",
+    "descripcion": "Cleopatra VII vivió más cerca del lanzamiento del iPhone que de la construcción de las pirámides de Giza. Este hecho ilustra cómo percibimos la historia y la magnitud de los tiempos históricos, mostrando que eventos antiguos pueden parecer más recientes de lo que creemos. Su reinado, lleno de intrigas políticas y alianzas estratégicas, es un ejemplo del poder y la influencia femenina en una época dominada por hombres."
+  },
+  {
+    "id": 5,
+    "titulo": "Los gatos y el sabor dulce",
+    "categoria": "Animales",
+    "descripcion": "Los gatos no pueden saborear lo dulce debido a una mutación en sus receptores del gusto. Esto hace que no sientan atracción por alimentos azucarados, concentrándose más en olores y texturas para elegir su alimento. Esta adaptación puede haber surgido por su naturaleza carnívora estricta, enfocándose en proteínas y grasas esenciales para su supervivencia, mostrando cómo la evolución moldea los sentidos según las necesidades alimenticias."
+  },
+  {
+    "id": 6,
+    "titulo": "ADN humano y plátanos",
+    "categoria": "Ciencia",
+    "descripcion": "El ADN humano comparte aproximadamente un 60% de similitud con el plátano. Aunque a simple vista estos organismos parecen muy distintos, muchos genes esenciales para funciones celulares básicas se conservan a lo largo de la evolución. Esta coincidencia demuestra cómo la vida reutiliza componentes genéticos para funciones universales, reflejando la sorprendente conexión entre todos los seres vivos en la Tierra."
+  },
+  {
+    "id": 7,
+    "titulo": "La altura de Napoleón",
+    "categoria": "Historia",
+    "descripcion": "Napoleón Bonaparte medía alrededor de 1,68 m, una altura promedio para su época. La idea de que era muy bajo proviene de diferencias entre unidades francesas y británicas y de la propaganda de sus enemigos. Este malentendido se ha perpetuado a lo largo de los siglos, mostrando cómo los relatos históricos pueden distorsionarse con el tiempo y convertirse en mitos populares que influyen en nuestra percepción de figuras históricas famosas."
+  },
+  {
+    "id": 8,
+    "titulo": "El cuello de la jirafa",
+    "categoria": "Animales",
+    "descripcion": "Las jirafas tienen siete vértebras en el cuello, igual que los humanos, pero cada una puede medir más de 25 centímetros, permitiéndoles alcanzar hojas altas. Esta característica es una adaptación evolutiva que les permite alimentarse en copas de árboles donde otras especies no pueden llegar. Además, su sistema circulatorio ha evolucionado para bombear sangre eficazmente hasta el cerebro, evitando mareos o daños por la altura."
+  },
+  {
+    "id": 9,
+    "titulo": "Un vaso de agua infinito",
+    "categoria": "Ciencia",
+    "descripcion": "Un vaso de agua contiene más átomos que vasos de agua existen en todos los océanos de la Tierra. Esto evidencia la escala microscópica de la materia y cómo los elementos básicos se repiten de manera infinita en la naturaleza. Cada molécula de agua participa en una red compleja de enlaces de hidrógeno que determina sus propiedades físicas, como densidad, punto de ebullición y capacidad de disolver otras sustancias, esenciales para la vida."
+  },
+  {
+    "id": 10,
+    "titulo": "Los tiburones antes que los árboles",
+    "categoria": "Animales",
+    "descripcion": "Los tiburones existieron antes que los árboles, hace más de 400 millones de años. Esto refleja su capacidad de adaptación y supervivencia, convirtiéndolos en una de las especies más longevas y exitosas del planeta. Su estructura ósea cartilaginosa, sentidos altamente desarrollados y técnicas de caza eficientes les han permitido persistir a lo largo de grandes cambios ecológicos y climáticos, sobreviviendo a extinciones masivas que eliminaron a otros depredadores."
+  },
+  {
+    "id": 11,
+    "titulo": "El primer código de barras",
+    "categoria": "Historia",
+    "descripcion": "El primer código de barras se escaneó en 1974 en un paquete de chicles, marcando el inicio de la automatización del comercio. Este invento revolucionó la forma de controlar inventarios y realizar transacciones comerciales, reduciendo errores humanos y acelerando procesos. Hoy en día, los códigos de barras se encuentran en millones de productos, demostrando cómo una innovación tecnológica puede transformar hábitos cotidianos y sistemas económicos completos."
+  },
+  {
+    "id": 12,
+    "titulo": "El corazón humano como bomba",
+    "categoria": "Ciencia",
+    "descripcion": "El corazón humano genera suficiente presión al latir para que la sangre pueda ser expulsada hasta 9 metros de distancia. Bombea alrededor de 5 litros de sangre por minuto en reposo y hasta 30 litros durante ejercicio intenso. Esta eficiencia permite transportar oxígeno y nutrientes a todas las células, y retirar desechos metabólicos. Su diseño con válvulas, cámaras y tejido muscular especializado garantiza un flujo continuo y controlado que mantiene la vida."
+  },
+  {
+    "id": 13,
+    "titulo": "Caballitos de mar masculinos",
+    "categoria": "Animales",
+    "descripcion": "Los caballitos de mar macho son los que se embarazan y dan a luz, un fenómeno raro en el reino animal. Durante la reproducción, la hembra deposita los huevos en la bolsa del macho, quien los fertiliza y protege hasta que nacen las crías. Este comportamiento muestra la diversidad de estrategias reproductivas y el cuidado parental invertido, adaptándose a las necesidades de supervivencia de la especie en su hábitat natural."
+  },
+  {
+    "id": 14,
+    "titulo": "El papel moneda en China",
+    "categoria": "Historia",
+    "descripcion": "El papel moneda se inventó en China alrededor del año 700 d.C., facilitando el comercio a larga distancia y reemplazando gradualmente el trueque y las monedas metálicas. Su aparición permitió una economía más flexible, segura y rápida, sentando las bases de los sistemas económicos modernos. Este avance fue clave para el desarrollo de rutas comerciales y la expansión de ciudades, influyendo en la manera en que la sociedad organizaba la producción y el intercambio de bienes."
+  },
+  {
+    "id": 15,
+    "titulo": "La energía del sol",
+    "categoria": "Ciencia",
+    "descripcion": "El sol libera más energía en un segundo que toda la humanidad consume en un año. Esta energía proviene de reacciones de fusión nuclear que convierten hidrógeno en helio en su núcleo. La radiación solar impulsa el clima, la fotosíntesis y las corrientes oceánicas. Además, representa una fuente de energía limpia y renovable con un potencial enorme para sustituir combustibles fósiles, demostrando cómo el sol es esencial para la vida y la tecnología en la Tierra."
+  },
+  {
+    "id": 16,
+    "titulo": "Los pulpos se camuflan",
+    "categoria": "Animales",
+    "descripcion": "Los pulpos pueden cambiar de color y textura para camuflarse y escapar de depredadores, controlando células especializadas llamadas cromatóforos. Pueden imitar rocas, arena, corales y otros animales, mostrando una adaptación visual impresionante. Este mecanismo de defensa avanzado les permite sobrevivir en entornos complejos, cazar eficazmente y protegerse de amenazas, destacando la sofisticación de su sistema nervioso y sensorial."
+  },
+  {
+    "id": 17,
+    "titulo": "La Gran Muralla y la luna",
+    "categoria": "Historia",
+    "descripcion": "Contrariamente a la creencia popular, la Gran Muralla China no es visible desde la luna a simple vista. Este mito demuestra cómo las historias exageradas se convierten en leyendas urbanas. La muralla, aunque impresionante en longitud y estructura, es demasiado estrecha y se mezcla con el terreno circundante, haciendo que la visibilidad desde el espacio sea limitada, recordándonos la diferencia entre percepción y realidad."
+  },
+  {
+    "id": 18,
+    "titulo": "El punto triple del agua",
+    "categoria": "Ciencia",
+    "descripcion": "El agua puede hervir y congelarse al mismo tiempo en un fenómeno llamado 'punto triple', donde coexisten sólido, líquido y gas. Esto ocurre a una temperatura específica de 0,01°C y una presión de 611,657 pascales. Este fenómeno permite estudiar propiedades físicas de la materia y es fundamental en metrología. También muestra la complejidad de un líquido tan común como el agua y cómo su comportamiento influye en la vida y en los sistemas naturales del planeta."
+  },
+  {
+    "id": 19,
+    "titulo": "Las hormigas y su fuerza",
+    "categoria": "Animales",
+    "descripcion": "Las hormigas pueden levantar objetos hasta 50 veces su peso corporal debido a su relación superficie-volumen y estructura muscular eficiente. Además, trabajan en equipo para transportar alimentos o construir nidos. Esta fuerza relativa y cooperación colectiva permite a colonias enteras superar desafíos físicos mucho mayores que los que un solo individuo podría manejar, demostrando la increíble ingeniería natural y organización social de estos insectos."
+  },
+  {
+    "id": 20,
+    "titulo": "La orina en la antigua Roma",
+    "categoria": "Historia",
+    "descripcion": "En la antigua Roma se utilizaba la orina como detergente para lavar ropa debido a su contenido de amoníaco, que ayudaba a remover manchas y grasas. Este método reflejaba la creatividad y el uso de recursos químicos disponibles por civilizaciones antiguas, mostrando cómo se resolvían problemas cotidianos de higiene antes de la invención de los detergentes modernos y la química industrial."
+  },
+  {
+    "id": 21,
+    "titulo": "El cerebro humano",
+    "categoria": "Ciencia",
+    "descripcion": "El cerebro humano contiene aproximadamente 86 mil millones de neuronas, cada una conectada a miles de otras, creando una red compleja que permite la memoria, el aprendizaje, la creatividad y la coordinación de funciones vitales. Este órgano procesa información a una velocidad asombrosa, regula emociones y movimientos, y su plasticidad permite adaptarse a experiencias y aprendizajes a lo largo de toda la vida."
+  },
+  {
+    "id": 22,
+    "titulo": "El color de los flamencos",
+    "categoria": "Animales",
+    "descripcion": "Los flamencos adquieren su característico color rosa gracias a los carotenoides presentes en los camarones y algas que consumen. Esta pigmentación no solo influye en su apariencia, sino que también juega un papel en la selección sexual y la salud del ave. A medida que cambian de dieta, su color puede variar, demostrando la conexión directa entre nutrición y características físicas visibles en la naturaleza."
+  },
+  {
+    "id": 23,
+    "titulo": "La biblioteca de Alejandría",
+    "categoria": "Historia",
+    "descripcion": "La biblioteca de Alejandría contenía cientos de miles de pergaminos que recopilaban gran parte del conocimiento del mundo antiguo. Su destrucción representó la pérdida de información invaluable, incluyendo textos sobre matemáticas, astronomía, medicina y filosofía. Este hecho subraya la importancia de preservar y difundir el conocimiento, y cómo la humanidad ha buscado a lo largo de la historia proteger sus avances culturales y científicos."
+  },
+  {
+    "id": 24,
+    "titulo": "La velocidad de la luz",
+    "categoria": "Ciencia",
+    "descripcion": "La luz viaja a aproximadamente 299.792 kilómetros por segundo, lo que significa que tarda unos 8 minutos y 20 segundos en llegar desde el sol a la Tierra. Este valor define muchos fenómenos físicos, como la percepción de los eventos astronómicos, la transmisión de información en telecomunicaciones y la teoría de la relatividad. La rapidez de la luz también nos permite calcular distancias cósmicas y entender la estructura del universo."
+  },
+  {
+    "id": 25,
+    "titulo": "Los camaleones y sus ojos",
+    "categoria": "Animales",
+    "descripcion": "Los camaleones pueden mover sus ojos de manera independiente, lo que les permite observar a su alrededor sin mover la cabeza. Esta habilidad les proporciona un amplio campo visual para detectar depredadores y presas simultáneamente. Además, sus ojos están adaptados para percibir profundidad y distancia con precisión, mejorando sus habilidades de caza y supervivencia en entornos complejos."
+  },
+  {
+    "id": 26,
+    "titulo": "El Coliseo romano",
+    "categoria": "Historia",
+    "descripcion": "El Coliseo romano podía albergar entre 50.000 y 80.000 espectadores y contaba con sistemas avanzados de gradas, pasillos y acceso que permitían evacuar el lugar rápidamente. Este monumento refleja avances en ingeniería y arquitectura de la época, y la importancia de los espectáculos públicos en la sociedad romana, como gladiadores, representaciones teatrales y eventos deportivos que reforzaban la cohesión social y el poder del Imperio."
+  },
+  {
+    "id": 27,
+    "titulo": "El océano Atlántico",
+    "categoria": "Ciencia",
+    "descripcion": "El océano Atlántico contiene aproximadamente 310 millones de kilómetros cúbicos de agua, lo que representa una parte significativa del agua de la Tierra. Este océano regula el clima global, transporta corrientes cálidas y frías que influyen en ecosistemas marinos y costeros, y sustenta la vida de innumerables especies. Su estudio es crucial para entender los cambios climáticos y el impacto de la actividad humana en el planeta."
+  },
+  {
+    "id": 28,
+    "titulo": "Los murciélagos y la ecolocalización",
+    "categoria": "Animales",
+    "descripcion": "Los murciélagos son los únicos mamíferos capaces de volar activamente y utilizan la ecolocalización para navegar y cazar insectos durante la noche. Emiten sonidos de alta frecuencia que rebotan en los objetos, permitiéndoles calcular distancia, tamaño y velocidad de sus presas. Esta habilidad sensorial avanzada les ha permitido colonizar diversos ecosistemas y desempeñar un papel crucial en el control de plagas y la polinización."
+  },
+  {
+    "id": 29,
+    "titulo": "La Torre Eiffel",
+    "categoria": "Historia",
+    "descripcion": "La Torre Eiffel, construida en 1889 para la Exposición Universal en París, fue la estructura más alta del mundo durante 41 años. Su diseño innovador y el uso del hierro como material principal demostraron la capacidad de la ingeniería del siglo XIX. Más allá de su función como torre de observación, se convirtió en un símbolo cultural y turístico que refleja la creatividad humana y el progreso tecnológico de la época."
+  },
+  {
+    "id": 30,
+    "titulo": "Olympus Mons en Marte",
+    "categoria": "Ciencia",
+    "descripcion": "Marte tiene el volcán más grande del sistema solar, Olympus Mons, con aproximadamente 22 km de altura, casi tres veces la altura del Monte Everest. Su tamaño se debe a la ausencia de placas tectónicas que limiten la acumulación de lava. Este gigante volcánico demuestra la escala de fenómenos geológicos fuera de la Tierra y proporciona información sobre la historia volcánica y atmosférica de Marte, crucial para la exploración espacial."
+  },
+  {
+    "id": 31,
+    "titulo": "Los caballos y el sueño",
+    "categoria": "Animales",
+    "descripcion": "Los caballos pueden dormir tanto de pie como acostados gracias a un sistema de ligamentos especiales en sus patas que les permite relajarse sin caerse. Esta adaptación evolutiva les ayuda a escapar rápidamente de depredadores y mantener vigilancia durante la noche. Además, los periodos de sueño profundo suelen darse cuando se acuestan, mostrando la combinación de seguridad y descanso eficiente que garantiza su supervivencia."
+  },
+  {
+    "id": 32,
+    "titulo": "La imprenta de Gutenberg",
+    "categoria": "Historia",
+    "descripcion": "La imprenta de Gutenberg, inventada en el siglo XV, permitió la producción masiva de libros y documentos, acelerando la difusión del conocimiento en Europa y más allá. Esta innovación transformó la educación, la alfabetización y la comunicación, reduciendo la dependencia de copias manuscritas. Su impacto fue tan profundo que sentó las bases de la ciencia moderna, la política y la cultura, influyendo en la historia de la humanidad de manera definitiva."
+  },
+  {
+    "id": 33,
+    "titulo": "Las células del cuerpo humano",
+    "categoria": "Ciencia",
+    "descripcion": "El cuerpo humano tiene aproximadamente 37 billones de células, cada una especializada en funciones distintas como transporte de oxígeno, defensa inmunológica o producción de energía. Estas células forman tejidos y órganos que trabajan de manera coordinada para mantener la homeostasis y permitir la vida. La complejidad y eficiencia de este sistema biológico refleja millones de años de evolución y adaptación de la especie humana."
+  },
+  {
+    "id": 34,
+    "titulo": "La memoria de los elefantes",
+    "categoria": "Animales",
+    "descripcion": "Los elefantes tienen una memoria excepcional, capaz de recordar rutas migratorias, fuentes de agua y relaciones sociales durante décadas. Esta capacidad les ayuda a sobrevivir en ambientes cambiantes y a mantener estructuras sociales complejas. Además, su inteligencia les permite resolver problemas, comunicarse con señales y demostrar empatía, destacando como uno de los animales más inteligentes y sociales del reino animal."
+  },
+  {
+    "id": 35,
+    "titulo": "La Revolución Francesa",
+    "categoria": "Historia",
+    "descripcion": "La Revolución Francesa, iniciada en 1789, transformó radicalmente la estructura política y social de Francia, abolió la monarquía absoluta e inspiró movimientos de derechos humanos y democráticos en todo el mundo. Este periodo de agitación y cambio mostró cómo las ideas de igualdad, libertad y fraternidad pueden impulsar revoluciones sociales que afectan generaciones enteras y redefinir las bases de la política moderna."
+  },
+  {
+    "id": 36,
+    "titulo": "La potencia de los rayos",
+    "categoria": "Ciencia",
+    "descripcion": "Los rayos son descargas eléctricas de gran intensidad que pueden alcanzar temperaturas cinco veces superiores a la superficie del sol, liberando energía suficiente para encender materiales y cambiar la composición química del aire. Este fenómeno atmosférico demuestra la fuerza de la electricidad natural y su impacto en la meteorología, los ecosistemas y la ciencia de la física aplicada en el estudio de descargas y energía."
+  },
+  {
+    "id": 37,
+    "titulo": "La inteligencia de los delfines",
+    "categoria": "Animales",
+    "descripcion": "Los delfines poseen un cerebro altamente desarrollado y se comunican entre ellos mediante sonidos complejos y patrones de comportamiento, incluyendo gestos y clics. Esta inteligencia social avanzada les permite cooperar en la caza, resolver problemas y mantener estructuras jerárquicas dentro del grupo. Además, pueden reconocer su reflejo, lo que indica conciencia de sí mismos, algo raro en el reino animal."
+  },
+  {
+    "id": 38,
+    "titulo": "El código de Hammurabi",
+    "categoria": "Historia",
+    "descripcion": "El código de Hammurabi, creado en el año 1754 a.C., es uno de los conjuntos de leyes más antiguos y detallados de la historia. Estableció normas sobre comercio, propiedad, matrimonio y justicia penal, influyendo en civilizaciones posteriores. Su estudio permite entender los principios legales y éticos que guiaron sociedades antiguas y cómo estas leyes sentaron las bases de los sistemas jurídicos modernos."
+  },
+  {
+    "id": 39,
+    "titulo": "El oxígeno líquido azul",
+    "categoria": "Ciencia",
+    "descripcion": "El oxígeno líquido es de color azul y se comporta de manera diferente al oxígeno gaseoso. Su alta densidad y capacidad de liberar energía al vaporizarse lo hace útil en cohetes y experimentos científicos. Este estado del oxígeno demuestra cómo las propiedades de un elemento cambian según su fase, y cómo los científicos aprovechan estas características para aplicaciones industriales, energéticas y aeroespaciales."
+  },
+  {
+    "id": 40,
+    "titulo": "La resistencia de los camellos",
+    "categoria": "Animales",
+    "descripcion": "Los camellos pueden beber hasta 40 litros de agua en 15 minutos y almacenar grasa en sus jorobas, lo que les permite sobrevivir durante largos periodos sin acceso a agua. Esta adaptación fisiológica incluye un metabolismo eficiente, control de temperatura y capacidad de conservar líquidos, permitiéndoles habitar desiertos extremos donde otras especies no podrían sobrevivir."
+  },
+  {
+    "id": 41,
+    "titulo": "El Imperio Mongol",
+    "categoria": "Historia",
+    "descripcion": "El Imperio Mongol, bajo Gengis Kan, se expandió en el siglo XIII hasta abarcar gran parte de Asia y Europa, construyendo una red de comunicación y comercio extensa. Esta expansión rápida y organizada mostró estrategias militares avanzadas, gestión de recursos y una influencia cultural duradera en las regiones conquistadas, demostrando cómo un liderazgo efectivo puede cambiar la historia de civilizaciones enteras."
+  },
+  {
+    "id": 42,
+    "titulo": "ADN compartido con los chimpancés",
+    "categoria": "Ciencia",
+    "descripcion": "El ser humano comparte aproximadamente el 98% de su ADN con los chimpancés, reflejando una cercanía evolutiva y un ancestro común. Este estudio comparativo permite entender enfermedades, desarrollo cerebral y comportamiento, además de evidenciar cómo los procesos evolutivos conservan genes esenciales, revelando sorprendentes similitudes biológicas entre especies distintas."
+  },
+  {
+    "id": 43,
+    "titulo": "La importancia de las abejas",
+    "categoria": "Animales",
+    "descripcion": "Las abejas son esenciales para la polinización y la producción de alimentos. Realizan vuelos precisos y comunican la ubicación de fuentes de néctar mediante danzas complejas. Su actividad sostiene ecosistemas, mantiene la diversidad vegetal y asegura la producción de frutas, verduras y semillas, demostrando cómo un insecto aparentemente pequeño puede tener un impacto crucial en la cadena alimentaria y en la agricultura humana."
+  },
+  {
+    "id": 44,
+    "titulo": "La primera mujer en votar",
+    "categoria": "Historia",
+    "descripcion": "La primera mujer en votar fue en Nueva Zelanda en 1893, marcando un hito histórico en la lucha por los derechos civiles de las mujeres y la igualdad de género. Este evento abrió el camino a reformas políticas y sociales en todo el mundo, demostrando cómo la participación femenina puede transformar sociedades, impulsar la justicia social y redefinir la política moderna."
+  },
+  {
+    "id": 45,
+    "titulo": "Volcanes submarinos",
+    "categoria": "Ciencia",
+    "descripcion": "Los volcanes submarinos son responsables de gran parte de la actividad geotérmica de la Tierra, contribuyendo a la formación de nuevas islas y estructuras geológicas bajo el agua. Sus erupciones afectan la química del océano, crean hábitats para especies únicas y proporcionan minerales esenciales. Estudiarlos ayuda a comprender la tectónica de placas, la evolución de los ecosistemas y la dinámica energética del planeta."
+  },
+  {
+    "id": 46,
+    "titulo": "La comunicación de los lobos",
+    "categoria": "Animales",
+    "descripcion": "Los lobos se comunican mediante aullidos, gestos corporales y vocalizaciones complejas. Esta comunicación permite coordinar la caza, mantener la cohesión del grupo y establecer jerarquías. Su organización social y cooperación son esenciales para sobrevivir en entornos desafiantes, mostrando la inteligencia y habilidades sociales avanzadas en el reino animal."
+  },
+  {
+    "id": 47,
+    "titulo": "La Revolución Industrial",
+    "categoria": "Historia",
+    "descripcion": "La Revolución Industrial, iniciada en el siglo XVIII, transformó la economía, la producción y la vida urbana mediante la introducción de maquinaria avanzada, fábricas y nuevas formas de transporte. Cambió la estructura social, laboral y tecnológica de Europa, creando ciudades modernas y sistemas económicos que sentaron las bases del mundo contemporáneo, mostrando cómo la innovación tecnológica puede transformar sociedades enteras."
+  },
+  {
+    "id": 48,
+    "titulo": "El hielo flotante",
+    "categoria": "Ciencia",
+    "descripcion": "El hielo es menos denso que el agua líquida, lo que hace que flote. Esta propiedad física es crucial para los ecosistemas acuáticos, permitiendo que los organismos sobrevivan debajo de la superficie congelada durante los inviernos. Además, regula la temperatura de los océanos y afecta los patrones climáticos globales, demostrando cómo una simple característica molecular tiene impactos significativos en la vida y el ambiente."
+  },
+  {
+    "id": 49,
+    "titulo": "Los pingüinos emperador",
+    "categoria": "Animales",
+    "descripcion": "Los pingüinos emperador pueden sumergirse hasta 500 metros y permanecer bajo el agua más de 20 minutos gracias a adaptaciones fisiológicas que conservan oxígeno y soportan la presión extrema. Su capacidad para resistir el frío y coordinar la caza en grupo les permite sobrevivir en el duro clima antártico. Además, sus estrategias de reproducción y cuidado parental garantizan la supervivencia de las crías en condiciones extremas."
+  },
+  {
+    "id": 50,
+    "titulo": "El Renacimiento europeo",
+    "categoria": "Historia",
+    "descripcion": "El Renacimiento europeo, entre los siglos XIV y XVII, fue un periodo de intensa actividad cultural, científica y artística, marcado por un resurgimiento del conocimiento clásico y la innovación en distintas disciplinas. Este movimiento fomentó la exploración, la educación, el arte y la filosofía, sentando las bases de la modernidad y transformando la manera en que la humanidad entiende la ciencia, la política y la cultura."
+  }
 ]
+
