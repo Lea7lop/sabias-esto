@@ -3,57 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dato Curioso</title>
+  <title>Categoría - Sabías Esto</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #cce7ff; }
-    header { background: #007BFF; color: white; padding: 20px; text-align: center; }
-    .contenido { max-width: 700px; margin: 20px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    .contenido img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
-    .contenido h2 { color: #007BFF; margin-bottom: 10px; }
-    .contenido .categoria { font-size: 14px; color: #007BFF; margin-bottom: 10px; }
-    .contenido p { font-size: 16px; color: #333; line-height: 1.5; }
-    a.volver { display: inline-block; margin-top: 15px; color: #007BFF; text-decoration: none; font-weight: bold; }
-    a.volver:hover { text-decoration: underline; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0ff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #004080;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 1rem;
+    }
+    .dato {
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .categoria {
+      font-size: 0.9rem;
+      color: #004080;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>🤯 Sabías Esto</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="curiosidad.html?categoria=Ciencia">Ciencia</a>
+      <a href="curiosidad.html?categoria=Historia">Historia</a>
+      <a href="curiosidad.html?categoria=Animales">Animales</a>
+    </nav>
+  </header>
+  <div class="container">
+    <h2 id="tituloCategoria"></h2>
+    <div id="curiosidades"></div>
+  </div>
 
-<header>
-  <h1>🤯 Sabías Esto</h1>
-</header>
+  <script>
+    function getParametro(nombre) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(nombre);
+    }
 
-<div class="contenido" id="contenido">
-  <!-- El contenido del dato curioso se cargará aquí -->
-</div>
+    async function cargarPorCategoria() {
+      try {
+        const categoria = getParametro("categoria");
+        document.getElementById("tituloCategoria").textContent = "Categoría: " + categoria;
 
-<script>
-  // Cargar JSON completo
-  const curiosidades = [
-    // Pega aquí tu JSON completo de 50 curiosidades
-  ];
+        const res = await fetch("curiosidades_moderno.json");
+        const datos = await res.json();
 
-  function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-  }
+        const filtrados = datos.filter(d => d.categoria === categoria);
 
-  const id = parseInt(getQueryParam('id'));
-  const dato = curiosidades.find(c => c.id === id);
-  const container = document.getElementById('contenido');
+        const contenedor = document.getElementById("curiosidades");
+        contenedor.innerHTML = "";
 
-  if(dato){
-    container.innerHTML = `
-      <img src="${dato.imagen}" alt="${dato.titulo}">
-      <div class="categoria">${dato.categoria}</div>
-      <h2>${dato.titulo}</h2>
-      <p>${dato.descripcion}</p>
-      <a href="index.html" class="volver">← Volver al inicio</a>
-    `;
-  } else {
-    container.innerHTML = `<p>No se encontró el dato curioso.</p>
-                           <a href="index.html" class="volver">← Volver al inicio</a>`;
-  }
-</script>
+        filtrados.forEach(dato => {
+          const div = document.createElement("div");
+          div.className = "dato";
+          div.innerHTML = `
+            <h3>${dato.titulo}</h3>
+            <p class="categoria">Categoría: ${dato.categoria}</p>
+            <p>${dato.descripcion}</p>
+          `;
+          contenedor.appendChild(div);
+        });
+      } catch (error) {
+        console.error("Error cargando curiosidades:", error);
+      }
+    }
 
+    cargarPorCategoria();
+  </script>
 </body>
 </html>
