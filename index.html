@@ -1,89 +1,205 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🤯 Sabías Esto</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤯 Sabías Esto</title>
+<style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f8ff; /* azul más claro */
-      margin: 0;
-      padding: 0;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #d0e7ff; /* azul más claro */
     }
     header {
-      background: #3399ff; /* azul más suave */
-      color: white;
-      padding: 1rem;
-      text-align: center;
+        background-color: #1e90ff;
+        color: white;
+        padding: 15px;
+        text-align: center;
+    }
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 10px;
+        background-color: #87cefa;
     }
     nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
     }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 1rem;
+    #search-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
     }
-    .dato {
-      background: white;
-      border-radius: 12px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    #search-container input {
+        width: 50%;
+        padding: 10px;
+        font-size: 16px;
+    }
+    #search-container button {
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .card {
+        background-color: white;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .card h3 {
+        margin-top: 0;
+        color: #1e90ff;
+    }
+    .card p {
+        text-align: justify;
     }
     .categoria {
-      font-size: 0.9rem;
-      color: #3399ff;
-      font-weight: bold;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #555;
     }
-  </style>
+</style>
 </head>
 <body>
-  <header>
+
+<header>
     <h1>🤯 Sabías Esto</h1>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="curiosidad.html?categoria=Ciencia">Ciencia</a>
-      <a href="curiosidad.html?categoria=Historia">Historia</a>
-      <a href="curiosidad.html?categoria=Animales">Animales</a>
-    </nav>
-  </header>
-  <div class="container">
-    <h2>Últimos Datos Curiosos</h2>
-    <div id="curiosidades"></div>
-  </div>
+</header>
 
-  <script>
-    async function cargarCuriosidades() {
-      try {
-        const res = await fetch("curiosidades_moderno.json");
-        const datos = await res.json();
+<nav>
+    <a href="#">Inicio</a>
+    <a href="#Ciencia">Ciencia</a>
+    <a href="#Historia">Historia</a>
+    <a href="#Animales">Animales</a>
+</nav>
 
-        // Mezclar y elegir SOLO 5
-        const seleccion = datos.sort(() => 0.5 - Math.random()).slice(0, 5);
+<div id="search-container">
+    <input type="text" id="search" placeholder="🔍 Buscar dato curioso...">
+</div>
 
-        const contenedor = document.getElementById("curiosidades");
-        contenedor.innerHTML = ""; // limpiar antes de cargar
+<h2 style="text-align:center;">Inicio</h2>
+<div id="inicio" class="grid-container">
+    <!-- 6 datos curiosos de inicio se mostrarán aquí -->
+</div>
 
-        seleccion.forEach(dato => {
-          const div = document.createElement("div");
-          div.className = "dato";
-          div.innerHTML = `
+<h2 id="Ciencia" style="text-align:center;">Ciencia</h2>
+<div id="ciencia" class="grid-container"></div>
+
+<h2 id="Historia" style="text-align:center;">Historia</h2>
+<div id="historia" class="grid-container"></div>
+
+<h2 id="Animales" style="text-align:center;">Animales</h2>
+<div id="animales" class="grid-container"></div>
+
+<script>
+const datosCuriosos = [
+{"id":1,"titulo":"Dato Curioso #1","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
+{"id":2,"titulo":"Dato Curioso #2","categoria":"Animales","descripcion":"El corazón de un camarón se encuentra en su cabeza, debido a la fusión de cabeza y tórax en el cefalotórax, lo que permite que su sistema circulatorio funcione de manera eficiente, transportando sangre a todas sus partes a pesar de su pequeño tamaño."},
+{"id":3,"titulo":"Dato Curioso #3","categoria":"Ciencia","descripcion":"Los pulpos tienen tres corazones y sangre azul. Dos corazones bombean sangre a las branquias mientras que el tercero lo hace al resto del cuerpo. Su sangre contiene hemocianina, rica en cobre, que transporta oxígeno de manera eficiente en agua fría y con poco oxígeno."},
+{"id":4,"titulo":"Dato Curioso #4","categoria":"Historia","descripcion":"Cleopatra VII vivió más cerca del lanzamiento del iPhone que de la construcción de las pirámides de Giza. Esto ilustra cómo percibimos la historia y la magnitud de los tiempos históricos, mostrando que eventos antiguos pueden parecer más recientes de lo que creemos."},
+{"id":5,"titulo":"Dato Curioso #5","categoria":"Animales","descripcion":"Los gatos no pueden saborear lo dulce debido a una mutación en sus receptores del gusto. Esto hace que no sientan atracción por alimentos azucarados, concentrándose más en olores y texturas para elegir su alimento."},
+{"id":6,"titulo":"Dato Curioso #6","categoria":"Ciencia","descripcion":"El ADN humano comparte aproximadamente un 60% de similitud con el plátano. Esto evidencia cómo ciertos genes esenciales se conservan a lo largo de la evolución, mostrando conexiones sorprendentes entre organismos aparentemente muy distintos."},
+{"id":7,"titulo":"Dato Curioso #7","categoria":"Historia","descripcion":"Napoleón Bonaparte medía alrededor de 1,68 m, una altura promedio para su época. La idea de que era muy bajo proviene de diferencias entre unidades francesas y británicas y de la propaganda de sus enemigos."},
+{"id":8,"titulo":"Dato Curioso #8","categoria":"Animales","descripcion":"Las jirafas tienen siete vértebras en el cuello, igual que los humanos, pero cada una puede medir más de 25 centímetros, permitiéndoles alcanzar hojas altas y demostrando una adaptación evolutiva extraordinaria."},
+{"id":9,"titulo":"Dato Curioso #9","categoria":"Ciencia","descripcion":"Un vaso de agua contiene más átomos que vasos de agua existen en todos los océanos de la Tierra, mostrando la escala microscópica de la materia y cómo los elementos básicos se repiten de manera infinita en la naturaleza."},
+{"id":10,"titulo":"Dato Curioso #10","categoria":"Animales","descripcion":"Los tiburones existieron antes que los árboles, hace más de 400 millones de años. Esto refleja su capacidad de adaptación y supervivencia, convirtiéndolos en una de las especies más longevas y exitosas del planeta."},
+{"id":11,"titulo":"Dato Curioso #11","categoria":"Historia","descripcion":"El primer código de barras se escaneó en 1974 en un paquete de chicles, marcando el inicio de la automatización del comercio y revolucionando el control de inventarios y las transacciones comerciales."},
+{"id":12,"titulo":"Dato Curioso #12","categoria":"Ciencia","descripcion":"El corazón humano genera suficiente presión al latir para que la sangre pueda ser expulsada hasta 9 metros de distancia, mostrando la potencia del bombeo y la eficiencia del sistema circulatorio humano."},
+{"id":13,"titulo":"Dato Curioso #13","categoria":"Animales","descripcion":"Los caballitos de mar macho son los que se embarazan y dan a luz, un raro fenómeno en el reino animal que demuestra la diversidad de estrategias reproductivas y cuidado parental."},
+{"id":14,"titulo":"Dato Curioso #14","categoria":"Historia","descripcion":"El papel moneda se inventó en China alrededor del año 700 d.C., facilitando el comercio a larga distancia y reemplazando gradualmente el trueque y las monedas metálicas, sentando las bases de los sistemas económicos modernos."},
+{"id":15,"titulo":"Dato Curioso #15","categoria":"Ciencia","descripcion":"El sol libera más energía en un segundo que toda la humanidad consume en un año, mostrando la inmensa potencia de la energía solar y su potencial como fuente limpia y renovable."},
+{"id":16,"titulo":"Dato Curioso #16","categoria":"Animales","descripcion":"Los pulpos pueden cambiar de color y textura para camuflarse y escapar de depredadores, controlando células especializadas llamadas cromatóforos y mostrando una sofisticada adaptación al medio."},
+{"id":17,"titulo":"Dato Curioso #17","categoria":"Historia","descripcion":"La Gran Muralla China no es visible desde la luna a simple vista, contrariamente a la creencia popular. Este mito demuestra cómo las historias exageradas pueden convertirse en leyendas urbanas a lo largo del tiempo."},
+{"id":18,"titulo":"Dato Curioso #18","categoria":"Ciencia","descripcion":"El agua puede hervir y congelarse al mismo tiempo en un fenómeno llamado 'punto triple', donde coexisten las tres fases: sólido, líquido y gas, evidenciando propiedades físicas únicas de este compuesto."},
+{"id":19,"titulo":"Dato Curioso #19","categoria":"Animales","descripcion":"Las hormigas pueden levantar objetos 50 veces su peso corporal gracias a su relación superficie-volumen y a su estructura muscular, demostrando un gran poder relativo a su tamaño y colaborando en equipo."},
+{"id":20,"titulo":"Dato Curioso #20","categoria":"Historia","descripcion":"En la antigua Roma se utilizaba la orina como detergente para lavar ropa debido a su contenido de amoníaco, mostrando la creatividad y recursos químicos utilizados por civilizaciones antiguas."},
+{"id":21,"titulo":"Dato Curioso #21","categoria":"Ciencia","descripcion":"El cerebro humano contiene aproximadamente 86 mil millones de neuronas, cada una conectada a miles de otras, creando una red compleja que permite la memoria, el aprendizaje y la creatividad."},
+{"id":22,"titulo":"Dato Curioso #22","categoria":"Animales","descripcion":"Los flamencos adquieren su color rosa gracias a los carotenoides de los camarones y algas que consumen, demostrando cómo la dieta influye directamente en la pigmentación de los animales."},
+{"id":23,"titulo":"Dato Curioso #23","categoria":"Historia","descripcion":"La biblioteca de Alejandría contenía cientos de miles de pergaminos y su destrucción representó la pérdida de un conocimiento invaluable del mundo antiguo, subrayando la importancia de preservar la información."},
+{"id":24,"titulo":"Dato Curioso #24","categoria":"Ciencia","descripcion":"La luz viaja a aproximadamente 299.792 kilómetros por segundo, lo que significa que la luz del sol tarda unos 8 minutos y 20 segundos en llegar a la Tierra, mostrando la velocidad increíble de las ondas electromagnéticas."},
+{"id":25,"titulo":"Dato Curioso #25","categoria":"Animales","descripcion":"Los camaleones pueden mover sus ojos de manera independiente, permitiéndoles observar a su alrededor sin mover la cabeza, una ventaja para detectar depredadores y presas en su entorno."},
+{"id":26,"titulo":"Dato Curioso #26","categoria":"Historia","descripcion":"El Coliseo romano podía albergar entre 50.000 y 80.000 espectadores, reflejando avances en ingeniería y arquitectura y la importancia de los espectáculos públicos en la sociedad romana."},
+{"id":27,"titulo":"Dato Curioso #27","categoria":"Ciencia","descripcion":"El océano Atlántico contiene aproximadamente 310 millones de kilómetros cúbicos de agua, lo que representa una parte significativa del agua de la Tierra y tiene un papel crucial en la regulación climática global."},
+{"id":28,"titulo":"Dato Curioso #28","categoria":"Animales","descripcion":"Los murciélagos son los únicos mamíferos capaces de volar activamente y utilizan la ecolocalización para navegar y cazar insectos durante la noche, un sistema de orientación altamente eficiente."},
+{"id":29,"titulo":"Dato Curioso #29","categoria":"Historia","descripcion":"La Torre Eiffel, construida en 1889 para la Exposición Universal en París, fue la estructura más alta del mundo durante 41 años y simboliza la ingeniería avanzada del siglo XIX."},
+{"id":30,"titulo":"Dato Curioso #30","categoria":"Ciencia","descripcion":"Marte tiene el volcán más grande del sistema solar, Olympus Mons, que mide aproximadamente 22 km de altura, casi tres veces la altura del Monte Everest, mostrando la escala de fenómenos geológicos fuera de la Tierra."},
+{"id":31,"titulo":"Dato Curioso #31","categoria":"Animales","descripcion":"Los caballos pueden dormir tanto de pie como acostados, gracias a un sistema de ligamentos especiales en sus patas que les permite relajarse sin caerse, una adaptación evolutiva que les ayuda a escapar de depredadores."},
+{"id":32,"titulo":"Dato Curioso #32","categoria":"Historia","descripcion":"La imprenta de Gutenberg, inventada en el siglo XV, permitió la producción masiva de libros, acelerando la difusión del conocimiento y sentando las bases para la educación moderna y la alfabetización generalizada."},
+{"id":33,"titulo":"Dato Curioso #33","categoria":"Ciencia","descripcion":"El cuerpo humano tiene aproximadamente 37 billones de células, cada una especializada en funciones distintas, formando un sistema altamente organizado y eficiente que mantiene la vida."},
+{"id":34,"titulo":"Dato Curioso #34","categoria":"Animales","descripcion":"Los elefantes tienen una memoria excepcional, capaz de recordar rutas migratorias y fuentes de agua durante décadas, lo que les ayuda a sobrevivir en ambientes cambiantes y a mantener estructuras sociales complejas."},
+{"id":35,"titulo":"Dato Curioso #35","categoria":"Historia","descripcion":"La Revolución Francesa, que comenzó en 1789, transformó radicalmente la estructura política y social de Francia, inspirando movimientos de derechos humanos y democráticos en todo el mundo."},
+{"id":36,"titulo":"Dato Curioso #36","categoria":"Ciencia","descripcion":"Los rayos son descargas eléctricas de gran intensidad que pueden alcanzar temperaturas cinco veces superiores a las de la superficie del sol, demostrando la energía extrema de los fenómenos atmosféricos."},
+{"id":37,"titulo":"Dato Curioso #37","categoria":"Animales","descripcion":"Los delfines poseen un cerebro altamente desarrollado y son capaces de comunicarse entre ellos mediante sonidos complejos y patrones de comportamiento, mostrando inteligencia social avanzada en el reino animal."},
+{"id":38,"titulo":"Dato Curioso #38","categoria":"Historia","descripcion":"El código de Hammurabi, creado en el año 1754 a.C., es uno de los conjuntos de leyes más antiguos y detallados de la historia, estableciendo principios legales que influyeron en civilizaciones posteriores."},
+{"id":39,"titulo":"Dato Curioso #39","categoria":"Ciencia","descripcion":"El oxígeno líquido es de color azul y se comporta de manera diferente al oxígeno gaseoso. Se utiliza en cohetes y experimentos científicos debido a su alta densidad y capacidad de liberar energía al vaporizarse."},
+{"id":40,"titulo":"Dato Curioso #40","categoria":"Animales","descripcion":"Los camellos pueden beber hasta 40 litros de agua en 15 minutos y almacenar grasa en sus jorobas, lo que les permite sobrevivir durante largos periodos en el desierto sin acceso a agua."},
+{"id":41,"titulo":"Dato Curioso #41","categoria":"Historia","descripcion":"El Imperio Mongol, bajo el liderazgo de Gengis Kan, se expandió en el siglo XIII hasta abarcar gran parte de Asia y Europa, construyendo la red de comunicación y comercio más extensa de su época."},
+{"id":42,"titulo":"Dato Curioso #42","categoria":"Ciencia","descripcion":"El ser humano comparte aproximadamente el 98% de su ADN con los chimpancés, lo que evidencia nuestra cercanía evolutiva y la importancia de los estudios comparativos en biología y genética."},
+{"id":43,"titulo":"Dato Curioso #43","categoria":"Animales","descripcion":"Las abejas son esenciales para la polinización y la producción de alimentos, realizando vuelos precisos y comunicándose mediante danzas para transmitir información sobre fuentes de néctar."},
+{"id":44,"titulo":"Dato Curioso #44","categoria":"Historia","descripcion":"La primera mujer en votar fue en Nueva Zelanda en 1893, un hito histórico que marcó el inicio de la participación femenina en la política y la lucha por los derechos civiles de las mujeres."},
+{"id":45,"titulo":"Dato Curioso #45","categoria":"Ciencia","descripcion":"Los volcanes submarinos son responsables de gran parte de la actividad geotérmica de la Tierra y contribuyen a la formación de nuevas islas y estructuras geológicas bajo el agua."},
+{"id":46,"titulo":"Dato Curioso #46","categoria":"Animales","descripcion":"Los lobos se comunican a través de aullidos, gestos corporales y vocalizaciones complejas, manteniendo la cohesión del grupo y coordinando la caza de manera eficiente."},
+{"id":47,"titulo":"Dato Curioso #47","categoria":"Historia","descripcion":"La Revolución Industrial, iniciada en el siglo XVIII, transformó la economía, la producción y la vida urbana, introduciendo maquinaria avanzada y cambiando la estructura social y laboral de Europa."},
+{"id":48,"titulo":"Dato Curioso #48","categoria":"Ciencia","descripcion":"El hielo es menos denso que el agua líquida, lo que hace que flote. Esta propiedad permite que los ecosistemas acuáticos sobrevivan bajo la superficie congelada durante los inviernos."},
+{"id":49,"titulo":"Dato Curioso #49","categoria":"Animales","descripcion":"Los pingüinos emperador pueden sumergirse hasta 500 metros y permanecer bajo el agua más de 20 minutos, utilizando adaptaciones fisiológicas que les permiten conservar oxígeno y soportar la presión extrema."},
+{"id":50,"titulo":"Dato Curioso #50","categoria":"Historia","descripcion":"El Renacimiento europeo, entre los siglos XIV y XVII, fue un periodo de intensa actividad cultural, científica y artística, marcando un resurgimiento del conocimiento y sentando las bases de la modernidad."},
+];
+
+// Función para mostrar tarjetas
+function mostrarTarjetas(contenedor, arrayDatos) {
+    contenedor.innerHTML = '';
+    arrayDatos.forEach(dato => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
             <h3>${dato.titulo}</h3>
-            <p class="categoria">Categoría: ${dato.categoria}</p>
+            <div class="categoria">Categoría: ${dato.categoria}</div>
             <p>${dato.descripcion}</p>
-          `;
-          contenedor.appendChild(div);
-        });
-      } catch (error) {
-        console.error("Error cargando curiosidades:", error);
-      }
-    }
-    cargarCuriosidades();
-  </script>
+        `;
+        contenedor.appendChild(card);
+    });
+}
+
+// Inicio: primeros 6 datos
+const inicioCont = document.getElementById('inicio');
+mostrarTarjetas(inicioCont, datosCuriosos.slice(0,6));
+
+// Categorías
+const cienciaCont = document.getElementById('ciencia');
+const historiaCont = document.getElementById('historia');
+const animalesCont = document.getElementById('animales');
+
+mostrarTarjetas(cienciaCont, datosCuriosos.filter(d => d.categoria==='Ciencia').slice(6));
+mostrarTarjetas(historiaCont, datosCuriosos.filter(d => d.categoria==='Historia'));
+mostrarTarjetas(animalesCont, datosCuriosos.filter(d => d.categoria==='Animales'));
+
+// Búsqueda
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    const filtrados = datosCuriosos.filter(d => 
+        d.titulo.toLowerCase().includes(query) || 
+        d.descripcion.toLowerCase().includes(query) || 
+        d.categoria.toLowerCase().includes(query)
+    );
+    mostrarTarjetas(inicioCont, filtrados.slice(0,6));
+    mostrarTarjetas(cienciaCont, filtrados.filter(d => d.categoria==='Ciencia').slice(6));
+    mostrarTarjetas(historiaCont, filtrados.filter(d => d.categoria==='Historia'));
+    mostrarTarjetas(animalesCont, filtrados.filter(d => d.categoria==='Animales'));
+});
+</script>
+
 </body>
 </html>
