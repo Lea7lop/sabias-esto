@@ -34,9 +34,10 @@
   nav {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
     background-color: #5aaaff;
     padding: 0.6rem 0;
+    flex-wrap: wrap;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
   nav button {
@@ -104,20 +105,12 @@
 <body>
 
 <header>🤯 Sabías Esto</header>
+
 <nav>
   <button onclick="showSection('inicio')">Inicio</button>
   <button onclick="showSection('Ciencia')">Ciencia</button>
   <button onclick="showSection('Historia')">Historia</button>
   <button onclick="showSection('Animales')">Animales</button>
-   margin-left: 15px;
-      padding: 0.5rem 1rem;
-      border-radius: 10px;
-      border: none;
-      background-color: #4a1c6c;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-  ">Modo Oscuro</button>
 </nav>
 
 <div id="search-container">
@@ -142,12 +135,13 @@
 
 <script>
 const curiosidades = [
-  /* Aquí van tus 50 datos curiosos exactamente como los tenías antes */
+  /* Aquí van tus 50 datos curiosos como los que ya tenías */
   {"id":1,"titulo":"La miel eterna","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares, lo que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
   {"id":2,"titulo":"El corazón del camarón","categoria":"Animales","descripcion":"El corazón de un camarón se encuentra en su cabeza debido a la fusión de cabeza y tórax en el cefalotórax, lo que permite que su sistema circulatorio funcione de manera eficiente transportando sangre a todas sus partes, a pesar de su pequeño tamaño."},
   {"id":3,"titulo":"Los tres corazones del pulpo","categoria":"Ciencia","descripcion":"Los pulpos tienen tres corazones y sangre azul. Dos corazones bombean sangre a las branquias mientras que el tercero lo hace al resto del cuerpo. Su sangre contiene hemocianina, rica en cobre, que transporta oxígeno de manera eficiente en agua fría y con poco oxígeno, mostrando una adaptación extraordinaria."},
   {"id":4,"titulo":"Cleopatra y el iPhone","categoria":"Historia","descripcion":"Cleopatra VII vivió más cerca del lanzamiento del iPhone que de la construcción de las pirámides de Giza. Esto ilustra cómo percibimos la historia y la magnitud de los tiempos históricos, mostrando que eventos antiguos pueden parecer más recientes de lo que creemos."},
-{"id":5,"titulo":"Gatos y dulces","categoria":"Animales","descripcion":"Los gatos no pueden saborear lo dulce debido a una mutación en sus receptores del gusto, lo que hace que no sientan atracción por alimentos azucarados y se concentren más en olores y texturas para elegir su alimento, una adaptación que los ha mantenido como excelentes cazadores."},
+  {"id":5,"titulo":"Gatos y dulces","categoria":"Animales","descripcion":"Los gatos no pueden saborear lo dulce debido a una mutación en sus receptores del gusto, lo que hace que no sientan atracción por alimentos azucarados y se concentren más en olores y texturas para elegir su alimento, una adaptación que los ha mantenido como excelentes cazadores."},
+  {"id":5,"titulo":"Gatos y dulces","categoria":"Animales","descripcion":"Los gatos no pueden saborear lo dulce debido a una mutación en sus receptores del gusto, lo que hace que no sientan atracción por alimentos azucarados y se concentren más en olores y texturas para elegir su alimento, una adaptación que los ha mantenido como excelentes cazadores."},
 {"id":6,"titulo":"ADN y plátanos","categoria":"Ciencia","descripcion":"El ADN humano comparte aproximadamente un 60% de similitud con el plátano, evidenciando cómo ciertos genes esenciales se conservan a lo largo de la evolución, mostrando conexiones sorprendentes entre organismos aparentemente muy distintos."},
 {"id":7,"titulo":"Átomos en el agua","categoria":"Ciencia","descripcion":"Un vaso de agua contiene más átomos que vasos de agua existen en todos los océanos de la Tierra, mostrando la escala microscópica de la materia y cómo los elementos básicos se repiten de manera infinita en la naturaleza."},
 {"id":8,"titulo":"Potencia del corazón humano","categoria":"Ciencia","descripcion":"El corazón humano genera suficiente presión al latir para que la sangre pueda ser expulsada hasta 9 metros de distancia, mostrando la potencia del bombeo y la eficiencia del sistema circulatorio humano."},
@@ -212,12 +206,10 @@ function createCard(curiosity) {
 }
 
 function populateSections() {
-  // Inicio: solo los primeros 6
   const inicioGrid = document.getElementById('inicio-grid');
   inicioGrid.innerHTML = '';
   curiosidades.slice(0, 6).forEach(c => inicioGrid.appendChild(createCard(c)));
 
-  // Otras categorías
   const categories = ['Ciencia', 'Historia', 'Animales'];
   categories.forEach(cat => {
     const grid = document.getElementById(`${cat}-grid`);
@@ -237,6 +229,76 @@ function searchCuriosities() {
 // Inicialización
 populateSections();
 showSection('inicio');
+</script>
+
+<!-- SCRIPT MODO OSCURO -->
+<script>
+const botonModoOscuro = document.createElement('button');
+botonModoOscuro.id = 'modoOscuroBtn';
+botonModoOscuro.textContent = 'Modo Oscuro';
+botonModoOscuro.style.cssText = `
+  margin-left: 15px;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #4a1c6c;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+`;
+document.querySelector('nav').appendChild(botonModoOscuro);
+
+let modoOscuro = false;
+
+botonModoOscuro.addEventListener('click', () => {
+  modoOscuro = !modoOscuro;
+
+  if (modoOscuro) {
+    document.body.style.backgroundColor = '#1a001f';
+    document.body.style.color = '#e0d6ff';
+
+    const header = document.querySelector('header');
+    header.style.background = '#2e002e';
+    header.style.color = '#e0d6ff';
+
+    document.querySelectorAll('nav button').forEach(a => a.style.color = '#e0d6ff');
+
+    document.querySelectorAll('.curiosity-card').forEach(dato => {
+      dato.style.backgroundColor = '#2a002a';
+      dato.style.color = '#e0d6ff';
+      dato.style.boxShadow = '0 4px 10px rgba(255,255,255,0.1)';
+    });
+
+    const input = document.getElementById('search');
+    input.style.backgroundColor = '#3a003a';
+    input.style.color = '#e0d6ff';
+    input.style.border = '1px solid #6c4a9e';
+
+    botonModoOscuro.textContent = 'Modo Claro';
+  } else {
+    document.body.style.backgroundColor = '#dff3ff';
+    document.body.style.color = '#333';
+
+    const header = document.querySelector('header');
+    header.style.background = 'linear-gradient(90deg, #4fa3ff, #1c8cff)';
+    header.style.color = 'white';
+
+    document.querySelectorAll('nav button').forEach(a => a.style.color = 'white');
+
+    document.querySelectorAll('.curiosity-card').forEach(dato => {
+      dato.style.backgroundColor = 'white';
+      dato.style.color = '#333';
+      dato.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
+    });
+
+    const input = document.getElementById('search');
+    input.style.backgroundColor = 'white';
+    input.style.color = '#333';
+    input.style.border = '1px solid #bbb';
+
+    botonModoOscuro.textContent = 'Modo Oscuro';
+  }
+});
 </script>
 
 </body>
