@@ -98,6 +98,8 @@ nav button:hover {
 }
 
 /* =================== MEDIA QUERIES =================== */
+
+/* Tablets medianas y móviles grandes */
 @media (max-width: 900px) {
   header {
     font-size: 1.8rem;
@@ -116,6 +118,7 @@ nav button:hover {
   }
 }
 
+/* Móviles pequeños */
 @media (max-width: 600px) {
   header {
     font-size: 1.5rem;
@@ -145,5 +148,30 @@ nav button:hover {
   }
   .curiosity-card p {
     font-size: 0.9rem;
+  }
+}
+
+/* Móviles muy pequeños (<350px) */
+@media (max-width: 350px) {
+  header {
+    font-size: 1.3rem;
+    padding: 0.5rem;
+  }
+  nav button {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.6rem;
+  }
+  #search-container input {
+    font-size: 0.9rem;
+  }
+  .curiosity-card h3 {
+    font-size: 0.95rem;
+  }
+  .curiosity-card p {
+    font-size: 0.85rem;
+  }
+  .curiosities-grid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
   }
 }
