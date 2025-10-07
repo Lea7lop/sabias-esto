@@ -111,7 +111,7 @@
   <button onclick="showSection('Historia')">📜 Historia</button>
   <button onclick="showSection('Animales')">🦁 Animales</button>
   <button onclick="showSection('Tecnologia')">🛰️ Tecnología</button>
-  <button onclick="showSection('Curiosidades')">💡 Curiosidades generales</button>
+  <button onclick="showSection('Curiosidades Generales')">💡 Curiosidades generales</button>
 </nav>
 
 <div id="search-container">
@@ -138,8 +138,8 @@
   <div id="Tecnologia-grid" class="curiosities-grid"></div>
 </div>
 
-<div id="Curiosidades" class="section">
-  <div id="Curiosidades-grid" class="curiosities-grid"></div>
+<div id="Curiosidades Generales" class="section">
+  <div id="Curiosidades Generales-grid" class="curiosities-grid"></div>
 </div>
 
 <script>
@@ -251,7 +251,7 @@ function populateSections() {
   curiosidades.slice(0, 6).forEach(c => inicioGrid.appendChild(createCard(c)));
 
   // Categorías
-  const categories = ['Ciencia', 'Historia', 'Animales', 'Tecnologia', 'Curiosidades'];
+  const categories = ['Ciencia', 'Historia', 'Animales', 'Tecnologia', 'Curiosidades Generales'];
   categories.forEach(cat => {
     const grid = document.getElementById(`${cat}-grid`);
     grid.innerHTML = '';
