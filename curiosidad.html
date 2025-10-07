@@ -4,40 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Categoría - Sabías Esto</title>
+
+  <!-- 🔍 SEO -->
+  <meta name="description" content="Explora datos curiosos por categoría en 🤯 Sabías Esto. Ciencia, historia y animales con información fascinante que te sorprenderá.">
+  <meta name="keywords" content="sabías esto, datos curiosos, curiosidades, ciencia, historia, animales, conocimiento, datos interesantes">
+  <meta name="author" content="Sabías Esto">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="🤯 Sabías Esto - Curiosidades por categoría">
+  <meta property="og:description" content="Descubre datos curiosos sobre ciencia, historia y animales. Aprende algo nuevo cada día.">
+  <meta property="og:image" content="https://sabiasesto.odoo.com/logo.png">
+  <meta property="og:url" content="https://sabiasesto.odoo.com/curiosidad.html">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- 🎨 Estilos visuales -->
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f8ff; /* azul claro */
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #dff3ff;
       margin: 0;
       padding: 0;
+      color: #333;
     }
     header {
-      background: #3399ff;
+      background: linear-gradient(90deg, #4fa3ff, #1c8cff);
       color: white;
       padding: 1rem;
       text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    nav {
+      margin-top: 0.5rem;
     }
     nav a {
       color: white;
       margin: 0 10px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #e0eaff;
     }
     .container {
       max-width: 900px;
       margin: auto;
-      padding: 1rem;
+      padding: 1.5rem;
+    }
+    h2 {
+      text-align: center;
+      color: #0077cc;
+      margin-bottom: 1rem;
     }
     .dato {
       background: white;
-      border-radius: 12px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .dato:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     }
     .categoria {
       font-size: 0.9rem;
-      color: #3399ff;
+      color: #4a91ff;
       font-weight: bold;
     }
   </style>
@@ -52,6 +88,7 @@
       <a href="curiosidad.html?categoria=Animales">Animales</a>
     </nav>
   </header>
+
   <div class="container">
     <h2 id="tituloCategoria"></h2>
     <div id="curiosidades"></div>
@@ -72,7 +109,6 @@
         const datos = await res.json();
 
         const filtrados = datos.filter(d => d.categoria === categoria);
-
         const contenedor = document.getElementById("curiosidades");
         contenedor.innerHTML = "";
 
