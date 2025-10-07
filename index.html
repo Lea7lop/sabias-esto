@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="🤯 Sabías Esto - Datos curiosos sobre ciencia, historia, animales y más. Aprende algo nuevo cada día con información sorprendente y entretenida.">
-<meta name="keywords" content="sabías esto, datos curiosos, curiosidades, ciencia, historia, animales, conocimiento, aprender, datos interesantes">
+<meta name="description" content="🤯 Sabías Esto - Datos curiosos sobre ciencia, historia, animales, tecnología y más. Aprende algo nuevo cada día con información sorprendente y entretenida.">
+<meta name="keywords" content="sabías esto, datos curiosos, curiosidades, ciencia, historia, animales, tecnología, conocimiento, aprender, datos interesantes">
 <meta name="author" content="Sabías Esto">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="🤯 Sabías Esto - Datos curiosos que te sorprenderán">
-<meta property="og:description" content="Descubre datos curiosos sobre ciencia, historia, animales y mucho más. ¡Aprende y sorpréndete cada día!">
+<meta property="og:description" content="Descubre datos curiosos sobre ciencia, historia, animales, tecnología y mucho más. ¡Aprende y sorpréndete cada día!">
 <meta property="og:image" content="https://sabiasesto.odoo.com/logo.png">
 <meta property="og:url" content="https://sabiasesto.odoo.com/">
 <meta name="twitter:card" content="summary_large_image">
@@ -104,7 +104,7 @@
 <body>
 
 <header>🤯 Sabías Esto</header>
-<nav id="nav-bar">
+
 <nav id="nav-bar">
   <button onclick="showSection('inicio')">🏠 Inicio</button>
   <button onclick="showSection('Ciencia')">🔬 Ciencia</button>
@@ -134,10 +134,18 @@
   <div id="Animales-grid" class="curiosities-grid"></div>
 </div>
 
+<div id="Tecnologia" class="section">
+  <div id="Tecnologia-grid" class="curiosities-grid"></div>
+</div>
+
+<div id="Curiosidades" class="section">
+  <div id="Curiosidades-grid" class="curiosities-grid"></div>
+</div>
+
 <script>
 // Datos curiosos (50)
 const curiosidades = [
-{"id":1,"titulo":"La miel eterna","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares, lo que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
+  {"id":1,"titulo":"La miel eterna","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares, lo que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
   {"id":2,"titulo":"El corazón del camarón","categoria":"Animales","descripcion":"El corazón de un camarón se encuentra en su cabeza debido a la fusión de cabeza y tórax en el cefalotórax, lo que permite que su sistema circulatorio funcione de manera eficiente transportando sangre a todas sus partes, a pesar de su pequeño tamaño."},
   {"id":3,"titulo":"Los tres corazones del pulpo","categoria":"Ciencia","descripcion":"Los pulpos tienen tres corazones y sangre azul. Dos corazones bombean sangre a las branquias mientras que el tercero lo hace al resto del cuerpo. Su sangre contiene hemocianina, rica en cobre, que transporta oxígeno de manera eficiente en agua fría y con poco oxígeno, mostrando una adaptación extraordinaria."},
   {"id":4,"titulo":"Cleopatra y el iPhone","categoria":"Historia","descripcion":"Cleopatra VII vivió más cerca del lanzamiento del iPhone que de la construcción de las pirámides de Giza. Esto ilustra cómo percibimos la historia y la magnitud de los tiempos históricos, mostrando que eventos antiguos pueden parecer más recientes de lo que creemos."},
@@ -188,6 +196,7 @@ const curiosidades = [
 {"id":49,"titulo":"Revolución Industrial","categoria":"Historia","descripcion":"La Revolución Industrial, iniciada en el siglo XVIII, transformó la economía, la producción y la vida urbana, introduciendo maquinaria avanzada y cambiando la estructura social y laboral de Europa."},
 {"id":50,"titulo":"Renacimiento europeo","categoria":"Historia","descripcion":"El Renacimiento europeo, entre los siglos XIV y XVII, fue un periodo de intensa actividad cultural, científica y artística, marcando un resurgimiento del conocimiento y sentando las bases de la modernidad."}
 ];
+
 // Funciones principales
 function showSection(section) {
   document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
@@ -211,8 +220,8 @@ function populateSections() {
   inicioGrid.innerHTML = '';
   curiosidades.slice(0, 6).forEach(c => inicioGrid.appendChild(createCard(c)));
 
-  // Otras categorías
-  const categories = ['Ciencia', 'Historia', 'Animales'];
+  // Categorías
+  const categories = ['Ciencia', 'Historia', 'Animales', 'Tecnologia', 'Curiosidades'];
   categories.forEach(cat => {
     const grid = document.getElementById(`${cat}-grid`);
     grid.innerHTML = '';
@@ -263,46 +272,34 @@ botonModoOscuro.addEventListener('click', () => {
   if (modoOscuro) {
     body.style.backgroundColor = '#1a001f';
     body.style.color = '#e0d6ff';
-
     header.style.background = '#2e002e';
     header.style.color = '#e0d6ff';
-
     nav.style.backgroundColor = '#2a002a';
-
     navButtons.forEach(btn => btn.style.color = '#e0d6ff');
-
     cards.forEach(card => {
       card.style.backgroundColor = '#2a002a';
       card.style.color = '#e0d6ff';
       card.style.boxShadow = '0 4px 10px rgba(255,255,255,0.1)';
     });
-
     input.style.backgroundColor = '#3a003a';
     input.style.color = '#e0d6ff';
     input.style.border = '1px solid #6c4a9e';
-
     botonModoOscuro.textContent = 'Modo Claro';
   } else {
     body.style.backgroundColor = '#dff3ff';
     body.style.color = '#333';
-
     header.style.background = 'linear-gradient(90deg, #4fa3ff, #1c8cff)';
     header.style.color = 'white';
-
     nav.style.backgroundColor = '#5aaaff';
-
     navButtons.forEach(btn => btn.style.color = 'white');
-
     cards.forEach(card => {
       card.style.backgroundColor = 'white';
       card.style.color = '#333';
       card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
     });
-
     input.style.backgroundColor = 'white';
     input.style.color = '#333';
     input.style.border = '1px solid #bbb';
-
     botonModoOscuro.textContent = 'Modo Oscuro';
   }
 });
