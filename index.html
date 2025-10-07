@@ -16,7 +16,7 @@
 <style>
   body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #dff3ff; /* azul más suave */
+    background-color: #dff3ff;
     margin: 0;
     padding: 0;
     color: #333;
@@ -37,7 +37,6 @@
     gap: 1rem;
     background-color: #5aaaff;
     padding: 0.6rem 0;
-    flex-wrap: wrap;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
   nav button {
@@ -105,8 +104,7 @@
 <body>
 
 <header>🤯 Sabías Esto</header>
-
-<nav>
+<nav id="nav-bar">
   <button onclick="showSection('inicio')">Inicio</button>
   <button onclick="showSection('Ciencia')">Ciencia</button>
   <button onclick="showSection('Historia')">Historia</button>
@@ -134,9 +132,9 @@
 </div>
 
 <script>
-const curiosidades = [
-  /* Aquí van tus 50 datos curiosos como los que ya tenías */
-  {"id":1,"titulo":"La miel eterna","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares, lo que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
+// Datos curiosos (50)
+const curiosidades = [/* Tus 50 datos curiosos van aquí, tal cual los tenías antes */];
+{"id":1,"titulo":"La miel eterna","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares, lo que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
   {"id":2,"titulo":"El corazón del camarón","categoria":"Animales","descripcion":"El corazón de un camarón se encuentra en su cabeza debido a la fusión de cabeza y tórax en el cefalotórax, lo que permite que su sistema circulatorio funcione de manera eficiente transportando sangre a todas sus partes, a pesar de su pequeño tamaño."},
   {"id":3,"titulo":"Los tres corazones del pulpo","categoria":"Ciencia","descripcion":"Los pulpos tienen tres corazones y sangre azul. Dos corazones bombean sangre a las branquias mientras que el tercero lo hace al resto del cuerpo. Su sangre contiene hemocianina, rica en cobre, que transporta oxígeno de manera eficiente en agua fría y con poco oxígeno, mostrando una adaptación extraordinaria."},
   {"id":4,"titulo":"Cleopatra y el iPhone","categoria":"Historia","descripcion":"Cleopatra VII vivió más cerca del lanzamiento del iPhone que de la construcción de las pirámides de Giza. Esto ilustra cómo percibimos la historia y la magnitud de los tiempos históricos, mostrando que eventos antiguos pueden parecer más recientes de lo que creemos."},
@@ -188,7 +186,7 @@ const curiosidades = [
 {"id":49,"titulo":"Revolución Industrial","categoria":"Historia","descripcion":"La Revolución Industrial, iniciada en el siglo XVIII, transformó la economía, la producción y la vida urbana, introduciendo maquinaria avanzada y cambiando la estructura social y laboral de Europa."},
 {"id":50,"titulo":"Renacimiento europeo","categoria":"Historia","descripcion":"El Renacimiento europeo, entre los siglos XIV y XVII, fue un periodo de intensa actividad cultural, científica y artística, marcando un resurgimiento del conocimiento y sentando las bases de la modernidad."}
 ];
-
+// Funciones principales
 function showSection(section) {
   document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
   document.getElementById(section).style.display = 'block';
@@ -206,10 +204,12 @@ function createCard(curiosity) {
 }
 
 function populateSections() {
+  // Inicio: solo los primeros 6
   const inicioGrid = document.getElementById('inicio-grid');
   inicioGrid.innerHTML = '';
   curiosidades.slice(0, 6).forEach(c => inicioGrid.appendChild(createCard(c)));
 
+  // Otras categorías
   const categories = ['Ciencia', 'Historia', 'Animales'];
   categories.forEach(cat => {
     const grid = document.getElementById(`${cat}-grid`);
@@ -229,10 +229,8 @@ function searchCuriosities() {
 // Inicialización
 populateSections();
 showSection('inicio');
-</script>
 
-<!-- SCRIPT MODO OSCURO -->
-<script>
+// --- BOTÓN MODO OSCURO ---
 const botonModoOscuro = document.createElement('button');
 botonModoOscuro.id = 'modoOscuroBtn';
 botonModoOscuro.textContent = 'Modo Oscuro';
@@ -253,45 +251,52 @@ let modoOscuro = false;
 botonModoOscuro.addEventListener('click', () => {
   modoOscuro = !modoOscuro;
 
-  if (modoOscuro) {
-    document.body.style.backgroundColor = '#1a001f';
-    document.body.style.color = '#e0d6ff';
+  const body = document.body;
+  const header = document.querySelector('header');
+  const nav = document.querySelector('nav');
+  const cards = document.querySelectorAll('.curiosity-card');
+  const navButtons = document.querySelectorAll('nav button');
+  const input = document.getElementById('search');
 
-    const header = document.querySelector('header');
+  if (modoOscuro) {
+    body.style.backgroundColor = '#1a001f';
+    body.style.color = '#e0d6ff';
+
     header.style.background = '#2e002e';
     header.style.color = '#e0d6ff';
 
-    document.querySelectorAll('nav button').forEach(a => a.style.color = '#e0d6ff');
+    nav.style.backgroundColor = '#2a002a';
 
-    document.querySelectorAll('.curiosity-card').forEach(dato => {
-      dato.style.backgroundColor = '#2a002a';
-      dato.style.color = '#e0d6ff';
-      dato.style.boxShadow = '0 4px 10px rgba(255,255,255,0.1)';
+    navButtons.forEach(btn => btn.style.color = '#e0d6ff');
+
+    cards.forEach(card => {
+      card.style.backgroundColor = '#2a002a';
+      card.style.color = '#e0d6ff';
+      card.style.boxShadow = '0 4px 10px rgba(255,255,255,0.1)';
     });
 
-    const input = document.getElementById('search');
     input.style.backgroundColor = '#3a003a';
     input.style.color = '#e0d6ff';
     input.style.border = '1px solid #6c4a9e';
 
     botonModoOscuro.textContent = 'Modo Claro';
   } else {
-    document.body.style.backgroundColor = '#dff3ff';
-    document.body.style.color = '#333';
+    body.style.backgroundColor = '#dff3ff';
+    body.style.color = '#333';
 
-    const header = document.querySelector('header');
     header.style.background = 'linear-gradient(90deg, #4fa3ff, #1c8cff)';
     header.style.color = 'white';
 
-    document.querySelectorAll('nav button').forEach(a => a.style.color = 'white');
+    nav.style.backgroundColor = '#5aaaff';
 
-    document.querySelectorAll('.curiosity-card').forEach(dato => {
-      dato.style.backgroundColor = 'white';
-      dato.style.color = '#333';
-      dato.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
+    navButtons.forEach(btn => btn.style.color = 'white');
+
+    cards.forEach(card => {
+      card.style.backgroundColor = 'white';
+      card.style.color = '#333';
+      card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
     });
 
-    const input = document.getElementById('search');
     input.style.backgroundColor = 'white';
     input.style.color = '#333';
     input.style.border = '1px solid #bbb';
