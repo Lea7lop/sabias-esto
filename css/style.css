@@ -175,3 +175,12 @@ nav button:hover {
     gap: 0.6rem;
   }
 }
+
+/* =================== FONDO CON IMAGEN =================== */
+body {
+  background-image: url("ChatGPT Image 9 oct 2025, 12_35_50 a.m..png"); /* Nombre del archivo */
+  background-size: cover;        /* La imagen cubre toda la pantalla */
+  background-repeat: no-repeat;  /* No se repite */
+  background-attachment: fixed;  /* Se mantiene fija al hacer scroll */
+  background-position: center;   /* Centrada */
+}
