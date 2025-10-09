@@ -13,16 +13,19 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🤯 Sabías Esto</title>
+
 <style>
-/* =================== ESTILOS BASE =================== */
+/* ================== ESTILOS GENERALES ================== */
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   background-color: #dff3ff;
   margin: 0;
   padding: 0;
   color: #333;
+  transition: background 0.3s, color 0.3s;
 }
 
+/* Header */
 header {
   background: linear-gradient(90deg, #4fa3ff, #1c8cff);
   padding: 1rem;
@@ -34,6 +37,7 @@ header {
   box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
 
+/* Navbar */
 nav {
   display: flex;
   justify-content: center;
@@ -61,17 +65,13 @@ nav button:hover {
   transform: translateY(-2px);
 }
 
-/* Botón activo */
-nav button.active {
-  background-color: #1c6eff;
-  border-radius: 8px;
-  transform: translateY(-2px);
-}
-
+/* Search */
 #search-container {
   display: flex;
   justify-content: center;
   margin: 1.5rem 0;
+  position: relative;
+  z-index: 2; /* para que quede encima del fondo */
 }
 
 #search-container input {
@@ -90,37 +90,17 @@ nav button.active {
   box-shadow: 0 0 8px rgba(0,150,255,0.3);
 }
 
-/* Fondo de Inicio con imagen de Galileo SOLO en inicio */
-#inicio {
-  display: block;
-  background-image: url("fondo-galileo.png.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  padding: 2rem 1rem;
-  border-radius: 0 0 20px 20px;
-  position: relative;
-}
-#inicio::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(to bottom, rgba(223,243,255,0) 0%, #dff3ff 100%);
-  pointer-events: none;
-}
-
+/* Sections */
 .section {
   display: none;
   padding: 1rem;
   max-width: 1200px;
   margin: auto;
-  background: none; /* Quitamos fondo para otras secciones */
+  position: relative;
+  z-index: 2;
 }
 
+/* Grid de curiosidades */
 .curiosities-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -145,37 +125,89 @@ nav button.active {
   color: #0077cc;
 }
 
-/* =================== MEDIA QUERIES =================== */
+.curiosity-card p.categoria {
+  font-weight:bold;
+  color:#4a91ff;
+  margin-top:0.2rem;
+}
+
+/* ================== FONDO GALILEO ================== */
+#inicio::before {
+  content: "";
+  position: fixed;
+  top: 112px; /* header + nav aprox */
+  left: 0;
+  width: 100%;
+  height: calc(100% - 112px);
+  background-image: url("fondo-galileo.png.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.5s ease;
+}
+
+/* ================== MODO OSCURO ================== */
+body.dark-mode {
+  color: #eee;
+  background: linear-gradient(135deg, #3a0b4f, #6b0a5f);
+}
+
+body.dark-mode header {
+  background: linear-gradient(90deg, #4f0b4f, #6b0a5f);
+}
+
+body.dark-mode nav {
+  background-color: #4f0b4f;
+}
+
+body.dark-mode .curiosity-card {
+  background-color: #2a1b2f;
+  color: #eee;
+}
+
+body.dark-mode .curiosity-card h3 {
+  color: #ffaadf;
+}
+
+body.dark-mode .curiosity-card p.categoria {
+  color: #ff77aa;
+}
+
+/* ================== MEDIA QUERIES ================== */
 @media (max-width: 900px) {
   header { font-size: 1.8rem; padding: 0.8rem; }
   nav button { font-size: 0.95rem; padding: 0.5rem 0.8rem; }
   #search-container input { width: 90%; }
-  .curiosities-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .curiosities-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;}
 }
 
 @media (max-width: 600px) {
   header { font-size: 1.5rem; padding: 0.6rem; }
-  nav { flex-direction: column; align-items: center; gap: 0.5rem; }
-  nav button { width: 90%; text-align: center; padding: 0.5rem 0; font-size: 0.95rem; }
-  #search-container input { width: 95%; font-size: 0.95rem; }
-  .curiosities-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; }
-  .curiosity-card h3 { font-size: 1rem; }
-  .curiosity-card p { font-size: 0.9rem; }
+  nav { flex-direction: column; align-items: center; gap: 0.5rem;}
+  nav button { width: 90%; text-align: center; padding:0.5rem 0; font-size:0.95rem;}
+  #search-container input { width: 95%; font-size:0.95rem;}
+  .curiosities-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:0.8rem; }
+  .curiosity-card h3 { font-size:1rem; }
+  .curiosity-card p { font-size:0.9rem; }
 }
 
 @media (max-width: 350px) {
-  header { font-size: 1.3rem; padding: 0.5rem; }
-  nav button { font-size: 0.85rem; padding: 0.4rem 0.6rem; }
-  #search-container input { font-size: 0.9rem; }
-  .curiosity-card h3 { font-size: 0.95rem; }
-  .curiosity-card p { font-size: 0.85rem; }
-  .curiosities-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+  header { font-size:1.3rem; padding:0.5rem;}
+  nav button { font-size:0.85rem; padding:0.4rem 0.6rem;}
+  #search-container input { font-size:0.9rem;}
+  .curiosity-card h3 { font-size:0.95rem;}
+  .curiosity-card p { font-size:0.85rem;}
+  .curiosities-grid { grid-template-columns:1fr; gap:0.6rem;}
 }
 </style>
 </head>
+
 <body>
 
-<header>🤯 Sabías Esto</header>
+<header>🤯 Sabías Esto <button onclick="toggleDarkMode()" style="float:right; margin-right:20px; padding:5px 10px; font-size:0.8rem;">🌙</button></header>
 
 <nav id="nav-bar">
   <button onclick="showSection('inicio')">🏠 Inicio</button>
@@ -190,29 +222,35 @@ nav button.active {
   <input type="text" id="search" placeholder="🔍 Buscar dato curioso..." onkeyup="searchCuriosities()">
 </div>
 
+<!-- SECCIONES -->
 <div id="inicio" class="section">
   <div id="inicio-grid" class="curiosities-grid"></div>
 </div>
+
 <div id="Ciencia" class="section">
   <div id="Ciencia-grid" class="curiosities-grid"></div>
 </div>
+
 <div id="Historia" class="section">
   <div id="Historia-grid" class="curiosities-grid"></div>
 </div>
+
 <div id="Animales" class="section">
   <div id="Animales-grid" class="curiosities-grid"></div>
 </div>
+
 <div id="Tecnologia" class="section">
   <div id="Tecnologia-grid" class="curiosities-grid"></div>
 </div>
+
 <div id="Curiosidades Generales" class="section">
   <div id="Curiosidades Generales-grid" class="curiosities-grid"></div>
 </div>
 
 <script>
-// -------------------- DATOS CURIOSOS --------------------
+// ------------------ DATOS CURIOSOS ------------------
 const curiosidades = [
-  {"id":1,"titulo":"La miel eterna","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares, lo que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
+ {"id":1,"titulo":"La miel eterna","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares, lo que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
   {"id":2,"titulo":"El corazón del camarón","categoria":"Animales","descripcion":"El corazón de un camarón se encuentra en su cabeza debido a la fusión de cabeza y tórax en el cefalotórax, lo que permite que su sistema circulatorio funcione de manera eficiente transportando sangre a todas sus partes, a pesar de su pequeño tamaño."},
   {"id":3,"titulo":"Los tres corazones del pulpo","categoria":"Ciencia","descripcion":"Los pulpos tienen tres corazones y sangre azul. Dos corazones bombean sangre a las branquias mientras que el tercero lo hace al resto del cuerpo. Su sangre contiene hemocianina, rica en cobre, que transporta oxígeno de manera eficiente en agua fría y con poco oxígeno, mostrando una adaptación extraordinaria."},
   {"id":4,"titulo":"Cleopatra y el iPhone","categoria":"Historia","descripcion":"Cleopatra VII vivió más cerca del lanzamiento del iPhone que de la construcción de las pirámides de Giza. Esto ilustra cómo percibimos la historia y la magnitud de los tiempos históricos, mostrando que eventos antiguos pueden parecer más recientes de lo que creemos."},
@@ -294,13 +332,18 @@ const curiosidades = [
 {"id":80,"titulo":"El tamaño de los océanos","categoria":"Curiosidades Generales","descripcion":"Los océanos contienen el 97% del agua de la Tierra, pero gran parte sigue inexplorada, mostrando la inmensidad y los misterios que todavía guarda nuestro planeta."}
 ];
 
-// -------------------- FUNCIONES --------------------
+// ------------------ FUNCIONES ------------------
+function showSection(section) {
+  document.querySelectorAll('.section').forEach(sec => sec.style.display='none');
+  document.getElementById(section).style.display='block';
+}
+
 function createCard(curiosity) {
   const card = document.createElement('div');
   card.className = 'curiosity-card';
   card.innerHTML = `
     <h3>${curiosity.titulo}</h3>
-    <p style="font-weight:bold; color:#4a91ff; margin-top:0.2rem;">${curiosity.categoria}</p>
+    <p class="categoria">${curiosity.categoria}</p>
     <p>${curiosity.descripcion}</p>
   `;
   return card;
@@ -309,66 +352,29 @@ function createCard(curiosity) {
 function populateSections() {
   const inicioGrid = document.getElementById('inicio-grid');
   inicioGrid.innerHTML = '';
-  curiosidades.slice(0,6).forEach(c=>inicioGrid.appendChild(createCard(c)));
+  curiosidades.slice(0,6).forEach(c => inicioGrid.appendChild(createCard(c)));
 
   const categories = ['Ciencia','Historia','Animales','Tecnologia','Curiosidades Generales'];
-  categories.forEach(cat=>{
+  categories.forEach(cat => {
     const grid = document.getElementById(`${cat}-grid`);
     grid.innerHTML = '';
-    curiosidades.filter(c=>c.categoria===cat).forEach(c=>grid.appendChild(createCard(c)));
+    curiosidades.filter(c => c.categoria === cat).forEach(c => grid.appendChild(createCard(c)));
   });
-}
-
-function showSection(section){
-  document.querySelectorAll('.section').forEach(s=>s.style.display='none');
-  document.getElementById(section).style.display='block';
-
-  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
-  const btn = Array.from(document.querySelectorAll('nav button')).find(b=>b.textContent.includes(section));
-  if(btn) btn.classList.add('active');
 }
 
 function searchCuriosities() {
   const query = document.getElementById('search').value.toLowerCase();
-  document.querySelectorAll('.curiosity-card').forEach(card=>{
-    const text = card.textContent.toLowerCase();
+  document.querySelectorAll('.curiosity-card').forEach(card => {
+    const text = card.innerText.toLowerCase();
     card.style.display = text.includes(query) ? 'block' : 'none';
   });
 }
 
-// -------------------- MODO OSCURO --------------------
-const botonModoOscuro = document.createElement('button');
-botonModoOscuro.id = 'modoOscuroBtn';
-botonModoOscuro.textContent = 'Modo Oscuro';
-botonModoOscuro.style.cssText = `
-  margin-left: 15px;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  border: none;
-  background-color: #333333;  /* TU COLOR ORIGINAL DE MODO OSCURO */
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-`;
-document.querySelector('nav').appendChild(botonModoOscuro);
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+}
 
-let modoOscuro = false;
-botonModoOscuro.addEventListener('click',()=>{
-  modoOscuro = !modoOscuro;
-  if(modoOscuro){
-    document.body.style.backgroundColor = '#121212';
-    document.body.style.color = '#eee';
-    document.querySelectorAll('.curiosity-card').forEach(c=>c.style.backgroundColor='#222222');
-    botonModoOscuro.textContent = 'Modo Claro';
-  } else {
-    document.body.style.backgroundColor = '#dff3ff';
-    document.body.style.color = '#333';
-    document.querySelectorAll('.curiosity-card').forEach(c=>c.style.backgroundColor='white');
-    botonModoOscuro.textContent = 'Modo Oscuro';
-  }
-});
-
-// -------------------- INICIALIZACIÓN --------------------
+// ------------------ INICIALIZACIÓN ------------------
 populateSections();
 showSection('inicio');
 </script>
