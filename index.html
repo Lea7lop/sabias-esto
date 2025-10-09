@@ -2,30 +2,21 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="🤯 Sabías Esto - Datos curiosos sobre ciencia, historia, animales, tecnología y más. Aprende algo nuevo cada día con información sorprendente y entretenida.">
-<meta name="keywords" content="sabías esto, datos curiosos, curiosidades, ciencia, historia, animales, tecnología, conocimiento, aprender, datos interesantes">
-<meta name="author" content="Sabías Esto">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="🤯 Sabías Esto - Datos curiosos que te sorprenderán">
-<meta property="og:description" content="Descubre datos curiosos sobre ciencia, historia, animales, tecnología y mucho más. ¡Aprende y sorpréndete cada día!">
-<meta property="og:image" content="https://sabiasesto.odoo.com/logo.png">
-<meta property="og:url" content="https://sabiasesto.odoo.com/">
-<meta name="twitter:card" content="summary_large_image">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🤯 Sabías Esto</title>
 <style>
 /* =================== BASE =================== */
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background-color: #dff3ff;
   margin: 0;
   padding: 0;
+  background-color: #dff3ff;
   color: #333;
 }
 
 /* ===== HEADER TRANSPARENTE ===== */
 header {
-  background: rgba(79,163,255,0.85); /* semi-transparente */
+  background: rgba(79,163,255,0.85);
   padding: 1rem;
   text-align: center;
   color: white;
@@ -126,25 +117,17 @@ nav button:hover {
   color: #0077cc;
 }
 
-/* =================== FONDO GALILEO =================== */
-#inicio::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+/* ===== FONDO GALILEO SOLO DETRÁS DE DATOS ===== */
+.fondo-galileo {
   background-image: url("fondo-galileo.png.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  filter: brightness(0.45) blur(1.2px);
-  z-index: 0;
-  pointer-events: none;
-  transition: filter 0.5s ease, opacity 0.5s ease;
+  filter: brightness(0.45);
+  padding: 2rem 0;
 }
 
-/* =================== BOTON MODO OSCURO PROFESIONAL =================== */
+/* ===== BOTON MODO OSCURO PROFESIONAL ===== */
 #modoOscuroBtn {
   margin-left: 15px;
   padding: 0.5rem 1rem;
@@ -164,7 +147,6 @@ nav button:hover {
 }
 
 /* =================== MEDIA QUERIES =================== */
-/* Móviles y tablets adaptativos */
 @media (max-width: 900px) {
   header { font-size: 1.8rem; padding: 0.8rem; }
   nav button { font-size: 0.95rem; padding: 0.5rem 0.8rem; }
@@ -196,20 +178,22 @@ nav button:hover {
 
 <header>🤯 Sabías Esto</header>
 
-<nav id="nav-bar">
+<nav>
   <button onclick="showSection('inicio')">🏠 Inicio</button>
   <button onclick="showSection('Ciencia')">🔬 Ciencia</button>
   <button onclick="showSection('Historia')">📜 Historia</button>
   <button onclick="showSection('Animales')">🦁 Animales</button>
   <button onclick="showSection('Tecnologia')">🛰️ Tecnología</button>
   <button onclick="showSection('Curiosidades Generales')">💡 Curiosidades generales</button>
+  <button id="modoOscuroBtn">🌙 Modo Oscuro</button>
 </nav>
 
 <div id="search-container">
   <input type="text" id="search" placeholder="🔍 Buscar dato curioso..." onkeyup="searchCuriosities()">
 </div>
 
-<div id="inicio" class="section">
+<!-- INICIO CON FONDO GALILEO -->
+<div id="inicio" class="section fondo-galileo">
   <div id="inicio-grid" class="curiosities-grid"></div>
 </div>
 
@@ -236,7 +220,7 @@ nav button:hover {
 <script>
 // =================== DATOS ===================
 const curiosidades = [
-  {"id":1,"titulo":"La miel eterna","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares, lo que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
+   {"id":1,"titulo":"La miel eterna","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares, lo que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
   {"id":2,"titulo":"El corazón del camarón","categoria":"Animales","descripcion":"El corazón de un camarón se encuentra en su cabeza debido a la fusión de cabeza y tórax en el cefalotórax, lo que permite que su sistema circulatorio funcione de manera eficiente transportando sangre a todas sus partes, a pesar de su pequeño tamaño."},
   {"id":3,"titulo":"Los tres corazones del pulpo","categoria":"Ciencia","descripcion":"Los pulpos tienen tres corazones y sangre azul. Dos corazones bombean sangre a las branquias mientras que el tercero lo hace al resto del cuerpo. Su sangre contiene hemocianina, rica en cobre, que transporta oxígeno de manera eficiente en agua fría y con poco oxígeno, mostrando una adaptación extraordinaria."},
   {"id":4,"titulo":"Cleopatra y el iPhone","categoria":"Historia","descripcion":"Cleopatra VII vivió más cerca del lanzamiento del iPhone que de la construcción de las pirámides de Giza. Esto ilustra cómo percibimos la historia y la magnitud de los tiempos históricos, mostrando que eventos antiguos pueden parecer más recientes de lo que creemos."},
@@ -343,22 +327,21 @@ function searchCuriosities() {
 
 // =================== MODO OSCURO ===================
 let darkMode = false;
-const btn = document.createElement('button');
-btn.id = 'modoOscuroBtn';
-btn.innerText = '🌙 Modo Oscuro';
-btn.onclick = () => {
+document.getElementById('modoOscuroBtn').onclick = () => {
   darkMode = !darkMode;
+  const btn = document.getElementById('modoOscuroBtn');
   if(darkMode) {
     document.body.style.background = 'linear-gradient(135deg, #3a003a, #800040)';
     document.body.style.color = 'white';
+    document.querySelectorAll('.curiosity-card').forEach(c => c.style.backgroundColor = '#330033');
     btn.innerText = '☀️ Modo Claro';
   } else {
     document.body.style.background = '#dff3ff';
     document.body.style.color = '#333';
+    document.querySelectorAll('.curiosity-card').forEach(c => c.style.backgroundColor = 'white');
     btn.innerText = '🌙 Modo Oscuro';
   }
 };
-document.querySelector('header').appendChild(btn);
 
 // =================== INICIALIZACION ===================
 showSection('inicio');
