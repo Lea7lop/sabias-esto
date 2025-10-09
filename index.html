@@ -14,7 +14,7 @@ body {
   color: #333;
 }
 
-/* ===== HEADER TRANSPARENTE ===== */
+/* ===== HEADER ===== */
 header {
   background: rgba(79,163,255,0.85);
   padding: 1rem;
@@ -39,6 +39,7 @@ nav {
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   position: relative;
   z-index: 10;
+  transition: background 0.3s ease;
 }
 
 nav button {
@@ -86,7 +87,7 @@ nav button:hover {
 /* ===== SECCIONES ===== */
 .section {
   display: none;
-  padding: 1rem;
+  padding: 2rem 1rem;
   max-width: 1200px;
   margin: auto;
   position: relative;
@@ -104,7 +105,7 @@ nav button:hover {
   padding: 1rem 1.2rem;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, color 0.3s;
 }
 
 .curiosity-card:hover {
@@ -117,14 +118,21 @@ nav button:hover {
   color: #0077cc;
 }
 
+.curiosity-card p {
+  margin: 0.5rem 0 0 0;
+}
+
 /* ===== FONDO GALILEO SOLO DETRÁS DE DATOS ===== */
 .fondo-galileo {
   background-image: url("fondo-galileo.png.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  filter: brightness(0.45);
   padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 /* ===== BOTON MODO OSCURO PROFESIONAL ===== */
@@ -144,6 +152,25 @@ nav button:hover {
 #modoOscuroBtn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+/* ===== MODO OSCURO ===== */
+body.dark-mode {
+  background: linear-gradient(135deg, #3a003a, #800040);
+  color: white;
+}
+
+body.dark-mode nav {
+  background-color: #330033;
+}
+
+body.dark-mode .curiosity-card {
+  background-color: #330033;
+  color: white;
+}
+
+body.dark-mode #modoOscuroBtn {
+  background: linear-gradient(135deg, #800040, #3a003a);
 }
 
 /* =================== MEDIA QUERIES =================== */
@@ -220,7 +247,7 @@ nav button:hover {
 <script>
 // =================== DATOS ===================
 const curiosidades = [
-   {"id":1,"titulo":"La miel eterna","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares, lo que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
+ {"id":1,"titulo":"La miel eterna","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares, lo que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
   {"id":2,"titulo":"El corazón del camarón","categoria":"Animales","descripcion":"El corazón de un camarón se encuentra en su cabeza debido a la fusión de cabeza y tórax en el cefalotórax, lo que permite que su sistema circulatorio funcione de manera eficiente transportando sangre a todas sus partes, a pesar de su pequeño tamaño."},
   {"id":3,"titulo":"Los tres corazones del pulpo","categoria":"Ciencia","descripcion":"Los pulpos tienen tres corazones y sangre azul. Dos corazones bombean sangre a las branquias mientras que el tercero lo hace al resto del cuerpo. Su sangre contiene hemocianina, rica en cobre, que transporta oxígeno de manera eficiente en agua fría y con poco oxígeno, mostrando una adaptación extraordinaria."},
   {"id":4,"titulo":"Cleopatra y el iPhone","categoria":"Historia","descripcion":"Cleopatra VII vivió más cerca del lanzamiento del iPhone que de la construcción de las pirámides de Giza. Esto ilustra cómo percibimos la historia y la magnitud de los tiempos históricos, mostrando que eventos antiguos pueden parecer más recientes de lo que creemos."},
@@ -329,18 +356,8 @@ function searchCuriosities() {
 let darkMode = false;
 document.getElementById('modoOscuroBtn').onclick = () => {
   darkMode = !darkMode;
-  const btn = document.getElementById('modoOscuroBtn');
-  if(darkMode) {
-    document.body.style.background = 'linear-gradient(135deg, #3a003a, #800040)';
-    document.body.style.color = 'white';
-    document.querySelectorAll('.curiosity-card').forEach(c => c.style.backgroundColor = '#330033');
-    btn.innerText = '☀️ Modo Claro';
-  } else {
-    document.body.style.background = '#dff3ff';
-    document.body.style.color = '#333';
-    document.querySelectorAll('.curiosity-card').forEach(c => c.style.backgroundColor = 'white');
-    btn.innerText = '🌙 Modo Oscuro';
-  }
+  document.body.classList.toggle('dark-mode', darkMode);
+  document.getElementById('modoOscuroBtn').innerText = darkMode ? '☀️ Modo Claro' : '🌙 Modo Oscuro';
 };
 
 // =================== INICIALIZACION ===================
