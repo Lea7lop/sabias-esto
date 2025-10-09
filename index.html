@@ -14,199 +14,148 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🤯 Sabías Esto</title>
 <style>
-/* =================== ESTILOS BASE =================== */
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background-color: #dff3ff;
-  margin: 0;
-  padding: 0;
-  color: #333;
-  transition: background-color 0.3s, color 0.3s;
-}
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #dff3ff;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    position: relative;
+  }
 
-header {
-  background: linear-gradient(90deg, #4fa3ff, #1c8cff);
-  padding: 1rem;
-  text-align: center;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-  transition: background 0.3s, color 0.3s;
-}
+  header {
+    background: linear-gradient(90deg, #4fa3ff, #1c8cff);
+    padding: 1rem;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  }
 
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  background-color: #5aaaff;
-  padding: 0.6rem 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  transition: background 0.3s;
-}
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    background-color: #5aaaff;
+    padding: 0.6rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+  }
 
-nav button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 0.6rem 1rem;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.2s ease, color 0.3s;
-}
+  nav button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
 
-nav button:hover {
-  background-color: #3d8eff;
-  border-radius: 6px;
-  transform: translateY(-2px);
-}
+  nav button:hover {
+    background-color: #3d8eff;
+    border-radius: 6px;
+    transform: translateY(-2px);
+  }
 
-#search-container {
-  display: flex;
-  justify-content: center;
-  margin: 1.5rem 0;
-}
+  #search-container {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+    position: relative;
+    z-index: 2;
+  }
 
-#search-container input {
-  width: 80%;
-  max-width: 500px;
-  padding: 0.6rem 1rem;
-  border-radius: 25px;
-  border: 1px solid #bbb;
-  font-size: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  transition: box-shadow 0.2s, background-color 0.3s, color 0.3s, border 0.3s;
-}
+  #search-container input {
+    width: 80%;
+    max-width: 500px;
+    padding: 0.6rem 1rem;
+    border-radius: 25px;
+    border: 1px solid #bbb;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s;
+  }
 
-#search-container input:focus {
-  outline: none;
-  box-shadow: 0 0 8px rgba(0,150,255,0.3);
-}
+  #search-container input:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0,150,255,0.3);
+  }
 
-.section {
-  display: none;
-  padding: 1rem;
-  max-width: 1200px;
-  margin: auto;
-  position: relative;
-}
+  .background-fondo {
+    position: absolute;
+    top: calc(1rem + 2.2rem + 1.5rem);
+    left: 0;
+    width: 100%;
+    height: calc(100% - (1rem + 2.2rem + 1.5rem));
+    background: url("fondo-galileo.png.png") center top / cover no-repeat;
+    z-index: 1;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+  }
 
-.curiosities-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
+  .section {
+    display: none;
+    padding: 1rem;
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+  }
 
-.curiosity-card {
-  background-color: white;
-  padding: 1rem 1.2rem;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, color 0.3s;
-}
+  .curiosities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
 
-.curiosity-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-}
+  .curiosity-card {
+    background-color: white;
+    padding: 1rem 1.2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
 
-.curiosity-card h3 {
-  margin-top: 0;
-  color: #0077cc;
-}
+  .curiosity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
 
-/* =================== MEDIA QUERIES =================== */
-@media (max-width: 900px) {
-  header { font-size: 1.8rem; padding: 0.8rem; }
-  nav button { font-size: 0.95rem; padding: 0.5rem 0.8rem; }
-  #search-container input { width: 90%; }
-  .curiosities-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
-}
+  .curiosity-card h3 {
+    margin-top: 0;
+    color: #0077cc;
+  }
 
-@media (max-width: 600px) {
-  header { font-size: 1.5rem; padding: 0.6rem; }
-  nav { flex-direction: column; align-items: center; gap: 0.5rem; }
-  nav button { width: 90%; text-align: center; padding: 0.5rem 0; font-size: 0.95rem; }
-  #search-container input { width: 95%; font-size: 0.95rem; }
-  .curiosities-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; }
-  .curiosity-card h3 { font-size: 1rem; }
-  .curiosity-card p { font-size: 0.9rem; }
-}
+  @media (max-width: 900px) {
+    header { font-size: 1.8rem; padding: 0.8rem; }
+    nav button { font-size: 0.95rem; padding: 0.5rem 0.8rem; }
+    #search-container input { width: 90%; }
+    .curiosities-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  }
 
-@media (max-width: 350px) {
-  header { font-size: 1.3rem; padding: 0.5rem; }
-  nav button { font-size: 0.85rem; padding: 0.4rem 0.6rem; }
-  #search-container input { font-size: 0.9rem; }
-  .curiosity-card h3 { font-size: 0.95rem; }
-  .curiosity-card p { font-size: 0.85rem; }
-  .curiosities-grid { grid-template-columns: 1fr; gap: 0.6rem; }
-}
+  @media (max-width: 600px) {
+    header { font-size: 1.5rem; padding: 0.6rem; }
+    nav { flex-direction: column; align-items: center; gap: 0.5rem; }
+    nav button { width: 90%; text-align: center; padding: 0.5rem 0; font-size: 0.95rem; }
+    #search-container input { width: 95%; font-size: 0.95rem; }
+    .curiosities-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; }
+    .curiosity-card h3 { font-size: 1rem; }
+    .curiosity-card p { font-size: 0.9rem; }
+  }
 
-/* =================== FONDO INICIO =================== */
-#inicio {
-  overflow: hidden;
-}
-
-#inicio-bg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image: url("fondo-galileo.png.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1;
-  opacity: 1;
-  transition: opacity 0.2s ease-out;
-}
-
-#inicio::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 100%; height: 50%;
-  background: linear-gradient(to bottom, rgba(223, 243, 255, 0), #dff3ff);
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* Modo oscuro */
-body.dark {
-  background-color: #1a001f;
-  color: #e0d6ff;
-}
-
-body.dark header {
-  background: #2e002e;
-  color: #e0d6ff;
-}
-
-body.dark nav {
-  background-color: #2a002a;
-}
-
-body.dark nav button {
-  color: #e0d6ff;
-}
-
-body.dark .curiosity-card {
-  background-color: #2a002a;
-  color: #e0d6ff;
-  box-shadow: 0 4px 10px rgba(255,255,255,0.1);
-}
-
-body.dark #search-container input {
-  background-color: #3a003a;
-  color: #e0d6ff;
-  border: 1px solid #6c4a9e;
-}
-
-body.dark #inicio::after {
-  background: linear-gradient(to bottom, rgba(26, 0, 31, 0), #1a001f);
-}
+  @media (max-width: 350px) {
+    header { font-size: 1.3rem; padding: 0.5rem; }
+    nav button { font-size: 0.85rem; padding: 0.4rem 0.6rem; }
+    #search-container input { font-size: 0.9rem; }
+    .curiosity-card h3 { font-size: 0.95rem; }
+    .curiosity-card p { font-size: 0.85rem; }
+    .curiosities-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+  }
 </style>
 </head>
 <body>
@@ -226,64 +175,28 @@ body.dark #inicio::after {
   <input type="text" id="search" placeholder="🔍 Buscar dato curioso..." onkeyup="searchCuriosities()">
 </div>
 
+<div class="background-fondo"></div>
+
 <div id="inicio" class="section">
-  <div id="inicio-bg"></div>
   <div id="inicio-grid" class="curiosities-grid"></div>
 </div>
-
 <div id="Ciencia" class="section">
   <div id="Ciencia-grid" class="curiosities-grid"></div>
 </div>
-
 <div id="Historia" class="section">
   <div id="Historia-grid" class="curiosities-grid"></div>
 </div>
-
 <div id="Animales" class="section">
   <div id="Animales-grid" class="curiosities-grid"></div>
 </div>
-
 <div id="Tecnologia" class="section">
   <div id="Tecnologia-grid" class="curiosities-grid"></div>
 </div>
-
 <div id="Curiosidades Generales" class="section">
   <div id="Curiosidades Generales-grid" class="curiosities-grid"></div>
 </div>
 
 <script>
-// =================== SECCIONES ===================
-function showSection(sectionId) {
-  document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-  document.getElementById(sectionId).style.display = 'block';
-}
-showSection('inicio'); // Mostrar inicio al cargar
-
-// =================== SCROLL FADE INICIO ===================
-window.addEventListener('scroll', () => {
-  const inicio = document.getElementById('inicio');
-  const bg = document.getElementById('inicio-bg');
-  if (!inicio || !bg) return;
-
-  const rect = inicio.getBoundingClientRect();
-  const height = rect.height;
-  const scrollTop = Math.max(0, -rect.top);
-  let opacity = 1 - scrollTop / (height / 2);
-  opacity = Math.max(0, Math.min(1, opacity));
-  bg.style.opacity = opacity;
-});
-
-// =================== MODO OSCURO ===================
-let modoOscuro = false;
-function toggleDarkModeUI(isDark) {
-  if (isDark) {
-    document.body.classList.add('dark');
-  } else {
-    document.body.classList.remove('dark');
-  }
-}
-
-// =================== DATOS CURIOSOS DE EJEMPLO ===================
 const curiosidades = [
   {"id":1,"titulo":"La miel eterna","categoria":"Ciencia","descripcion":"La miel es uno de los pocos alimentos que no se echa a perder. Se han encontrado tarros de miel comestibles de más de 3000 años en tumbas egipcias, gracias a su baja humedad y alta concentración de azúcares, lo que impide el crecimiento de bacterias y hongos, permitiendo su conservación por milenios."},
   {"id":2,"titulo":"El corazón del camarón","categoria":"Animales","descripcion":"El corazón de un camarón se encuentra en su cabeza debido a la fusión de cabeza y tórax en el cefalotórax, lo que permite que su sistema circulatorio funcione de manera eficiente transportando sangre a todas sus partes, a pesar de su pequeño tamaño."},
@@ -367,24 +280,75 @@ const curiosidades = [
 {"id":80,"titulo":"El tamaño de los océanos","categoria":"Curiosidades Generales","descripcion":"Los océanos contienen el 97% del agua de la Tierra, pero gran parte sigue inexplorada, mostrando la inmensidad y los misterios que todavía guarda nuestro planeta."}
 ];
 
-function renderCuriosities() {
-  curiosidades.forEach(c => {
-    const card = document.createElement('div');
-    card.className = 'curiosity-card';
-    card.innerHTML = `<h3>${c.titulo}</h3><p>${c.descripcion}</p>`;
-    document.getElementById(c.categoria+'-grid').appendChild(card);
-    if(c.categoria !== 'inicio') document.getElementById('inicio-grid').appendChild(card.cloneNode(true));
-  });
+// Mostrar y cambiar secciones
+function showSection(section){
+  document.querySelectorAll('.section').forEach(s=>s.style.display='none');
+  document.getElementById(section).style.display='block';
 }
-renderCuriosities();
 
-// =================== BUSCADOR ===================
-function searchCuriosities() {
-  const query = document.getElementById('search').value.toLowerCase();
-  document.querySelectorAll('.curiosity-card').forEach(card => {
-    card.style.display = card.innerText.toLowerCase().includes(query) ? 'block' : 'none';
+// Crear tarjeta
+function createCard(c){
+  const card = document.createElement('div');
+  card.className='curiosity-card';
+  card.innerHTML=`<h3>${c.titulo}</h3>
+  <p style="font-weight:bold; color:#4a91ff; margin-top:0.2rem;">${c.categoria}</p>
+  <p>${c.descripcion}</p>`;
+  return card;
+}
+
+// Poblar grids
+function populateSections(){
+  const inicioGrid = document.getElementById('inicio-grid');
+  inicioGrid.innerHTML='';
+  curiosidades.slice(0,6).forEach(c=>inicioGrid.appendChild(createCard(c)));
+
+  ['Ciencia','Historia','Animales','Tecnologia','Curiosidades Generales'].forEach(cat=>{
+    const grid=document.getElementById(`${cat}-grid`);
+    grid.innerHTML='';
+    curiosidades.filter(c=>c.categoria===cat).forEach(c=>grid.appendChild(createCard(c)));
   });
 }
+
+// Buscar
+function searchCuriosities(){
+  const query=document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.curiosity-card').forEach(card=>{
+    const text=card.textContent.toLowerCase();
+    card.style.display=text.includes(query)?'block':'none';
+  });
+}
+
+// Inicializar
+populateSections();
+showSection('inicio');
+
+// Botón Modo Oscuro
+const btnOscuro=document.createElement('button');
+btnOscuro.textContent='Modo Oscuro';
+btnOscuro.style.cssText='margin-left:10px;padding:0.4rem 0.8rem;border-radius:10px;border:none;background:#4a1c6c;color:white;cursor:pointer;font-weight:bold;';
+document.querySelector('nav').appendChild(btnOscuro);
+let oscuro=false;
+btnOscuro.addEventListener('click',()=>{
+  oscuro=!oscuro;
+  const body=document.body, header=document.querySelector('header'), nav=document.querySelector('nav'), cards=document.querySelectorAll('.curiosity-card'), navBtns=document.querySelectorAll('nav button');
+  if(oscuro){
+    body.style.backgroundColor='#1a001f';
+    body.style.color='#e0d6ff';
+    header.style.background='#2e002e';
+    header.style.color='#e0d6ff';
+    nav.style.background='#2a002a';
+    navBtns.forEach(b=>b.style.color='#e0d6ff');
+    cards.forEach(c=>{c.style.backgroundColor='#2a002a';c.style.color='#e0d6ff';c.style.boxShadow='0 4px 10px rgba(255,255,255,0.1)';});
+  }else{
+    body.style.backgroundColor='#dff3ff';
+    body.style.color='#333';
+    header.style.background='linear-gradient(90deg, #4fa3ff, #1c8cff)';
+    header.style.color='white';
+    nav.style.backgroundColor='#5aaaff';
+    navBtns.forEach(b=>b.style.color='white');
+    cards.forEach(c=>{c.style.backgroundColor='white';c.style.color='#333';c.style.boxShadow='0 4px 10px rgba(0,0,0,0.1)';});
+  }
+});
 </script>
 
 </body>
