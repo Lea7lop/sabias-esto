@@ -23,29 +23,6 @@ body {
   color: #333;
 }
 
-/* Fondo de Inicio con imagen de Galileo */
-#inicio {
-  display: block;
-  background-image: url("fondo-galileo.png.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  padding: 2rem 1rem;
-  border-radius: 0 0 20px 20px;
-  position: relative;
-}
-#inicio::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(to bottom, rgba(223,243,255,0) 0%, #dff3ff 100%);
-  pointer-events: none;
-}
-
 header {
   background: linear-gradient(90deg, #4fa3ff, #1c8cff);
   padding: 1rem;
@@ -113,11 +90,35 @@ nav button.active {
   box-shadow: 0 0 8px rgba(0,150,255,0.3);
 }
 
+/* Fondo de Inicio con imagen de Galileo SOLO en inicio */
+#inicio {
+  display: block;
+  background-image: url("fondo-galileo.png.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  padding: 2rem 1rem;
+  border-radius: 0 0 20px 20px;
+  position: relative;
+}
+#inicio::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to bottom, rgba(223,243,255,0) 0%, #dff3ff 100%);
+  pointer-events: none;
+}
+
 .section {
   display: none;
   padding: 1rem;
   max-width: 1200px;
   margin: auto;
+  background: none; /* Quitamos fondo para otras secciones */
 }
 
 .curiosities-grid {
@@ -344,7 +345,7 @@ botonModoOscuro.style.cssText = `
   padding: 0.5rem 1rem;
   border-radius: 10px;
   border: none;
-  background-color: #4a1c6c;
+  background-color: #333333;  /* TU COLOR ORIGINAL DE MODO OSCURO */
   color: white;
   cursor: pointer;
   font-weight: bold;
@@ -357,7 +358,7 @@ botonModoOscuro.addEventListener('click',()=>{
   if(modoOscuro){
     document.body.style.backgroundColor = '#121212';
     document.body.style.color = '#eee';
-    document.querySelectorAll('.curiosity-card').forEach(c=>c.style.backgroundColor='#1e1e1e');
+    document.querySelectorAll('.curiosity-card').forEach(c=>c.style.backgroundColor='#222222');
     botonModoOscuro.textContent = 'Modo Claro';
   } else {
     document.body.style.backgroundColor = '#dff3ff';
